@@ -14,7 +14,7 @@ import android.widget.ListView;
 import com.blopp.bloppasthma.R;
 import com.blopp.bloppasthma.adapters.MedicineInstructionsListAdapter;
 import com.blopp.bloppasthma.adapters.MedicineListModel;
-import com.blopp.bloppasthma.repositories.AvailableMedicines;
+import com.blopp.bloppasthma.utils.AvailableMedicines;
 
 public class MedicationInformationActivity extends Activity implements
 		 OnItemClickListener

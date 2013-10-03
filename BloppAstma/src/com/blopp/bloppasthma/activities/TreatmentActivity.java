@@ -21,7 +21,7 @@ import com.blopp.bloppasthma.adapters.MedicineListModel;
 import com.blopp.bloppasthma.adapters.MedicineRadioAdapter;
 import com.blopp.bloppasthma.jsonparsers.HealthStateParser;
 import com.blopp.bloppasthma.jsonposters.PostRegisterTreatment;
-import com.blopp.bloppasthma.repositories.AvailableMedicines;
+import com.blopp.bloppasthma.utils.AvailableMedicines;
 
 public class TreatmentActivity extends Activity implements OnClickListener
 {

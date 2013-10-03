@@ -11,7 +11,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.blopp.bloppasthma.R;
-import com.blopp.bloppasthma.repositories.AvailableMedicines;
+import com.blopp.bloppasthma.utils.AvailableMedicines;
 
 
 /**

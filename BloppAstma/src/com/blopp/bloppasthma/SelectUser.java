@@ -21,7 +21,6 @@ public class SelectUser extends Activity
 		
 		parents.setOnClickListener(new ParentSelectedListener());
 		kids.setOnClickListener(new KidSelectedListener());
-		
 	}
 	
 	

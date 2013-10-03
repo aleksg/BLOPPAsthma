@@ -33,7 +33,7 @@ import com.blopp.bloppasthma.jsonposters.DeleteMedicineFromPlanPoster;
 import com.blopp.bloppasthma.models.HealthState;
 import com.blopp.bloppasthma.models.HealthZone;
 import com.blopp.bloppasthma.models.MedicinePlanModel;
-import com.blopp.bloppasthma.repositories.AvailableMedicines;
+import com.blopp.bloppasthma.utils.AvailableMedicines;
 
 /**
  * An activity class that contains a listview over the different medicines in a

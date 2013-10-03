@@ -18,7 +18,7 @@ import android.widget.Toast;
 import com.blopp.bloppasthma.R;
 import com.blopp.bloppasthma.JsonModels.AddMedicineToPlanModel;
 import com.blopp.bloppasthma.jsonposters.AddMedicineToPlanPoster;
-import com.blopp.bloppasthma.repositories.AvailableMedicines;
+import com.blopp.bloppasthma.utils.AvailableMedicines;
 
 
 public class AddMedicineToPlanActivity extends Activity implements
