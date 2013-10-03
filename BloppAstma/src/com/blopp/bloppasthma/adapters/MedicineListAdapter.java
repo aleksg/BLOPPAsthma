@@ -57,7 +57,9 @@ public class MedicineListAdapter extends BaseAdapter
 
 			ImageView medicineIconView = (ImageView) medicineListView
 					.findViewById(R.id.medicine_imageView);
+			
 			medicineIconView.setImageBitmap(medicines[position].getBitmap());
+			
 			medicineIconView.setPadding(10, 5, 0, 0);
 			TextView medicineNameView = (TextView) medicineListView
 					.findViewById(R.id.medicine_name_textView);

@@ -29,11 +29,6 @@ public class Medicine implements java.io.Serializable
 
 	public Medicine setName(String name)
 	{
-		if (name.isEmpty())
-		{
-			throw new IllegalArgumentException("The name cannot be null");
-
-		}
 		this.name = name;
 		return this;
 	}

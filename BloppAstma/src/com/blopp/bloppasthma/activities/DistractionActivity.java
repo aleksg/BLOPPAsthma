@@ -68,8 +68,9 @@ public class DistractionActivity extends Activity {
 			Log.d("color", medicinePlanModel.getMedicineKarotzColor());
 			return medicinePlanModel.getMedicineKarotzColor();
 		}
-		throw new RuntimeException();
-		//return medicine.get;
+		return medicine.getColor();
+		
+		
 	}
 	
 	public void action1s()

@@ -283,7 +283,7 @@ public class ViewMedicationPlanActivity extends Activity implements
 					planName.setTextColor(Color.BLACK);
 				} else
 				{
-					v = inflater.inflate(R.layout.medicine_list_item, null);
+					v = inflater.inflate(R.layout.plan_medicine_list_item, null);
 					TextView nameTextView = (TextView) v
 							.findViewById(R.id.medicine_name_textview);
 					TextView timeTextView = (TextView) v
