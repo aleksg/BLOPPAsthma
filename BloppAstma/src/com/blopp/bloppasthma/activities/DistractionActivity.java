@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.blopp.bloppasthma.R;
 import com.blopp.bloppasthma.JsonModels.RegisterMedicinePostModel;
 import com.blopp.bloppasthma.adapters.MedicineListAdapter;
+import com.blopp.bloppasthma.adapters.RewardsAdapter;
 import com.blopp.bloppasthma.div.Actions;
 import com.blopp.bloppasthma.div.ColorMeds;
 import com.blopp.bloppasthma.div.SoundStreamer;
@@ -39,6 +40,9 @@ public class DistractionActivity extends Activity {
 	private static final int CHILD_ID = 6;
 	private int healthStateId;
 	private int reward;
+	
+	private static final String TAG = DistractionActivity.class.getSimpleName();
+	
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -68,9 +72,7 @@ public class DistractionActivity extends Activity {
 			Log.d("color", medicinePlanModel.getMedicineKarotzColor());
 			return medicinePlanModel.getMedicineKarotzColor();
 		}
-		return medicine.getColor();
-		
-		
+		return medicine.getColor();	
 	}
 	
 	public void action1s()
@@ -256,11 +258,11 @@ public class DistractionActivity extends Activity {
 	public void initPickMedicine()
 	{	
 		setContentView(R.layout.medication_pick_medicine);
-		Log.d("ipm", "set content view");
+		Log.d(TAG, "set content view");
 		final ListView listView = (ListView) findViewById(R.id.medicines_listView);
-		Log.d("ipm", "found list view");
+		Log.d(TAG, "found list view");
 		MedicineListParser mlp = new MedicineListParser(getApplicationContext());
-		Log.d("ipm", "inited med list parser");
+		Log.d(TAG, "inited med list parser");
 		
 		mlp.execute();
 		try {
@@ -271,9 +273,9 @@ public class DistractionActivity extends Activity {
 			e.printStackTrace();
 		}
 		Medicine[] medicines = mlp.getMedicines().toArray(new Medicine[mlp.getMedicines().size()]);
-		Log.d("ipm", "found meds");
+		Log.d(TAG, "found meds");
 		listView.setAdapter(new MedicineListAdapter(getApplicationContext(), medicines));
-		Log.d("ipm", "set list adapter");
+		Log.d(TAG, "set list adapter");
 		listView.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				medicine = (Medicine)listView.getItemAtPosition(position);
@@ -322,7 +324,7 @@ public class DistractionActivity extends Activity {
 		GridView rewardStarsView = (GridView) findViewById(R.id.rewards_grid);
 		int width = rewardStarsView.getWidth()/5;
 		rewardStarsView.setColumnWidth(width);
-		rewardStarsView.setAdapter(new RewardsAdapter(this, Math.min(width, rewardStarsView.getHeight())));
+		rewardStarsView.setAdapter(new RewardsAdapter(this, Math.min(width, rewardStarsView.getHeight()), reward));
 		TextView rewardsTextView = (TextView) findViewById(R.id.distraction_finished_reward_text);
 		rewardsTextView.setText(String.format(getString(R.string.RewardsText), reward));
 		final ImageView chestView = (ImageView) findViewById(R.id.distraction_finished_chest);
@@ -355,52 +357,5 @@ public class DistractionActivity extends Activity {
 				
 			}
 		}).play();
-	}
-	//TODO: Own file?
-	public class RewardsAdapter extends BaseAdapter
-	{
-		private Context context;
-		private int size;
-		
-		public RewardsAdapter(Context context, int columnWidth)
-		{
-			this.context = context;
-			this.size = columnWidth;
-		}
-
-		public int getCount()
-		{
-			return reward;
-		}
-
-		public Object getItem(int position)
-		{
-			return position;
-		}
-
-		public long getItemId(int position)
-		{
-			return position;
-		}
-
-		public View getView(int position, View convertView, ViewGroup parent)
-		{
-			// the first square should be a text view with the number of stars
-			// while the rest are images of stars
-			ImageView imageView;
-			if (convertView == null)
-			{
-				imageView = new ImageView(context);
-				imageView.setLayoutParams(new GridView.LayoutParams(size,size));
-				imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-				imageView.setPadding(0,0,0,0);
-			}
-			else
-			{
-				imageView = (ImageView) convertView;
-			}
-			imageView.setImageResource(R.drawable.star);
-			return imageView;
-		}
 	}
 }

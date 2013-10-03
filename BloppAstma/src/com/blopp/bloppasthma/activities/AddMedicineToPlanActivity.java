@@ -100,24 +100,32 @@ public class AddMedicineToPlanActivity extends Activity
 		{
 			int medicineId = availableMeds.getMedicineByName(spinnerMedicine
 					.getSelectedItem().toString());
-			int hour = timepickerMedicine.getCurrentHour();
-			int minute = timepickerMedicine.getCurrentMinute();
-
-			String time = hour + ":" + minute + ":" + "00";
+			String time = getTime();
+			
 			AddMedicineToPlanModel model = new AddMedicineToPlanModel(CHILD_ID,
 					healthStateId, time, medicineId);
 			boolean wasSuccess = executePost(model);
-			
 			if (!(wasSuccess))
 			{
-				Toast t = Toast.makeText(getApplicationContext(), R.string.post_error, Toast.LENGTH_LONG);
-				t.show();
+				showToast();
 				return;
 			}
 			Intent resultIntent = new Intent();
 			
 			setResult(Activity.RESULT_OK, resultIntent);
 			finish();	
+		}
+		private String getTime(){
+			int hour = timepickerMedicine.getCurrentHour();
+			int minute = timepickerMedicine.getCurrentMinute();
+
+			String time = hour + ":" + minute + ":" + "00";
+			return time;
+		}
+		private void showToast(){
+			Toast t = Toast.makeText(getApplicationContext(), R.string.post_error, Toast.LENGTH_LONG);
+			t.show();
+			return;
 		}
 	}
 
