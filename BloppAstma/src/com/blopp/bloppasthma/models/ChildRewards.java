@@ -20,12 +20,12 @@ public class ChildRewards {
 		childModelParser.execute();
 		try {
 			childModelParser.get();
-			this.credits = childModelParser.getLogResult().getCredits();
 		} catch (InterruptedException e) {
 			Log.e("ChildRewards", e.getMessage());
 		} catch (ExecutionException e) {
 			Log.e("ChildRewards", e.getMessage());
 		}
+		this.credits = childModelParser.getLogResult().getCredits();
 	}
 	
 	public int getCredits()

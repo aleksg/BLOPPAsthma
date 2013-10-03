@@ -52,7 +52,7 @@ public class InstructionOptionsActivity extends Activity implements OnItemClickL
 		{
 		
 		case USAGE: 
-			intent = new Intent(InstructionOptionsActivity.this, InstructionSlideShowActivity.class);
+			intent = new Intent(InstructionOptionsActivity.this, InstructionsActivity.class);
 			startActivity(intent);
 			return;
 		case INFO:

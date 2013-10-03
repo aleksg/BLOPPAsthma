@@ -111,7 +111,8 @@
         </activity>
         <activity android:name="com.blopp.bloppasthma.activities.ParentsMainMenu"></activity>
         <activity android:name="com.blopp.bloppasthma.activities.KidsMainMenu"></activity>
-        <activity android:name="com.blopp.bloppasthma.activities.DisplayRewardsActivity"></activity>
+        <activity android:name=".activities.DisplayRewardsActivity" android:screenOrientation="portrait"></activity>
+        <activity android:name=".activities.InstructionsActivity" android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

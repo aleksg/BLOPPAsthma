@@ -30,12 +30,8 @@ public class ChildModelParser extends GenericJSONParser
 					.setName(information.getString("name"))
 					.setPersNum(information.getInt("pers_num"))
 					.setCredits(information.getInt("credits"))
-					.setMedicalPlanId(information.getInt("medical_plan_id"))
-					.setAvatarId(information.getInt("avatar_id"))
-					.setLocationAltitude(
-							information.getDouble("location_altitude"))
-					.setLocationLatitude(
-							information.getDouble("location_latitude"));
+					.setMedicalPlanId(information.getInt("medical_plan_id"));
+			System.out.println("Child is null" + (child==null));
 		} catch (JSONException e)
 		{
 			Log.e(TAG, e.getMessage());

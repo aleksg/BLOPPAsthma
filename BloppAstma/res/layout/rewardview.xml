@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:gravity="center" >
 
-    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    <TextView 
         android:id="@+id/displayRewardsTextView"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
@@ -17,7 +17,7 @@
 		android:background="@drawable/star" >
 	</TextView>
 
-	<GridView xmlns:android="http://schemas.android.com/apk/res/android"
+	<GridView 
 		android:id="@+id/rewardsView"
 	    android:numColumns="auto_fit"
 	    android:gravity="center"
