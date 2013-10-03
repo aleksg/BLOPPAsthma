@@ -41,7 +41,7 @@ public class SelectUser extends Activity
 		@Override
 		public void onClick(View v)
 		{
-			//Switch Activity
+			//Switch Activity	
 		}
 		
 	}

@@ -12,17 +12,18 @@
         android:id="@+id/kidImageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="24dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="116dp"
         android:src="@drawable/kid" />
 
     <ImageButton
         android:id="@+id/parentImageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/imageButton1"
-        android:layout_toRightOf="@+id/imageButton1"
+        android:layout_alignLeft="@+id/kidImageButton"
+        android:layout_below="@+id/kidImageButton"
+        android:layout_marginTop="36dp"
         android:src="@drawable/parent" />
 
 </RelativeLayout>
