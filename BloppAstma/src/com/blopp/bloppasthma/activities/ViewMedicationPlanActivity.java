@@ -72,7 +72,7 @@ public class ViewMedicationPlanActivity extends Activity implements
 		listView = (ListView) findViewById(R.id.medicine_listview);
 		intializeList();
 		
-		listView.setAdapter(new MedicineListAdapter(timeMap, (HealthState.getIdByHealthZone(healthZone)-1)));
+		listView.setAdapter(new PlanMedicineListAdapter(timeMap, (HealthState.getIdByHealthZone(healthZone)-1)));
 		
 		listView.setOnItemClickListener(this);		
 		addMedicineButton = (Button) findViewById(R.id.add_medicine_button);
@@ -151,7 +151,7 @@ public class ViewMedicationPlanActivity extends Activity implements
 		
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		
-		MedicineListAdapter a = (MedicineListAdapter)listView.getAdapter();
+		PlanMedicineListAdapter a = (PlanMedicineListAdapter)listView.getAdapter();
 		String displayedText = a.getItem(pressedMedicine).split("!")[0] + " " + a.getItem(pressedMedicine).split("!")[1];
 		
 		builder.setMessage(displayedText)
@@ -167,7 +167,7 @@ public class ViewMedicationPlanActivity extends Activity implements
 				
 				public void onClick(DialogInterface dialog, int which) {
 					
-					MedicineListAdapter a = (MedicineListAdapter)listView.getAdapter();
+					PlanMedicineListAdapter a = (PlanMedicineListAdapter)listView.getAdapter();
 					
 					String combinedString = a.getItem(pressedMedicine);
 					String time = getTime(combinedString);
@@ -204,7 +204,7 @@ public class ViewMedicationPlanActivity extends Activity implements
 		listView = (ListView) findViewById(R.id.medicine_listview);
 		intializeList();
 		
-		listView.setAdapter(new MedicineListAdapter(timeMap, (HealthState.getIdByHealthZone(healthZone)-1)));
+		listView.setAdapter(new PlanMedicineListAdapter(timeMap, (HealthState.getIdByHealthZone(healthZone)-1)));
 	}
 	private String getMedicineName(String combined)
 	{
@@ -215,7 +215,7 @@ public class ViewMedicationPlanActivity extends Activity implements
 		return combined.split("!")[0];
 	}
 	
-	public class MedicineListAdapter extends BaseAdapter
+	private class PlanMedicineListAdapter extends BaseAdapter
 	{
 		
 		private HashMap<String, String> medicines;
@@ -225,7 +225,7 @@ public class ViewMedicationPlanActivity extends Activity implements
 		private PlanViewHolder planViewHolder;
 		
 		
-		public MedicineListAdapter(HashMap<String, String> medicines, int healthStateId)
+		public PlanMedicineListAdapter(HashMap<String, String> medicines, int healthStateId)
 		{
 			this.medicines = medicines;
 			this.planViewHolder = new PlanViewHolder(healthStateId);

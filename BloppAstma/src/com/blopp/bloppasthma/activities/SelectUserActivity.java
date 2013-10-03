@@ -1,13 +1,16 @@
-package com.blopp.bloppasthma;
+package com.blopp.bloppasthma.activities;
+
+import com.blopp.bloppasthma.R;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 
-public class SelectUser extends Activity
+public class SelectUserActivity extends Activity
 {
 
 	@Override
@@ -22,9 +25,6 @@ public class SelectUser extends Activity
 		parents.setOnClickListener(new ParentSelectedListener());
 		kids.setOnClickListener(new KidSelectedListener());
 	}
-	
-	
-	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
@@ -40,7 +40,8 @@ public class SelectUser extends Activity
 		@Override
 		public void onClick(View v)
 		{
-			//Switch Activity	
+			Intent intent = new Intent(SelectUserActivity.this, ParentsMainMenu.class);
+			startActivity(intent);
 		}
 		
 	}
@@ -50,7 +51,8 @@ public class SelectUser extends Activity
 		@Override
 		public void onClick(View v)
 		{
-			//Switch Activity
+			Intent intent = new Intent(SelectUserActivity.this, KidsMainMenu.class);
+			startActivity(intent);
 		}
 	}
 }

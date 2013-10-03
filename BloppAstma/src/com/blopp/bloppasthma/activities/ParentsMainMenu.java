@@ -17,10 +17,10 @@ import com.blopp.bloppasthma.adapters.MainMenuAdapter;
 import com.blopp.bloppasthma.adapters.MainMenuItem;
 import com.blopp.bloppasthma.adapters.MainMenuItem.MenuOptions;
 
-public class MainMenu extends Activity implements OnItemClickListener
+public class ParentsMainMenu extends Activity implements OnItemClickListener
 {
 
-	private static final String TAG = MainMenu.class.getSimpleName();
+	private static final String TAG = ParentsMainMenu.class.getSimpleName();
 	private ListView listView;
 
 	@Override
@@ -36,7 +36,7 @@ public class MainMenu extends Activity implements OnItemClickListener
 
 	private void activityStarter(Class<?> c)
 	{
-		Intent intent = new Intent(MainMenu.this, c);
+		Intent intent = new Intent(ParentsMainMenu.this, c);
 		startActivity(intent);
 	}
 

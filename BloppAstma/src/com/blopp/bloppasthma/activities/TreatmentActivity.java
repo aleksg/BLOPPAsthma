@@ -23,7 +23,7 @@ import com.blopp.bloppasthma.jsonparsers.HealthStateParser;
 import com.blopp.bloppasthma.jsonposters.PostRegisterTreatment;
 import com.blopp.bloppasthma.utils.AvailableMedicines;
 
-public class TreatmentActivity extends Activity implements OnClickListener
+public class TreatmentActivity extends Activity
 {
 	private static final String TAG = TreatmentActivity.class.getSimpleName();
 	private static final int CHILD_ID = 6;
@@ -55,7 +55,15 @@ public class TreatmentActivity extends Activity implements OnClickListener
 		chooseMedicineTextField.setPadding(10, 0, 0, 0);
 //		medicineListView.setOnItemClickListener(this);
 		initDateEditText();
-		submitButton.setOnClickListener(this);
+		submitButton.setOnClickListener(new OnClickListener()
+		{
+			
+			@Override
+			public void onClick(View v)
+			{
+				submitForm();
+			}
+		});
 	}
 	
 	/**
@@ -69,14 +77,6 @@ public class TreatmentActivity extends Activity implements OnClickListener
 		int year = dateTime.getYear();
 		dateNow = day + "-" + month + "-" + year + "";
 		dateEditText.setText(dateNow);
-	}
-
-	public void onClick(View v)
-	{
-		if (v.getId() == submitButton.getId())
-		{
-			submitForm();
-		}
 	}
 
 	/**
@@ -234,7 +234,7 @@ public class TreatmentActivity extends Activity implements OnClickListener
 	 */
 	private void returnToMainMenu()
 	{
-		Intent intent = new Intent(TreatmentActivity.this, MainMenu.class);
+		Intent intent = new Intent(TreatmentActivity.this, ParentsMainMenu.class);
 		startActivity(intent);
 	}
 
