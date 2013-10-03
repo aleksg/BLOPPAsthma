@@ -35,7 +35,7 @@ public class SelectUser extends Activity
 		return true;
 	}
 	
-	class ParentSelectedListener implements OnClickListener
+	private class ParentSelectedListener implements OnClickListener
 	{
 
 		@Override
@@ -45,7 +45,7 @@ public class SelectUser extends Activity
 		}
 		
 	}
-	class KidSelectedListener implements OnClickListener
+	private class KidSelectedListener implements OnClickListener
 	{
 
 		@Override
@@ -53,6 +53,5 @@ public class SelectUser extends Activity
 		{
 			//Switch Activity
 		}
-		
 	}
 }
