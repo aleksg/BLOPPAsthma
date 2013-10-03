@@ -22,7 +22,7 @@ import com.blopp.bloppasthma.services.AlarmUpdateReceiver;
 public class KidsMainMenu extends Activity implements
 		android.view.View.OnClickListener
 {
-	private Button DisplayRewardsButton, TreatmentButton, instructionsButton;
+	private Button DisplayRewardsButton, TreatmentButton, instructionsButton, shopButton;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState)
@@ -61,6 +61,7 @@ public class KidsMainMenu extends Activity implements
 		setUpListenerForButton(DisplayRewardsButton, R.id.rewards_button);
 		setUpListenerForButton(TreatmentButton, R.id.treatment_button);
 		setUpListenerForButton(instructionsButton, R.id.instructions_button);
+		setUpListenerForButton(shopButton, R.id.shop_button);
 	}
 
 	private void setUpListenerForButton(Button b, int id)
@@ -85,6 +86,9 @@ public class KidsMainMenu extends Activity implements
 		} else if (vid == R.id.instructions_button)
 		{
 			activityStarter(InstructionsActivity.class);
+		} else if (vid == R.id.shop_button) 
+		{
+			activityStarter(ShopActivity.class);
 		}
 		Log.d("MainMenu", "v.id()=" + v.getId());
 	}
