@@ -66,7 +66,7 @@ public class ParentsMainMenu extends Activity implements OnItemClickListener
 			startCalendar();
 		} else if (option.equals(MenuOptions.MANUAL))
 		{
-			activityStarter(InstructionSlideShowActivity.class);
+			activityStarter(InstructionsActivity.class);
 		} else if (option.equals(MenuOptions.PLAN))
 		{
 			startPlan();
