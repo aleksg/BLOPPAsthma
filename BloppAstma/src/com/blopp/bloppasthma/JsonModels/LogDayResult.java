@@ -25,27 +25,30 @@ public class LogDayResult
 	{
 		return healthStateId;
 	}
-	public void setHealthStateId(int health_state_id)
+	public LogDayResult setHealthStateId(int health_state_id)
 	{
 		this.healthStateId = health_state_id;
+		return this;
 	}
 	
 	public String getDate()
 	{
 		return date;
 	}
-	public void setDate(String date)
+	public LogDayResult setDate(String date)
 	{
 		this.date = date;
+		return this;
 	}
 	
 	public ArrayList<LogDosesModel> getLogDosesList()
 	{
 		return logDosesList;
 	}
-	public void setLogDosesList(ArrayList<LogDosesModel> logDosesList)
+	public LogDayResult setLogDosesList(ArrayList<LogDosesModel> logDosesList)
 	{
 		this.logDosesList = logDosesList;
+		return this;
 	}
 
 	

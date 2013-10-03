@@ -38,12 +38,12 @@ public class MedicineListParser extends GenericJSONParser
 			for(int i=0; i<array.length(); i++)
 			{
 				JSONObject med = array.getJSONObject(i);
-				Medicine m = new Medicine(
-						med.getInt("id"),
-						med.getString("name"),
-						med.getString("color"),
-						medColorToBitmap(med.getString("color"))
-						);
+
+				Medicine m = new Medicine()
+					.setBitmap(medColorToBitmap(med.getString("color")))
+					.setColor(med.getString("color"))
+					.setName(med.getString("name"))
+					.setId(med.getInt("id"));
 				medicines.add(m);
 			}
 			
@@ -59,7 +59,7 @@ public class MedicineListParser extends GenericJSONParser
 		return medicines;
 	}
 	
-	// TOO LITTLE TIME TO MAKE IMAGE DOWNLOADER
+	// TOO LITTLE TIME TO MAKE IMAGE DOWNLOADER. WHAT THE FUCK????
 	public Bitmap medColorToBitmap(String color)
 	{
 		return BitmapFactory.decodeResource(context.getResources(), ColorMeds.medicineImage(color));

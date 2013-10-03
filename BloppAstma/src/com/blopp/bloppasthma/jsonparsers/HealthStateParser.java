@@ -27,7 +27,6 @@ public class HealthStateParser extends GenericJSONParser
 		{
 			jsonData = new JSONObject(result);
 			sqlsuccess = jsonData.getBoolean("sqlsuccess");
-
 			JSONObject state = jsonData.getJSONObject("state");
 			this.healthStateId = Integer.parseInt(state.getString("id"));
 

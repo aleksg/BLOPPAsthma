@@ -19,33 +19,37 @@ public class MedicationPlanResult
 	{
 		return sqlSuccess;
 	}
-	public void setSqlSuccess(boolean sqlSuccess)
+	public MedicationPlanResult setSqlSuccess(boolean sqlSuccess)
 	{
 		this.sqlSuccess = sqlSuccess;
+		return this;
 	}
 	public int getChildId()
 	{
 		return childId;
 	}
-	public void setChildId(int childId)
+	public MedicationPlanResult setChildId(int childId)
 	{
 		this.childId = childId;
+		return this;
 	}
 	public String getQuery()
 	{
 		return query;
 	}
-	public void setQuery(String query)
+	public MedicationPlanResult setQuery(String query)
 	{
 		this.query = query;
+		return this;
 	}
 	public ArrayList<MedicinePlanModel> getPlans()
 	{
 		return plans;
 	}
-	public void setPlans(ArrayList<MedicinePlanModel> plans)
+	public MedicationPlanResult setPlans(ArrayList<MedicinePlanModel> plans)
 	{
 		this.plans = plans;
+		return this;
 	}
 
 }

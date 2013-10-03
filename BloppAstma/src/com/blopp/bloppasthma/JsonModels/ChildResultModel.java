@@ -17,63 +17,71 @@ public class ChildResultModel
 		return id;
 	}
 
-	public void setId(int id) {
+	public ChildResultModel setId(int id) {
 		this.id = id;
+		return this;
 	}
-
+	
 	public String getName() {
 		return name;
 	}
 
-	public void setName(String name) {
+	public ChildResultModel setName(String name) {
 		this.name = name;
+		return this;
 	}
 
 	public int getPersNum() {
 		return persNum;
 	}
 
-	public void setPersNum(int persNum) {
+	public ChildResultModel setPersNum(int persNum) {
 		this.persNum = persNum;
+		return this;
 	}
 
 	public int getMedicalPlanId() {
 		return medicalPlanId;
 	}
 
-	public void setMedicalPlanId(int medicalPlanId) {
+	public ChildResultModel setMedicalPlanId(int medicalPlanId) {
 		this.medicalPlanId = medicalPlanId;
+		return this;
 	}
 
 	public int getAvatarId() {
 		return avatarId;
 	}
 
-	public void setAvatarId(int avatarId) {
+	public ChildResultModel setAvatarId(int avatarId) {
 		this.avatarId = avatarId;
+		return this;
 	}
 
 	public int getCredits() {
 		return credits;
 	}
 
-	public void setCredits(int credits) {
+	public ChildResultModel setCredits(int credits) {
 		this.credits = credits;
+		return this;
 	}
 
 	public double getLocationLatitude() {
 		return locationLatitude;
 	}
 
-	public void setLocationLatitude(double locationLatitude) {
+	public ChildResultModel setLocationLatitude(double locationLatitude) {
 		this.locationLatitude = locationLatitude;
+		return this;
 	}
 
 	public double getLocationAltitude() {
 		return locationAltitude;
 	}
 
-	public void setLocationAltitude(double locationAltitude) {
+	public ChildResultModel setLocationAltitude(double locationAltitude) {
 		this.locationAltitude = locationAltitude;
+		return this;
 	}
 }

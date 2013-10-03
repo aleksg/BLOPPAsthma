@@ -1,6 +1,5 @@
 package com.blopp.bloppasthma.jsonparsers;
 
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -13,7 +12,6 @@ public class InstructionsParser extends GenericJSONParser
 	private static final String PHPPage = "get_instructions.php?";
 	private DownloadImageTask imageTask;
 	private InstructionsResult instructionResult;
-
 
 	public InstructionsParser(int medicineId)
 	{
@@ -28,17 +26,17 @@ public class InstructionsParser extends GenericJSONParser
 		{
 			object = new JSONObject(result);
 			JSONObject ir = object.getJSONObject("instructions");
-			instructionResult = new InstructionsResult();
-			instructionResult.setEffect(ir.getString("effect"));
-			instructionResult.setId(ir.getInt("id"));
-			instructionResult.setImageUrl(ir.getString("url"));
-			instructionResult.setInstructions(ir.getString("information"));
+			instructionResult = new InstructionsResult()
+					.setEffect(ir.getString("effect"))
+					.setId(ir.getInt("id"))
+					.setImageUrl(ir.getString("url"))
+					.setInstructions(ir.getString("information"));
 
 		} catch (JSONException e)
 		{
 			e.printStackTrace();
 		}
-	
+
 		imageTask = new DownloadImageTask(instructionResult.getImageUrl());
 	}
 

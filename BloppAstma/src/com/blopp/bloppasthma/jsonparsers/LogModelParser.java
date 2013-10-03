@@ -45,28 +45,28 @@ public class LogModelParser extends GenericJSONParser
 		try
 		{
 			json_data = new JSONObject(result);
-			this.logResult = new LogResult();
-			logResult.setSqlSuccess(json_data.getBoolean("sqlsuccess"));
-			logResult.setMonth(Integer.parseInt(json_data.getString("month")));
-			logResult.setYear(Integer.parseInt(json_data.getString("year")));
-			logResult.setQuery(json_data.getString("query"));
-			logResult.setChildId(Integer.parseInt(json_data
+			this.logResult = new LogResult()
+			.setSqlSuccess(json_data.getBoolean("sqlsuccess"))
+			.setMonth(Integer.parseInt(json_data.getString("month")))
+			.setYear(Integer.parseInt(json_data.getString("year")))
+			.setQuery(json_data.getString("query"))
+			.setChildId(Integer.parseInt(json_data
 					.getString("child_id")));
 			JSONArray array = (json_data.getJSONArray("days"));
 			ArrayList<LogDayResult> logDayResults = new ArrayList<LogDayResult>();
 
 			for (int i = 0; i < array.length(); i++)
 			{
-				LogDayResult log_day = new LogDayResult();
 				JSONObject day = array.getJSONObject(i);
+				LogDayResult log_day = new LogDayResult()
 				
-				log_day.setDate(day.getString("date"));
-				log_day.setHealthStateId(Integer.parseInt(day.getString("health_state_id")));
+				.setDate(day.getString("date"))
+				.setHealthStateId(Integer.parseInt(day.getString("health_state_id")));
+				
 				JSONArray doses = day.getJSONArray("doses");
 				
 				log_day.setLogDosesList(initDosesModel(doses));
 				logDayResults.add(log_day);
-
 			}
 			logResult.setLogDayResults(logDayResults);
 
@@ -85,15 +85,15 @@ public class LogModelParser extends GenericJSONParser
 			try
 			{
 				JSONObject dose = doses.getJSONObject(i);
-				model.setId(Integer.parseInt(dose.getString("id")));
-				model.setHealthStateId(Integer.parseInt(dose.getString("health_state_id")));
-				model.setTime(dose.getString("time"));
-				model.setDate(dose.getString("day_date"));
-				model.setChildId(Integer.parseInt(dose.getString("child_id")));
-				model.setReward(Integer.parseInt(dose.getString("reward")));
-				model.setMedicineId(Integer.parseInt(dose.getString("medicine_id")));
-				model.setPlanId(Integer.parseInt(dose.getString("medical_plan_dose_id")));
-				model.setPollenStateId(Integer.parseInt(dose.getString("pollen_state_id")));
+				model.setId(Integer.parseInt(dose.getString("id")))
+				.setHealthStateId(Integer.parseInt(dose.getString("health_state_id")))
+				.setTime(dose.getString("time"))
+				.setDate(dose.getString("day_date"))
+				.setChildId(Integer.parseInt(dose.getString("child_id")))
+				.setReward(Integer.parseInt(dose.getString("reward")))
+				.setMedicineId(Integer.parseInt(dose.getString("medicine_id")))
+				.setPlanId(Integer.parseInt(dose.getString("medical_plan_dose_id")))
+				.setPollenStateId(Integer.parseInt(dose.getString("pollen_state_id")));
 			} catch (JSONException e)
 			{
 				e.printStackTrace();

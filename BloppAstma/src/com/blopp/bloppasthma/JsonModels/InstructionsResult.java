@@ -25,18 +25,20 @@ public class InstructionsResult
 		return instructionImages;
 	}
 
-	public void setInstructionImages(ArrayList<Bitmap> instructionImages)
+	public InstructionsResult setInstructionImages(ArrayList<Bitmap> instructionImages)
 	{
 		this.instructionImages = instructionImages;
+		return this;
 	}
 	public String getInstructions()
 	{
 		return instructions;
 	}
 
-	public void setInstructions(String instructions)
+	public InstructionsResult setInstructions(String instructions)
 	{
 		this.instructions = instructions;
+		return this;
 	}
 
 	public String getEffect()
@@ -44,9 +46,10 @@ public class InstructionsResult
 		return effect;
 	}
 
-	public void setEffect(String effect)
+	public InstructionsResult setEffect(String effect)
 	{
 		this.effect = effect;
+		return this;
 	}
 
 	public String getImageUrl()
@@ -54,9 +57,10 @@ public class InstructionsResult
 		return imageUrl;
 	}
 
-	public void setImageUrl(String imageUrl)
+	public InstructionsResult setImageUrl(String imageUrl)
 	{
 		this.imageUrl = imageUrl;
+		return this;
 	}
 
 	public int getId()
@@ -64,8 +68,9 @@ public class InstructionsResult
 		return id;
 	}
 
-	public void setId(int id)
+	public InstructionsResult setId(int id)
 	{
 		this.id = id;
+		return this;
 	}
 }

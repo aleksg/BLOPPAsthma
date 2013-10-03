@@ -26,67 +26,75 @@ public class MedicinePlanModel implements Serializable
 	{
 		return time;
 	}
-	public void setTime(String time)
+	public MedicinePlanModel setTime(String time)
 	{
 		this.time = time;
+		return this;
 	}
 	public int getId()
 	{
 		return id;
 	}
-	public void setId(int id)
+	public MedicinePlanModel setId(int id)
 	{
 		this.id = id;
+		return this;
 	}
 	public String getLabel()
 	{
 		return label;
 	}
-	public void setLabel(String label)
+	public MedicinePlanModel setLabel(String label)
 	{
 		this.label = label;
+		return this;
 	}
 	public int getMedicalPlanId()
 	{
 		return medicalPlanId;
 	}
-	public void setMedicalPlanId(int medicalPlanId)
+	public MedicinePlanModel setMedicalPlanId(int medicalPlanId)
 	{
 		this.medicalPlanId = medicalPlanId;
+		return this;
 	}
 	public int getHealthStateId()
 	{
 		return healthStateId;
 	}
-	public void setHealthStateId(int healthStateId)
+	public MedicinePlanModel setHealthStateId(int healthStateId)
 	{
 		this.healthStateId = healthStateId;
+		return this;
 	}
 
 	public int getMedicineId()
 	{
 		return medicineId;
 	}
-	public void setMedicineId(int medicineId)
+	public MedicinePlanModel setMedicineId(int medicineId)
 	{
 		this.medicineId = medicineId;
+		return this;
 	}
 	public String getMedicineKarotzColor()
 	{
 		return medicineKarotzColor;
 	}
-	public void setMedicineKarotzColor(String medicineKarotzColor)
+	public MedicinePlanModel setMedicineKarotzColor(String medicineKarotzColor)
 	{
 		this.medicineKarotzColor = medicineKarotzColor;
+		return this;
 	}
 	/**
 	 * Adds an entry to the plan map with time and name
 	 * @param medicationTime
 	 * @param medicineName
 	 */
-	public void addEntryToMap(String medicationTime, String medicineName)
+	public MedicinePlanModel addEntryToMap(String medicationTime, String medicineName)
 	{
 		this.medicinePlanMap.put(medicationTime, medicineName);
+		return this;
 	}
 	/**
 	 * 

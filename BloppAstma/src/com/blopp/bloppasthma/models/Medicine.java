@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 //Initial testing purposes for the log.
 public class Medicine implements java.io.Serializable
 {
+	private static final long serialVersionUID = 611307667361582993L;
 	private int id;
 	private String name;
 	private int instructionsId;
@@ -12,40 +13,13 @@ public class Medicine implements java.io.Serializable
 	private String color;
 	private Bitmap bitmap;
 
-	public Medicine(String name, int instructionsId, int imgId)
-	{
-		this.instructionsId = instructionsId;
-		this.name = name;
-		this.setImgId(imgId);
+	public Medicine(){
+		
 	}
-
-	public Medicine(String name, int instructionsId, int imgId, String color)
-	{
-		super();
-		this.name = name;
-		this.instructionsId = instructionsId;
-		this.imgId = imgId;
-		this.color = color;
-	}
-
-	public Medicine(String name, int instructionsId)
-	{
-		this.instructionsId = instructionsId;
-		this.name = name;
-	}
-
-	public Medicine(String name)
-	{
-		this.name = name;
-	}
-
-	public Medicine(int id, String medicine, String color,
-			Bitmap medColorToBitmap)
+	public Medicine setId(int id)
 	{
 		this.id = id;
-		this.name = medicine;
-		this.color = color;
-		this.bitmap = medColorToBitmap;
+		return this;
 	}
 
 	public String getName()
@@ -53,7 +27,7 @@ public class Medicine implements java.io.Serializable
 		return this.name;
 	}
 
-	public void setName(String name)
+	public Medicine setName(String name)
 	{
 		if (name.isEmpty())
 		{
@@ -61,6 +35,7 @@ public class Medicine implements java.io.Serializable
 
 		}
 		this.name = name;
+		return this;
 	}
 
 	public Bitmap getBitmap()
@@ -68,9 +43,10 @@ public class Medicine implements java.io.Serializable
 		return bitmap;
 	}
 
-	public void setBitmap(Bitmap bitmap)
+	public Medicine setBitmap(Bitmap bitmap)
 	{
 		this.bitmap = bitmap;
+		return this;
 	}
 
 	public int getId()
@@ -83,13 +59,14 @@ public class Medicine implements java.io.Serializable
 		return instructionsId;
 	}
 
-	public void setInstructionsId(int instructionsId)
+	public Medicine setInstructionsId(int instructionsId)
 	{
 		if (instructionsId < 0)
 			throw new IllegalArgumentException(
 					"instructionsId must be bigger than null");
 
 		this.instructionsId = instructionsId;
+		return this;
 	}
 
 	public int getImgId()
@@ -97,9 +74,10 @@ public class Medicine implements java.io.Serializable
 		return imgId;
 	}
 
-	public void setImgId(int imgId)
+	public Medicine setImgId(int imgId)
 	{
 		this.imgId = imgId;
+		return this;
 	}
 
 	public String getColor()
@@ -107,9 +85,10 @@ public class Medicine implements java.io.Serializable
 		return color;
 	}
 
-	public void setColor(String color)
+	public Medicine setColor(String color)
 	{
 		this.color = color;
+		return this;
 	}
 
 }

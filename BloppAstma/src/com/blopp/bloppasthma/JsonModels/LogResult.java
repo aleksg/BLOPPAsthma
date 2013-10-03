@@ -20,9 +20,10 @@ public class LogResult
 		return logDayResults;
 	}
 
-	public void setLogDayResults(ArrayList<LogDayResult> logDayResults)
+	public LogResult setLogDayResults(ArrayList<LogDayResult> logDayResults)
 	{
 		this.logDayResults = logDayResults;
+		return this;
 	}
 
 	public boolean isSqlSuccess()
@@ -30,9 +31,10 @@ public class LogResult
 		return sqlSuccess;
 	}
 
-	public void setSqlSuccess(boolean sqlSuccess)
+	public LogResult setSqlSuccess(boolean sqlSuccess)
 	{
 		this.sqlSuccess = sqlSuccess;
+		return this;
 	}
 
 	public int getChildId()
@@ -40,9 +42,10 @@ public class LogResult
 		return childId;
 	}
 
-	public void setChildId(int childId)
+	public LogResult setChildId(int childId)
 	{
 		this.childId = childId;
+		return this;
 	}
 
 	public int getMonth()
@@ -50,9 +53,10 @@ public class LogResult
 		return month;
 	}
 
-	public void setMonth(int month)
+	public LogResult setMonth(int month)
 	{
 		this.month = month;
+		return this;
 	}
 
 	public int getYear()
@@ -60,9 +64,10 @@ public class LogResult
 		return year;
 	}
 
-	public void setYear(int year)
+	public LogResult setYear(int year)
 	{
 		this.year = year;
+		return this;
 	}
 
 	public String getQuery()
@@ -70,9 +75,10 @@ public class LogResult
 		return query;
 	}
 
-	public void setQuery(String query)
+	public LogResult setQuery(String query)
 	{
 		this.query = query;
+		return this;
 	}
 
 	// TODO: Fix dates as SimpleDateFormat or something??

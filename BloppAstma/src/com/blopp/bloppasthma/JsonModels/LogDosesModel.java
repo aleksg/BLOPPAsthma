@@ -15,9 +15,10 @@ public class LogDosesModel
 		return pollenStateId;
 	}
 
-	public void setPollenStateId(int pollen_state_id)
+	public LogDosesModel setPollenStateId(int pollen_state_id)
 	{
 		this.pollenStateId = pollen_state_id;
+		return this;
 	}
 
 	public int getId()
@@ -25,9 +26,10 @@ public class LogDosesModel
 		return id;
 	}
 
-	public void setId(int id)
+	public LogDosesModel setId(int id)
 	{
 		this.id = id;
+		return this;
 	}
 
 	public int getReward()
@@ -35,9 +37,10 @@ public class LogDosesModel
 		return reward;
 	}
 
-	public void setReward(int reward)
+	public LogDosesModel setReward(int reward)
 	{
 		this.reward = reward;
+		return this;
 	}
 
 	public int getChildId()
@@ -45,9 +48,10 @@ public class LogDosesModel
 		return childId;
 	}
 
-	public void setChildId(int childId)
+	public LogDosesModel setChildId(int childId)
 	{
 		this.childId = childId;
+		return this;
 	}
 
 	public int getMedicineId()
@@ -55,9 +59,10 @@ public class LogDosesModel
 		return medicineId;
 	}
 
-	public void setMedicineId(int medicineId)
+	public LogDosesModel setMedicineId(int medicineId)
 	{
 		this.medicineId = medicineId;
+		return this;
 	}
 
 	public int getHealthStateId()
@@ -65,9 +70,10 @@ public class LogDosesModel
 		return healthStateId;
 	}
 
-	public void setHealthStateId(int healthStateId)
+	public LogDosesModel setHealthStateId(int healthStateId)
 	{
 		this.healthStateId = healthStateId;
+		return this;
 	}
 
 	public int getPlanId()
@@ -75,9 +81,10 @@ public class LogDosesModel
 		return planId;
 	}
 
-	public void setPlanId(int planId)
+	public LogDosesModel setPlanId(int planId)
 	{
 		this.planId = planId;
+		return this;
 	}
 
 	public String getDate()
@@ -85,9 +92,10 @@ public class LogDosesModel
 		return date;
 	}
 
-	public void setDate(String date)
+	public LogDosesModel setDate(String date)
 	{
 		this.date = date;
+		return this;
 	}
 
 	public String getTime()
@@ -95,9 +103,10 @@ public class LogDosesModel
 		return time;
 	}
 
-	public void setTime(String time)
+	public LogDosesModel setTime(String time)
 	{
 		this.time = time;
+		return this;
 	}
 
 }
