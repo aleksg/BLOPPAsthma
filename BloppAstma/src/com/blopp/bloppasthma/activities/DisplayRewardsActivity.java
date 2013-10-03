@@ -26,7 +26,7 @@ public class DisplayRewardsActivity extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		
-		setContentView(R.layout.rewards);
+		setContentView(R.layout.rewardview);
 		
 		gridView = (GridView) findViewById(R.id.rewardsView);
 		countView = (TextView) findViewById(R.id.displayRewardsTextView);
