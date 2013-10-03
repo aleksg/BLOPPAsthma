@@ -22,6 +22,94 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+                <activity
+            android:name="com.blopp.bloppasthma.activities.HealthStatusActivity"
+            android:icon="@drawable/medicineplan_inverted"
+            android:label="Status"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.blopp.bloppasthma.activities.MedicationInformationActivity"
+            android:icon="@drawable/instructions_inverted"
+            android:label="Legemiddelinformasjon"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.blopp.bloppasthma.activities.LogActivity"
+            android:label="3"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.blopp.bloppasthma.activities.InstructionSlideShowActivity"
+            android:icon="@drawable/info_inverted"
+            android:label="Manual"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.blopp.bloppasthma.activities.SettingsActivity"
+            android:label="5"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.blopp.bloppasthma.activities.TreatmentActivity"
+            android:icon="@drawable/etterregistrer_inverted"
+            android:label="Etterregistrer medisin"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.blopp.bloppasthma.activities.DistractionActivity"
+            android:label="7"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.blopp.bloppasthma.activities.CalendarActivity"
+            android:icon="@drawable/log_inverted"
+            android:label="Medisineringslogg"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.blopp.bloppasthma.activities.LoggedMedicationActivity"
+            android:label="9"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.blopp.bloppasthma.activities.MakeMedicationplanActivity"
+            android:label="10"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.blopp.bloppasthma.activities.ViewMedicationPlanActivity"
+            android:icon="@drawable/medicineplan_inverted"
+            android:label="Medisineringsplan"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.blopp.bloppasthma.activities.Statusbar"
+            android:label="12"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.blopp.bloppasthma.activities.CalendarPopUp"
+            android:label="13"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.blopp.bloppasthma.activities.AddMedicineToPlanActivity"
+            android:icon="@drawable/medicineplan_inverted"
+            android:label="Legg til medisin"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.blopp.bloppasthma.activities.MedicationPlanActivity"
+            android:icon="@drawable/medicineplan_inverted"
+            android:label="Medisineringsplaner"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.blopp.bloppasthma.activities.InstructionOptionsActivity"
+            android:icon="@drawable/instructions_inverted"
+            android:label="Legemiddelinformasjon"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity 
+            android:name="com.blopp.bloppasthma.activities.DetailedInstructionsActivity"
+            android:icon="@drawable/instructions_inverted"
+            android:label="Legemiddelinformasjon"
+            android:screenOrientation="portrait" >
+        </activity>
     </application>
 
 </manifest>
