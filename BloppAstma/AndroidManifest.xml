@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.blopp.bloppasthma.SelectUser"
+            android:name="com.blopp.bloppasthma.activities.SelectUserActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,7 +33,7 @@
             android:label="Legemiddelinformasjon"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.blopp.bloppasthma.activities.LogActivity"
+            android:name=".activities.CalendarActivity"
             android:label="3"
             android:screenOrientation="portrait" />
         <activity
@@ -54,12 +54,6 @@
             android:name="com.blopp.bloppasthma.activities.DistractionActivity"
             android:label="7"
             android:screenOrientation="portrait" />
-        <activity
-            android:name="com.blopp.bloppasthma.activities.CalendarActivity"
-            android:icon="@drawable/log_inverted"
-            android:label="Medisineringslogg"
-            android:screenOrientation="portrait" >
-        </activity>
         <activity
             android:name="com.blopp.bloppasthma.activities.LoggedMedicationActivity"
             android:label="9"
@@ -110,6 +104,8 @@
             android:label="Legemiddelinformasjon"
             android:screenOrientation="portrait" >
         </activity>
+        <activity android:name="com.blopp.bloppasthma.activities.ParentsMainMenu"></activity>
+        <activity android:name="com.blopp.bloppasthma.activities.KidsMainMenu"></activity>
     </application>
 
 </manifest>

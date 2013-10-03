@@ -11,6 +11,7 @@ import org.joda.time.DateTime;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -29,7 +30,7 @@ import com.blopp.bloppasthma.xmlfeed.PollenCast;
 
 
 public class CalendarActivity extends Activity implements
-		android.view.View.OnClickListener, OnCellTouchListener
+		OnCellTouchListener
 {
 	private static final int CHILD_ID = 6;
 	private static final String TAG = CalendarActivity.class.getSimpleName();
@@ -63,10 +64,10 @@ public class CalendarActivity extends Activity implements
 		initializeDaysShownInMedicineList();
 		
 		nextMonthButton = (Button) findViewById(R.id.next_month_button);
-		nextMonthButton.setOnClickListener(this);
+		nextMonthButton.setOnClickListener(new NextMonthClickListener());
 		
 		previousMonthButton = (Button) findViewById(R.id.prev_month_button);
-		previousMonthButton.setOnClickListener(this);
+		previousMonthButton.setOnClickListener(new PreviousMonthClickListener());
 		
 		monthTextView = (TextView) findViewById(R.id.month_of_year_textview);
 		updateMonthTextField();
@@ -81,6 +82,23 @@ public class CalendarActivity extends Activity implements
 	}
 	
 
+	/**
+	 * Updates medicineTakenListView according to day selected.
+	 */
+	public void onTouch(Cell cell)
+	{
+		day = cell.getDayOfMonth();
+		month = calendarView.getMonth()+1;
+		year = calendarView.getYear();
+		
+		dateAdapter = new DateAdapter(day, month, year);
+		medicineTakenListView.setAdapter(new TakenMedicinesAdapter(getApplicationContext(), getAmountOfMedicinesTaken()));
+		
+		makeToast(day+"-"+month+"-"+year, Toast.LENGTH_SHORT);
+	}
+	
+	
+	
 	private void initializeDaysShownInMedicineList()
 	{
 		
@@ -109,40 +127,6 @@ public class CalendarActivity extends Activity implements
 		year = dateTime.getYear();
 	}
 	
-	/**
-	 * Updates medicineTakenListView according to day selected.
-	 */
-	public void onTouch(Cell cell)
-	{
-		day = cell.getDayOfMonth();
-		month = calendarView.getMonth()+1;
-		year = calendarView.getYear();
-		
-		dateAdapter = new DateAdapter(day, month, year);
-		medicineTakenListView.setAdapter(new TakenMedicinesAdapter(getApplicationContext(), getAmountOfMedicinesTaken()));
-		
-		makeToast(day+"-"+month+"-"+year, Toast.LENGTH_SHORT);
-	}
-	/**
-	 * Used if the user presses "next" or "previous"
-	 */
-	public void onClick(View v)
-	{
-		if (v.getId() == nextMonthButton.getId())
-		{
-			calendarView.nextMonth();
-			dateTime = dateTime.plusMonths(1);
-			logModel = new LogModel(CHILD_ID, dateTime.getMonthOfYear(), dateTime.getYear());
-		} else if (v.getId() == previousMonthButton.getId())
-		{
-			calendarView.previousMonth();
-			dateTime = dateTime.minusMonths(1);
-			logModel = new LogModel(CHILD_ID, dateTime.getMonthOfYear(), dateTime.getYear());
-		}
-		updateMonthTextField();	
-		updateDates();
-		refreshMedicinesTaken(day, month, year);
-	}
 	
 	private void refreshMedicinesTaken(int day, int month, int year)
 	{
@@ -190,10 +174,41 @@ public class CalendarActivity extends Activity implements
 	{
 		Toast.makeText(this, toastMessage, length).show();
 	}
-	
-	
 	private void makeToast(String toastMessage, int length)
 	{
 		Toast.makeText(this, toastMessage, length).show();
+	}
+	
+	private class NextMonthClickListener implements OnClickListener
+	{
+
+		@Override
+		public void onClick(View v)
+		{
+			calendarView.nextMonth();
+			dateTime = dateTime.plusMonths(1);
+			logModel = new LogModel(CHILD_ID, dateTime.getMonthOfYear(), dateTime.getYear());
+			update();
+		}
+		
+	}
+	private class PreviousMonthClickListener implements OnClickListener
+	{
+
+		@Override
+		public void onClick(View v)
+		{
+			calendarView.previousMonth();
+			dateTime = dateTime.minusMonths(1);
+			logModel = new LogModel(CHILD_ID, dateTime.getMonthOfYear(), dateTime.getYear());
+			update();
+		}
+		
+	}
+	private void update()
+	{
+		updateMonthTextField();	
+		updateDates();
+		refreshMedicinesTaken(day, month, year);
 	}
 }

@@ -21,8 +21,7 @@ import com.blopp.bloppasthma.jsonposters.AddMedicineToPlanPoster;
 import com.blopp.bloppasthma.utils.AvailableMedicines;
 
 
-public class AddMedicineToPlanActivity extends Activity implements
-		OnClickListener
+public class AddMedicineToPlanActivity extends Activity
 {
 	private static final String TAG = AddMedicineToPlanActivity.class
 			.getSimpleName();
@@ -42,19 +41,13 @@ public class AddMedicineToPlanActivity extends Activity implements
 
 		initializeSpinner();
 		initializeHealthState();
-		setUpListenerForButton(btnAddMedicine, R.id.add_medicine_button);
+	
+		btnAddMedicine = (Button)findViewById(R.id.add_medicine_button);
+		btnAddMedicine.setOnClickListener(new AddMedicineClickListener());
 		
 		mLayout = (LinearLayout) findViewById(R.id.add_medicine_linearlayout);
 		timepickerMedicine = (TimePicker) findViewById(R.id.timePicker_medicine);
 		timepickerMedicine.setIs24HourView(true);
-	}
-	/**
-	 * Get the health state given the input from the last activity
-	 */
-	private void initializeHealthState()
-	{
-		Bundle bundle = getIntent().getExtras();
-		healthStateId = bundle.getInt("healthState");
 	}
 	/**
 	 * Initialize the medicine spinner to the medicines existing in the database. 
@@ -70,47 +63,15 @@ public class AddMedicineToPlanActivity extends Activity implements
 				R.layout.standard_text_list_item, medicationNames);
 		this.spinnerMedicine.setAdapter(adapter);
 	}
-	
-	private void setUpListenerForButton(Button b, int id)
-	{
-		b = (Button) findViewById(id);
-		b.setOnClickListener(this);
-	}
-	
-	public void onClick(View v)
-	{
-		int vid = v.getId();
-
-		if (vid == R.id.add_medicine_button)
-		{
-
-			int medicineId = availableMeds.getMedicineByName(spinnerMedicine
-					.getSelectedItem().toString());
-			int hour = timepickerMedicine.getCurrentHour();
-			int minute = timepickerMedicine.getCurrentMinute();
-
-			String time = hour + ":" + minute + ":" + "00";
-			AddMedicineToPlanModel model = new AddMedicineToPlanModel(CHILD_ID,
-					healthStateId, time, medicineId);
-			boolean wasSuccess = executePost(model);
-			
-			if (!(wasSuccess))
-			{
-				Toast t = Toast.makeText(this,R.string.post_error,Toast.LENGTH_LONG);
-				t.show();
-				return;
-			}
-			Intent resultIntent = new Intent();
-			
-			setResult(Activity.RESULT_OK, resultIntent);
-			finish();
-		}
-	}
-
 	/**
-	 * @param model
-	 * @return true if the post was succesfull, false otherwise
+	 * Get the health state given the input from the last activity
 	 */
+	private void initializeHealthState()
+	{
+		Bundle bundle = getIntent().getExtras();
+		healthStateId = bundle.getInt("healthState");
+	}
+
 	private boolean executePost(AddMedicineToPlanModel model)
 	{
 		AddMedicineToPlanPoster poster = new AddMedicineToPlanPoster(
@@ -130,6 +91,34 @@ public class AddMedicineToPlanActivity extends Activity implements
 		}
 
 		return poster.getPlanSuccessfullyPosted();
+	}
+	
+	private class AddMedicineClickListener implements OnClickListener{
+
+		@Override
+		public void onClick(View v)
+		{
+			int medicineId = availableMeds.getMedicineByName(spinnerMedicine
+					.getSelectedItem().toString());
+			int hour = timepickerMedicine.getCurrentHour();
+			int minute = timepickerMedicine.getCurrentMinute();
+
+			String time = hour + ":" + minute + ":" + "00";
+			AddMedicineToPlanModel model = new AddMedicineToPlanModel(CHILD_ID,
+					healthStateId, time, medicineId);
+			boolean wasSuccess = executePost(model);
+			
+			if (!(wasSuccess))
+			{
+				Toast t = Toast.makeText(getApplicationContext(), R.string.post_error, Toast.LENGTH_LONG);
+				t.show();
+				return;
+			}
+			Intent resultIntent = new Intent();
+			
+			setResult(Activity.RESULT_OK, resultIntent);
+			finish();	
+		}
 	}
 
 }

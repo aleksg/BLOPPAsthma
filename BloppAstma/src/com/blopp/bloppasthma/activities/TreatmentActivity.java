@@ -234,7 +234,7 @@ public class TreatmentActivity extends Activity implements OnClickListener
 	 */
 	private void returnToMainMenu()
 	{
-		Intent intent = new Intent(TreatmentActivity.this, MainMenu.class);
+		Intent intent = new Intent(TreatmentActivity.this, ParentsMainMenu.class);
 		startActivity(intent);
 	}
 

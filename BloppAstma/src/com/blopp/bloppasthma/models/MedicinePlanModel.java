@@ -1,10 +1,15 @@
 package com.blopp.bloppasthma.models;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class MedicinePlanModel
+public class MedicinePlanModel implements Serializable
 {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5169335014428191642L;
 	private int id;
 	private String label;
 	private int medicalPlanId;
@@ -12,10 +17,18 @@ public class MedicinePlanModel
 	private int medicineId;
 	private String medicineKarotzColor;
 	private HashMap<String, String> medicinePlanMap; //<Time, Medicine>
-	
+	private String time;
 	public MedicinePlanModel()
 	{
 		medicinePlanMap = new HashMap<String, String>();
+	}
+	public String getTime()
+	{
+		return time;
+	}
+	public void setTime(String time)
+	{
+		this.time = time;
 	}
 	public int getId()
 	{
