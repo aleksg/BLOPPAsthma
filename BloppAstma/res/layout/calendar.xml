@@ -24,7 +24,7 @@
         android:layout_alignParentTop="true"
         android:text="@string/PreviousMonth" />
 
-    <no.blopp.app.views.CalendarView
+    <com.blopp.bloppasthma.views.CalendarView
         android:id="@+id/calendarview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

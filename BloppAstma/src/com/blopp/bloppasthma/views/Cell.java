@@ -60,11 +60,6 @@ public class Cell {
 		painter.setColor(getPollenColor(worstSpread));
 		canvas.drawRect(bound.left, bound.centerY()+dy+5, bound.right, bound.bottom, painter);
 		
-//		canvas.drawRect(getHealthRect(), painter);
-//		painter.setColor(getPollenColor(worstSpread));
-//		canvas.drawRect(left, top, right, bottom, paint)
-//		canvas.drawText("x", bound.left, bound.bottom, painter);
-
 	}
 	public int getHealthStateColor()
 	{
