@@ -4,11 +4,12 @@ package com.blopp.bloppasthma.activities;
 import java.util.List;
 
 import com.blopp.bloppasthma.R;
-import com.blopp.bloppasthma.mockups.RewardMockup;
+import com.blopp.bloppasthma.mockups.Reward;
 import com.blopp.bloppasthma.mockups.RewardMockupList;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,15 +50,14 @@ public class ParentShowRewardsActivity extends Activity
 		@Override
 		public void onClick(View v)
 		{
-			
-			
+			startActivity(new Intent(ParentShowRewardsActivity.this, AddRewardActivity.class));
 		}
 		
 	}
 	
 	private class RewardListAdapter extends BaseAdapter
 	{
-		private List<RewardMockup> rewards;
+		private List<Reward> rewards;
 		private Context context;
 		public RewardListAdapter(Context context){
 			rewards = new RewardMockupList().getRewards();
@@ -92,7 +92,7 @@ public class ParentShowRewardsActivity extends Activity
 			{
 				listView = new View(context);
 				listView = inflater.inflate(R.layout.show_reward_list_item, parent, false);
-				RewardMockup rewardItem = (RewardMockup)getItem(position);
+				Reward rewardItem = (Reward)getItem(position);
 				
 				TextView rewardDescription = (TextView)listView.findViewById(R.id.rewardDescriptionTextView);
 				rewardDescription.setText(rewardItem.getDescription());
