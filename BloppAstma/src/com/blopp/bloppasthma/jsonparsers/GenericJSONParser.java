@@ -24,6 +24,7 @@ import android.util.Log;
  */
 public abstract class GenericJSONParser extends AsyncTask<Void, Void, Void> implements IInitializeFromJSON
 {
+	//TODO: Refactor to avoid doing same as GenericAirQualityJSONParser
 	protected String TAG;
 	protected InputStream is;
 	protected HttpGet httpGet;
