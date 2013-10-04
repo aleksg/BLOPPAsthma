@@ -14,10 +14,10 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
-
-public class MedicineListParser extends GenericJSONParser
+import com.blopp.bloppasthma.jsonparsers.IInitializeFromJSON.BLOPParser;
+public class MedicineListParser extends GenericJSONParser implements BLOPParser
 {
-	public static String phpPage = "get_medicine_list.php";
+	public static String phpPage = MyURL + "get_medicine_list.php";
 	private ArrayList<Medicine> medicines;
 	private Context context;
 	public MedicineListParser(Context context)

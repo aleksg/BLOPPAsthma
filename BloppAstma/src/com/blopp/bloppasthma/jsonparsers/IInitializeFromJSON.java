@@ -12,4 +12,14 @@ public interface IInitializeFromJSON
 	 * @param result, the result containing JSON-formatted data
 	 */
 	abstract void initializeDataFromJSON(String result);
+	
+	public interface BLOPParser
+	{
+		public static final String MyURL = "http://folk.ntnu.no/yngvesva/blopp/";
+	}
+	public interface AirQualityParser
+	{
+		public static final String MyURL = "http://folk.ntnu.no/yngvesva/blopp";
+	}
+	
 }

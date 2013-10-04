@@ -11,6 +11,8 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONObject;
 
+import static com.blopp.bloppasthma.jsonparsers.IInitializeFromJSON.BLOPParser;
+
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -23,7 +25,6 @@ import android.util.Log;
 public abstract class GenericJSONParser extends AsyncTask<Void, Void, Void> implements IInitializeFromJSON
 {
 	protected String TAG;
-	public static final String URLbody = "http://folk.ntnu.no/yngvesva/blopp/";
 	protected InputStream is;
 	protected HttpGet httpGet;
 	protected String result;
@@ -34,9 +35,9 @@ public abstract class GenericJSONParser extends AsyncTask<Void, Void, Void> impl
 	 * 
 	 * @param urltail. The tail of the url containing encoded GET-parameters.
 	 */
-	public GenericJSONParser(String urltail)
+	public GenericJSONParser(String url)
 	{
-		URL = URLbody+urltail;
+		URL = url;
 	}
 	
 	

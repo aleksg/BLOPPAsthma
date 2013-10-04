@@ -4,12 +4,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.blopp.bloppasthma.JsonModels.InstructionsResult;
+import com.blopp.bloppasthma.jsonparsers.IInitializeFromJSON.BLOPParser;
 
 import android.util.Log;
 
-public class InstructionsParser extends GenericJSONParser
+public class InstructionsParser extends GenericJSONParser implements BLOPParser
 {
-	private static final String PHPPage = "get_instructions.php?";
+	private static final String PHPPage = MyURL + "get_instructions.php?";
 	private DownloadImageTask imageTask;
 	private InstructionsResult instructionResult;
 

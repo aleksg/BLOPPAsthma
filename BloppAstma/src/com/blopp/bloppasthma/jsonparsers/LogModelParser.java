@@ -11,13 +11,13 @@ import org.json.JSONObject;
 import com.blopp.bloppasthma.JsonModels.LogDayResult;
 import com.blopp.bloppasthma.JsonModels.LogDosesModel;
 import com.blopp.bloppasthma.JsonModels.LogResult;
-
+import com.blopp.bloppasthma.jsonparsers.IInitializeFromJSON.BLOPParser;
 import android.util.Log;
 
-public class LogModelParser extends GenericJSONParser
+public class LogModelParser extends GenericJSONParser implements BLOPParser
 {
 	private LogResult logResult;
-	private static final String PHPPAGE = "get_log_days_for_child.php?",
+	private static final String PHPPAGE = MyURL + "get_log_days_for_child.php?",
 			TAG = LogModelParser.class.getSimpleName();
 
 	public LogModelParser(String urltail)

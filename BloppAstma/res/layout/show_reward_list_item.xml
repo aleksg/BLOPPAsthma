@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:id="@+id/rewardImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/book_small" />
+
+    <TextView
+        android:id="@+id/rewardDescriptionTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/checkBoxIsTaken"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/checkBoxIsTaken"
+        android:layout_toRightOf="@+id/rewardImage"
+        android:text="Beskrivelse" />
+
+    <CheckBox
+        android:id="@+id/checkBoxIsTaken"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="Solgt" />
+
+    <TextView
+        android:id="@+id/rewardCostTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/rewardImage"
+        android:layout_alignLeft="@+id/rewardDescriptionTextView"
+        android:layout_below="@+id/checkBoxIsTaken"
+        android:layout_toLeftOf="@+id/checkBoxIsTaken"
+        android:text="Stjerner: " />
+
+</RelativeLayout>

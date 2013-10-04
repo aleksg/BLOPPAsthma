@@ -3,12 +3,14 @@ package com.blopp.bloppasthma.jsonparsers;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import com.blopp.bloppasthma.jsonparsers.IInitializeFromJSON.BLOPParser;
 /**
  * Used to get the current healthstate of the child
  */
-public class HealthStateParser extends GenericJSONParser
+public class HealthStateParser extends GenericJSONParser implements BLOPParser
 {
-	private static String PHP_PAGE = "get_child_state?";
+	private static String PHP_PAGE = MyURL + "get_child_state?";
 	private int healthStateId = 0;
 	private boolean sqlsuccess = false;
 

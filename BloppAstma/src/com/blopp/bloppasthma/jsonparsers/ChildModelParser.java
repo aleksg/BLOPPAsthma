@@ -6,10 +6,11 @@ import org.json.JSONObject;
 import android.util.Log;
 
 import com.blopp.bloppasthma.JsonModels.ChildResultModel;
+import com.blopp.bloppasthma.jsonparsers.IInitializeFromJSON.BLOPParser;
 
-public class ChildModelParser extends GenericJSONParser
+public class ChildModelParser extends GenericJSONParser implements BLOPParser
 {
-	public static final String PHPPAGE = "get_child.php";
+	public static final String PHPPAGE = MyURL + "get_child.php";
 	private ChildResultModel child;
 
 	public ChildModelParser(int childId)

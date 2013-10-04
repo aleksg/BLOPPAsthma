@@ -7,11 +7,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.blopp.bloppasthma.JsonModels.MedicationPlanResult;
+import com.blopp.bloppasthma.jsonparsers.IInitializeFromJSON.BLOPParser;
 import com.blopp.bloppasthma.models.MedicinePlanModel;
 
-public class MedicationPlanParser extends GenericJSONParser
+public class MedicationPlanParser extends GenericJSONParser implements BLOPParser
 {
-	public static String phpPage = "get_plan.php?";
+	public static String phpPage = MyURL + "get_plan.php?";
 	private MedicationPlanResult medicationPlanResult;
 
 	public MedicationPlanParser(int child_id)
