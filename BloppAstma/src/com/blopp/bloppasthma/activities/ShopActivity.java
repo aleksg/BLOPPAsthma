@@ -78,7 +78,7 @@ public class ShopActivity extends Activity {
 			CheckBox isTakenCheckbox = (CheckBox)listView.findViewById(R.id.checkBoxIsTaken);
 			isTakenCheckbox.setSelected(rewardItem.isReceived());
 			isTakenCheckbox.setEnabled(false);
-			isTakenCheckbox.setText("Bestilt");
+			isTakenCheckbox.setText("Kjøp?");
 		}else{
 			listView = convertView;
 		}

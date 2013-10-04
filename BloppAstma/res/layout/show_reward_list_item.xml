@@ -40,4 +40,12 @@
         android:layout_toLeftOf="@+id/checkBoxIsTaken"
         android:text="Stjerner: " />
 
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/rewardCostTextView"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/star_small" />
+
 </RelativeLayout>
