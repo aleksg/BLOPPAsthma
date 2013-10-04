@@ -1,5 +1,8 @@
 package com.blopp.bloppasthma.mockups;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.graphics.Bitmap;
 
 public class Reward
@@ -67,5 +70,4 @@ public class Reward
 		this.repeat = repeat;
 		return this;
 	}
-	
 }

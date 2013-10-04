@@ -6,11 +6,13 @@ import java.util.List;
 import com.blopp.bloppasthma.R;
 import com.blopp.bloppasthma.mockups.Reward;
 import com.blopp.bloppasthma.mockups.RewardMockupList;
+import com.blopp.bloppasthma.mockups.SavedRewards;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -25,6 +27,7 @@ import android.widget.TextView;
 
 public class ParentShowRewardsActivity extends Activity
 {
+	private static String sharedPreferenceName = "RewardList";
 	
 	private ListView activities;
 	private Button addRewardButton;
@@ -57,10 +60,15 @@ public class ParentShowRewardsActivity extends Activity
 	
 	private class RewardListAdapter extends BaseAdapter
 	{
+		private final String MTAG = RewardListAdapter.class.getSimpleName();
 		private List<Reward> rewards;
 		private Context context;
 		public RewardListAdapter(Context context){
-			rewards = new RewardMockupList().getRewards();
+			Log.d(MTAG, getPreferences(MODE_PRIVATE).getAll().toString());
+			
+			rewards = new SavedRewards(getApplicationContext())
+					.getSavedRewards(getApplicationContext())
+					.getRewards();
 			this.context = context;
 		}
 		
