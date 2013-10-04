@@ -31,12 +31,13 @@ public class MainMenuAdapter extends BaseAdapter
 	public void initialize()
 	{
 		initBitmaps();
-		this.items = new MainMenuItem[5];
+		this.items = new MainMenuItem[6];
 		items[0] = new MainMenuItem("Medisinplan", medicinePlan, MenuOptions.PLAN);
 		items[1] = new MainMenuItem("Etterregistrer medisin", registerTreatment, MenuOptions.TREATMENT);
 		items[2] = new MainMenuItem("Medisinlogg", medicineLog, MenuOptions.LOG);
 		items[3] = new MainMenuItem("Legemiddelinformasjon", instructions, MenuOptions.INSTRUCTIONS);		
 		items[4] = new MainMenuItem("Manual", information, MenuOptions.MANUAL);
+		items[5] = new MainMenuItem("Belonning", medicinePlan, MenuOptions.REWARD);
 		
 	}
 	/**

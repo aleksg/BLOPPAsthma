@@ -70,6 +70,8 @@ public class ParentsMainMenu extends Activity implements OnItemClickListener
 		} else if (option.equals(MenuOptions.PLAN))
 		{
 			startPlan();
+		}else if(option.equals(MenuOptions.REWARD)){
+			activityStarter(ParentShowRewardsActivity.class);
 		}
 	}
 
