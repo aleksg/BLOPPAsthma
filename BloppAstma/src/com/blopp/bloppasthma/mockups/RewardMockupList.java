@@ -5,31 +5,31 @@ import java.util.List;
 
 public class RewardMockupList
 {
-	private List<RewardMockup> rewards;
+	private List<Reward> rewards;
 
 	public RewardMockupList()
 	{
-		this.rewards = new ArrayList<RewardMockup>();
+		this.rewards = new ArrayList<Reward>();
 		seed();
 	}
-
+	
 	public void seed()
 	{
-		this.rewards.add(new RewardMockup().setStars(1000)
+		this.rewards.add(new Reward().setStars(1000)
 				.setDescription("Fotballkamp").setReceived(false));
-		this.rewards.add(new RewardMockup().setStars(100)
+		this.rewards.add(new Reward().setStars(100)
 				.setDescription("Tivoli").setReceived(false));
-		this.rewards.add(new RewardMockup().setStars(25)
+		this.rewards.add(new Reward().setStars(25)
 				.setDescription("Pirbadet").setReceived(false));
-		this.rewards.add(new RewardMockup().setStars(10)
+		this.rewards.add(new Reward().setStars(10)
 				.setDescription("Iskrem").setReceived(false));
-		this.rewards.add(new RewardMockup().setStars(5)
+		this.rewards.add(new Reward().setStars(5)
 				.setDescription("50 kroner i ukepenger").setReceived(false));
-		this.rewards.add(new RewardMockup().setStars(1)
+		this.rewards.add(new Reward().setStars(1)
 				.setDescription("Gudstjeneste").setReceived(false));
 	}
 
-	public List<RewardMockup> getRewards()
+	public List<Reward> getRewards()
 	{
 		return this.rewards;
 	}

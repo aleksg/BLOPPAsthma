@@ -2,13 +2,14 @@ package com.blopp.bloppasthma.mockups;
 
 import android.graphics.Bitmap;
 
-public class RewardMockup
+public class Reward
 {
 	private int stars;
 	private String description;
 	private boolean isReceived;
 	private Bitmap bitmap;
-	public RewardMockup()
+	private boolean repeat;
+	public Reward()
 	{	
 		
 	}
@@ -18,7 +19,7 @@ public class RewardMockup
 		return stars;
 	}
 
-	public RewardMockup setStars(int stars)
+	public Reward setStars(int stars)
 	{
 		this.stars = stars;
 		return this;
@@ -29,7 +30,7 @@ public class RewardMockup
 		return description;
 	}
 
-	public RewardMockup setDescription(String description)
+	public Reward setDescription(String description)
 	{
 		this.description = description;
 		return this;
@@ -40,13 +41,13 @@ public class RewardMockup
 		return isReceived;
 	}
 
-	public RewardMockup setReceived(boolean isReceived)
+	public Reward setReceived(boolean isReceived)
 	{
 		this.isReceived = isReceived;
 		return this;
 	}
 	
-	public RewardMockup setBitmap(Bitmap bitmap)
+	public Reward setBitmap(Bitmap bitmap)
 	{
 		this.bitmap = bitmap;
 		return this;
@@ -54,6 +55,17 @@ public class RewardMockup
 	public Bitmap getBitmap()
 	{
 		return this.bitmap;
+	}
+
+	public boolean isRepeat()
+	{
+		return repeat;
+	}
+
+	public Reward setRepeat(boolean repeat)
+	{
+		this.repeat = repeat;
+		return this;
 	}
 	
 }
