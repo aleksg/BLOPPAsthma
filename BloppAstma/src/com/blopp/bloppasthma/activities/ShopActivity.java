@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.blopp.bloppasthma.R;
 import com.blopp.bloppasthma.adapters.MainMenuAdapter;
-import com.blopp.bloppasthma.mockups.RewardMockup;
+import com.blopp.bloppasthma.mockups.Reward;
 import com.blopp.bloppasthma.mockups.RewardMockupList;
 
 import android.app.Activity;
@@ -35,7 +35,7 @@ public class ShopActivity extends Activity {
 	
 	private class RewardListAdapter extends BaseAdapter
 	{
-		private List<RewardMockup> rewards;
+		private List<Reward> rewards;
 		private Context context;
 		public RewardListAdapter(Context context){
 			rewards = new RewardMockupList().getRewards();
@@ -69,7 +69,7 @@ public class ShopActivity extends Activity {
 		{
 			listView = new View(context);
 			listView = inflater.inflate(R.layout.show_reward_list_item, parent, false);
-			RewardMockup rewardItem = (RewardMockup)getItem(position);
+			Reward rewardItem = (Reward)getItem(position);
 			
 			TextView rewardDescription = (TextView)listView.findViewById(R.id.rewardDescriptionTextView);
 			rewardDescription.setText(rewardItem.getDescription());
