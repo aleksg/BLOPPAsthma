@@ -114,6 +114,7 @@
         <activity android:name=".activities.DisplayRewardsActivity" android:screenOrientation="portrait"></activity>
         <activity android:name=".activities.InstructionsActivity" android:screenOrientation="portrait"></activity>
         <activity android:name=".activities.ShopActivity"></activity>
+        <activity android:name="com.blopp.bloppasthma.activities.ParentShowRewardsActivity"></activity>
     </application>
 
 </manifest>

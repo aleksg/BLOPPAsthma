@@ -3,7 +3,7 @@ package com.blopp.bloppasthma.adapters;
 import android.graphics.Bitmap;
 public class MainMenuItem
 {
-	public enum MenuOptions{LOG, TREATMENT,  MANUAL, INSTRUCTIONS, PLAN}
+	public enum MenuOptions{LOG, TREATMENT,  MANUAL, INSTRUCTIONS, PLAN, REWARD}
 	private String options;
 	private Bitmap icon;
 	private MenuOptions shortDesc;

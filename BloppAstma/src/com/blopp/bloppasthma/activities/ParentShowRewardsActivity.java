@@ -35,7 +35,7 @@ public class ParentShowRewardsActivity extends Activity
 		setContentView(R.layout.guardian_add_activity_to_shop);
 		
 		activities = (ListView)findViewById(R.id.rewardList);		
-		activities.setAdapter(new RewardListAdapter());
+		activities.setAdapter(new RewardListAdapter(getApplicationContext()));
 		
 		addRewardButton = (Button) findViewById(R.id.addRewardButton);
 		addRewardButton.setOnClickListener(new AddRewardClickListener());
@@ -58,9 +58,10 @@ public class ParentShowRewardsActivity extends Activity
 	private class RewardListAdapter extends BaseAdapter
 	{
 		private List<RewardMockup> rewards;
-		
-		public RewardListAdapter(){
+		private Context context;
+		public RewardListAdapter(Context context){
 			rewards = new RewardMockupList().getRewards();
+			this.context = context;
 		}
 		
 		@Override
@@ -70,7 +71,7 @@ public class ParentShowRewardsActivity extends Activity
 		}
 
 		@Override
-		public RewardMockup getItem(int position)
+		public Object getItem(int position)
 		{
 			return rewards.get(position);
 		}
@@ -84,20 +85,23 @@ public class ParentShowRewardsActivity extends Activity
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent)
 		{
-			LayoutInflater inflater = (LayoutInflater)getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			LayoutInflater inflater = (LayoutInflater)this.context.
+						getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			View listView;
 			if(convertView == null)
 			{
-				listView = new View(getApplicationContext());
+				listView = new View(context);
 				listView = inflater.inflate(R.layout.show_reward_list_item, parent, false);
-				RewardMockup rewardItem = getItem(position);
-				TextView rewardDescription = (TextView)findViewById(R.id.rewardDescriptionTextView);
+				RewardMockup rewardItem = (RewardMockup)getItem(position);
+				
+				TextView rewardDescription = (TextView)listView.findViewById(R.id.rewardDescriptionTextView);
 				rewardDescription.setText(rewardItem.getDescription());
-				TextView costTextView = (TextView)findViewById(R.id.rewardCostTextView);
-				costTextView.setText(rewardItem.getStars());
-				CheckBox isTakenCheckbox = (CheckBox)findViewById(R.id.checkBoxIsTaken);
+				TextView costTextView = (TextView)listView.findViewById(R.id.rewardCostTextView);
+				costTextView.setText(String.valueOf(rewardItem.getStars()));
+				CheckBox isTakenCheckbox = (CheckBox)listView.findViewById(R.id.checkBoxIsTaken);
 				isTakenCheckbox.setSelected(rewardItem.isReceived());
 				isTakenCheckbox.setEnabled(false);
+				isTakenCheckbox.setText("Bestilt");
 			}else{
 				listView = convertView;
 			}
