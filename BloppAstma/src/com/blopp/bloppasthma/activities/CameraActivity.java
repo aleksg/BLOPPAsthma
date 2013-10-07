@@ -5,7 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.blopp.bloppasthma.R;
-import com.blopp.bloppasthma.camera.CameraPreview;
 
 import android.app.Activity;
 import android.content.Intent;
