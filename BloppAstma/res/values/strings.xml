@@ -61,4 +61,5 @@
 	<string name="medicationInstruction3">Gjør deg klar!</string>
 	<string name="medicationInstructionCountup">Pust inn og ut!</string>
 	<string name="connect_message">Du er ikke koblet til internett. Vennligst koble enheten til internett og prøv igjen</string>
+	<string name="get_photo">Ta bilde</string>
 </resources>

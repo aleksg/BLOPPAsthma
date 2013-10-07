@@ -5,8 +5,10 @@ import com.blopp.bloppasthma.mockups.Reward;
 import com.google.gson.Gson;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.hardware.Camera;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,10 +16,10 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 
 public class AddRewardActivity extends Activity
 {
-	
 	private static final String TAG = AddRewardActivity.class.getSimpleName();
 	private EditText descriptionText, starsText;
 	private Button findImageButton, saveRewardButton;
@@ -73,8 +75,17 @@ public class AddRewardActivity extends Activity
 		@Override
 		public void onClick(View v)
 		{
+			
+			activityStarter(CameraActivity.class);
 			Log.d(TAG, "Should find images now.");
 		}
 		
 	}
+	private void activityStarter(Class<?> c)
+	{
+		Log.d(c.getSimpleName(), "activityStarter");
+		Intent intent = new Intent(AddRewardActivity.this, c);
+		startActivity(intent);
+	}
+	
 }
