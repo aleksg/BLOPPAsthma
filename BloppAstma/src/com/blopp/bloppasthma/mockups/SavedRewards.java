@@ -10,7 +10,7 @@ import com.google.gson.Gson;
 public class SavedRewards
 {
 	private static final String TAG = SavedRewards.class.getSimpleName();
-	private static RewardList rewards;
+	private static RewardList rewardList;
 	private static String sharedPreferenceName = "RewardList";
 	
 	private Context context;
@@ -24,18 +24,18 @@ public class SavedRewards
 	{
 		if(getSavedRewards() == null)
 		{
-			rewards = new RewardList();
+			rewardList = new RewardList();
 		}else
 		{
-			rewards = getSavedRewards();
+			rewardList = getSavedRewards();
 		}
 	}
 	
 	public void saveReward(Reward reward)
 	{
 		Gson gson = new Gson();
-		rewards.add(reward);
-		String json = gson.toJson(rewards);
+		rewardList.add(reward);
+		String json = gson.toJson(rewardList);
 		context.getSharedPreferences(sharedPreferenceName, 0).edit().putString("Rewards", json)
 					.commit();
 		Log.d(TAG, context.getSharedPreferences(sharedPreferenceName, 0).getAll().toString());
@@ -48,10 +48,10 @@ public class SavedRewards
 		Log.d(TAG, json);
 		if(json.isEmpty())
 		{
-			return rewards;
+			return rewardList;
 		}
-		rewards = gson.fromJson(json, RewardList.class);
-		return rewards;
+		rewardList = gson.fromJson(json, RewardList.class);
+		return rewardList;
 	}
 	
 	public void orderReward(Reward r)
@@ -59,29 +59,17 @@ public class SavedRewards
 		Gson gson = new Gson();
 		Reward old = getSavedRewards().findById(r.getId());
 		Log.d(TAG, "User ordered reward with id: " + r.getId());
-		rewards.storeOrderedReward(old);
-		String json = gson.toJson(rewards);
+		rewardList.storeOrderedReward(old);
+		String json = gson.toJson(rewardList);
 		context.getSharedPreferences(sharedPreferenceName, 0).edit().putString("Rewards", json).commit();
 		Log.d("Altered", context.getSharedPreferences(sharedPreferenceName, 0).getAll().toString());
 	}
 	
-	/*
-	 * TODO: Move to RewardList
-	 */
-	public int getMaximumIdentifier(Context context)
+	public int getMaximumIdentifier()
 	{
-		RewardList stored = getSavedRewards();
-		int max = -1;
-		for (Reward reward : stored.getRewards())
-		{
-			if(reward.getId() > max)
-			{
-				max = reward.getId();
-			}
-		}
-		return max;
+		return rewardList.getMaximumIdentifier();
 	}
-
+	
 	
 	public Context getContext()
 	{
