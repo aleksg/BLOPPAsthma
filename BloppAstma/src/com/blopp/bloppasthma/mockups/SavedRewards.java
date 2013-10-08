@@ -49,4 +49,19 @@ public class SavedRewards
 		rewards = gson.fromJson(json, RewardList.class);
 		return rewards;
 	}
+	
+	
+	public int getMaximumIdentifier(Context context)
+	{
+		RewardList stored = getSavedRewards(context);
+		int max = -1;
+		for (Reward reward : stored.getRewards())
+		{
+			if(reward.getId() > max)
+			{
+				max = reward.getId();
+			}
+		}
+		return max;
+	}
 }

@@ -129,6 +129,4 @@ public class ParentShowRewardsActivity extends Activity implements OnItemClickLi
 	{
 		Log.d(TAG, "received input");
 	}
-	
-	
 }

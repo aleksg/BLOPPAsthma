@@ -48,7 +48,9 @@ public class ShopActivity extends Activity implements OnItemClickListener
 		DialogFragment fragment = new ConfirmOrderDialogFragment();
 		fragment.show(getFragmentManager(), TAG);
 	}
-	
+	/*
+	 *TODO: Fix connection to stored rewards
+	 */
 	@SuppressLint("ValidFragment")
 	public class ConfirmOrderDialogFragment extends DialogFragment
 	{
