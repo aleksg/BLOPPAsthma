@@ -61,4 +61,7 @@
 	<string name="medicationInstruction3">Gjør deg klar!</string>
 	<string name="medicationInstructionCountup">Pust inn og ut!</string>
 	<string name="connect_message">Du er ikke koblet til internett. Vennligst koble enheten til internett og prøv igjen</string>
+	<string name="order_rewards">Kjøp</string>
+	<string name="order">Bestilt</string>
+	<string name="buy_dialog">Vil du kjøpe %s</string>
 </resources>
