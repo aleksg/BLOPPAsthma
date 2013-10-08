@@ -73,7 +73,7 @@ public class ParentShowRewardsActivity extends Activity implements OnItemClickLi
 			Log.d(MTAG, getPreferences(MODE_PRIVATE).getAll().toString());
 			
 			rewards = new SavedRewards(getApplicationContext())
-					.getSavedRewards(getApplicationContext())
+					.getSavedRewards()
 					.getRewards();
 			this.context = context;
 		}
@@ -113,7 +113,7 @@ public class ParentShowRewardsActivity extends Activity implements OnItemClickLi
 				TextView costTextView = (TextView)listView.findViewById(R.id.rewardCostTextView);
 				costTextView.setText(String.valueOf(rewardItem.getStars()));
 				CheckBox isTakenCheckbox = (CheckBox)listView.findViewById(R.id.checkBoxIsTaken);
-				isTakenCheckbox.setSelected(rewardItem.isReceived());
+				isTakenCheckbox.setSelected(rewardItem.isOrdered());
 				isTakenCheckbox.setEnabled(false);
 				isTakenCheckbox.setText(R.string.order);
 			}else{

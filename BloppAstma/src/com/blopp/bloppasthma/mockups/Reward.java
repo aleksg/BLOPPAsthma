@@ -6,7 +6,7 @@ public class Reward
 {
 	private int stars;
 	private String description;
-	private boolean isReceived;
+	private boolean isOrdered;
 	private Bitmap bitmap;
 	private boolean repeat;
 	private int id;
@@ -46,14 +46,14 @@ public class Reward
 		return this;
 	}
 
-	public boolean isReceived()
+	public boolean isOrdered()
 	{
-		return isReceived;
+		return isOrdered;
 	}
 
-	public Reward setReceived(boolean isReceived)
+	public Reward setOrdered(boolean order)
 	{
-		this.isReceived = isReceived;
+		this.isOrdered = order;
 		return this;
 	}
 	

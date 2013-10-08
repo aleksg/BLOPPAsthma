@@ -16,17 +16,17 @@ public class RewardMockupList
 	public void seed()
 	{
 		this.rewards.add(new Reward().setStars(1000)
-				.setDescription("Fotballkamp").setReceived(false));
+				.setDescription("Fotballkamp").setOrdered(false));
 		this.rewards.add(new Reward().setStars(100)
-				.setDescription("Tivoli").setReceived(false));
+				.setDescription("Tivoli").setOrdered(false));
 		this.rewards.add(new Reward().setStars(25)
-				.setDescription("Pirbadet").setReceived(false));
+				.setDescription("Pirbadet").setOrdered(false));
 		this.rewards.add(new Reward().setStars(10)
-				.setDescription("Iskrem").setReceived(false));
+				.setDescription("Iskrem").setOrdered(false));
 		this.rewards.add(new Reward().setStars(5)
-				.setDescription("50 kroner i ukepenger").setReceived(false));
+				.setDescription("50 kroner i ukepenger").setOrdered(false));
 		this.rewards.add(new Reward().setStars(1)
-				.setDescription("Gudstjeneste").setReceived(false));
+				.setDescription("Gudstjeneste").setOrdered(false));
 	}
 
 	public List<Reward> getRewards()

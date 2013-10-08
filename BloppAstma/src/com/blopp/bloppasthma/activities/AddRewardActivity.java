@@ -1,15 +1,7 @@
 package com.blopp.bloppasthma.activities;
 
-import com.blopp.bloppasthma.R;
-import com.blopp.bloppasthma.mockups.Reward;
-import com.blopp.bloppasthma.mockups.SavedRewards;
-import com.google.gson.Gson;
-
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
-import android.hardware.Camera;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,7 +9,10 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.FrameLayout;
+
+import com.blopp.bloppasthma.R;
+import com.blopp.bloppasthma.mockups.Reward;
+import com.blopp.bloppasthma.mockups.SavedRewards;
 
 public class AddRewardActivity extends Activity
 {
@@ -59,7 +54,7 @@ public class AddRewardActivity extends Activity
 	
 	private void save()
 	{
-		savedRewards.saveReward(getApplicationContext(), createReward());
+		savedRewards.saveReward(createReward());
 	}
 	
 	private Reward createReward()
@@ -72,7 +67,7 @@ public class AddRewardActivity extends Activity
 		return new Reward(currentMax)
 						.setDescription(desc)
 						.setStars(stars)
-						.setReceived(false)
+						.setOrdered(false)
 						.setRepeat(repeat);
 		
 	}
@@ -82,17 +77,8 @@ public class AddRewardActivity extends Activity
 		@Override
 		public void onClick(View v)
 		{
-			
-			activityStarter(CameraActivity.class);
 			Log.d(TAG, "Should find images now.");
 		}
 		
 	}
-	private void activityStarter(Class<?> c)
-	{
-		Log.d(c.getSimpleName(), "activityStarter");
-		Intent intent = new Intent(AddRewardActivity.this, c);
-		startActivity(intent);
-	}
-	
 }
