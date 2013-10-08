@@ -9,11 +9,21 @@ public class Reward
 	private boolean isReceived;
 	private Bitmap bitmap;
 	private boolean repeat;
+	private int id;
+	
 	public Reward()
 	{	
 		
 	}
-
+	public Reward(int currentMax)
+	{
+		this.id = currentMax+1;
+	}
+	public int getId()
+	{
+		return id;
+	}
+	
 	public int getStars()
 	{
 		return stars;
@@ -67,5 +77,4 @@ public class Reward
 		this.repeat = repeat;
 		return this;
 	}
-	
 }
