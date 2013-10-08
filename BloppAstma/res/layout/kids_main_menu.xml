@@ -34,6 +34,6 @@
          android:layout_height="wrap_content"
          android:layout_alignBottom="@+id/rewards_button"
          android:layout_toRightOf="@+id/treatment_button"
-         android:background="@drawable/toalett" />
+         android:background="@drawable/shop" />
 
 </RelativeLayout>
