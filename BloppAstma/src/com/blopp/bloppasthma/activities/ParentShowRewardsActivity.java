@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.blopp.bloppasthma.R;
 import com.blopp.bloppasthma.mockups.Reward;
-import com.blopp.bloppasthma.mockups.RewardMockupList;
 import com.blopp.bloppasthma.mockups.SavedRewards;
 
 import android.app.Activity;
@@ -45,7 +44,14 @@ public class ParentShowRewardsActivity extends Activity
 		
 		
 	}
-	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data)
+	{
+		/**
+		 * Fix
+		 */
+		super.onActivityResult(requestCode, resultCode, data);
+	}
 	private class AddRewardClickListener implements OnClickListener
 	{
 
