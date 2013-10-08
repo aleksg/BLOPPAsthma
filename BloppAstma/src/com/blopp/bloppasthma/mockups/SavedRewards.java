@@ -56,9 +56,13 @@ public class SavedRewards
 	
 	public void orderReward(Reward r)
 	{
+		Gson gson = new Gson();
 		Reward old = getSavedRewards().findById(r.getId());
 		Log.d(TAG, "User ordered reward with id: " + r.getId());
 		rewards.storeOrderedReward(old);
+		String json = gson.toJson(rewards);
+		context.getSharedPreferences(sharedPreferenceName, 0).edit().putString("Rewards", json).commit();
+		Log.d("Altered", context.getSharedPreferences(sharedPreferenceName, 0).getAll().toString());
 	}
 	
 	/*

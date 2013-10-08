@@ -28,6 +28,7 @@ public class ShopActivity extends Activity implements OnItemClickListener
 	private static final String TAG = ShopActivity.class.getSimpleName();
 	private ListView activities;
 	private SavedRewards savedRewards;
+	private RewardListAdapter adapter;
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -35,7 +36,9 @@ public class ShopActivity extends Activity implements OnItemClickListener
 		setContentView(R.layout.shop);
 		savedRewards = new SavedRewards(getApplicationContext());
 		activities = (ListView) findViewById(R.id.kidsrewardlist);
-		activities.setAdapter(new RewardListAdapter(getApplicationContext()));
+		
+		adapter = new RewardListAdapter(getApplicationContext());
+		activities.setAdapter(adapter);
 		activities.setOnItemClickListener(this);
 
 	}
@@ -45,19 +48,29 @@ public class ShopActivity extends Activity implements OnItemClickListener
 			long id)
 	{
 		Log.d(TAG, "Input received at id: " + id);
-		DialogFragment fragment = new ConfirmOrderDialogFragment();
+		Reward selectedReward = (Reward)adapter.getItem(position);
+		DialogFragment fragment = new ConfirmOrderDialogFragment(selectedReward);
 		fragment.show(getFragmentManager(), TAG);
 	}
+	
+	
 	/*
 	 *TODO: Fix connection to stored rewards
 	 */
 	@SuppressLint("ValidFragment")
 	public class ConfirmOrderDialogFragment extends DialogFragment
 	{
+		private Reward selected;
+		public ConfirmOrderDialogFragment(Reward reward)
+		{
+			super();
+			this.selected = reward;
+		}
 		@Override
 		public Dialog onCreateDialog(Bundle savedInstanceState)
 		{
 			AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+			
 			builder.setMessage(R.string.buy_dialog)
 					.setPositiveButton("Ja", new DialogInterface.OnClickListener()
 					{
@@ -66,7 +79,7 @@ public class ShopActivity extends Activity implements OnItemClickListener
 						public void onClick(DialogInterface dialog, int which)
 						{
 							Log.d(TAG, "User bought activity");
-							//savedRewards.orderReward(r);
+							savedRewards.orderReward(selected);	
 						}
 					})
 					.setNegativeButton("Nei", new DialogInterface.OnClickListener()
