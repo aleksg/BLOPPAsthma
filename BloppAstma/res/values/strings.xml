@@ -31,11 +31,11 @@
 	<string name="FlutideWhat">Et inhalasjonssteroid som brukes fast slik legen har bestemt. Effekten sees først etter noen dagers bruk, og gjør at betennelsesreaksjonen i luftveiene til barnet demper seg. Dette hindrer barnets astma/betennelsesreaksjon i å utvikle seg og hindrer utvikling av sykdommen.</string>
 	<string name="VentolineWhat">En inhalasjonsmedisin som gjør at musklene rundt forgreiningene i lungene slapper av slik at lungene åpnes og det blir lettere å puste.</string>
 	<string name="SeretideWhat">En inhalasjonsmedisin som både gjør at musklene rundt forgreiningene i lungene slapper av, og et steroid som demper betennelsesreaksjonen i lungene.</string>
-	<string name="FlutideInfo">Alle sprayinhalasjoner må gis på inhalasjonskammer (Aerochamber, Optichamber, Babyhaler eller lignende) for å sikre at barnet får pustet inn medisinen på riktig måte. Etter inhalasjon med steroider må barnet alltid skylle munn, drikke eller pusse tenner for å fjerne rester av pulver fra munnen. Blir restene igjen i munnen kan det oppstå en smertefull soppinfeksjon i munnen.  
+	<string name="FlutideInfo">Alle sprayinhalasjoner må gis med inhalasjonskammer (Aerochamber, Optichamber, Babyhaler eller lignende) for å sikre at barnet får pustet inn medisinen på riktig måte. Etter inhalasjon med steroider må barnet alltid skylle munn, drikke eller pusse tenner for å fjerne rester av pulver fra munnen. Blir restene igjen i munnen kan det oppstå en smertefull soppinfeksjon i munnen.  
 	</string>
-	<string name="VentolineInfo">Alle sprayinhalasjoner må gis på inhalasjonskammer (Aerochamber, Optichamber, Babyhaler eller lignende) for å sikre at barnet får pustet inn medisinen på riktig måte.  Ventoline skal alltid tas FØR inhalasjonssteroider, dersom de skal brukes samtidig. Vent 5 minutter etter Ventoline for å sikre at lungene er åpne, slik at steroidsprayen kommer lengst mulig ned i lungene.
+	<string name="VentolineInfo">Alle sprayinhalasjoner må gis med inhalasjonskammer (Aerochamber, Optichamber, Babyhaler eller lignende) for å sikre at barnet får pustet inn medisinen på riktig måte.  Ventoline skal alltid tas FØR inhalasjonssteroider, dersom de skal brukes samtidig. Vent 5 minutter etter Ventoline for å sikre at lungene er åpne, slik at steroidsprayen kommer lengst mulig ned i lungene.
 	</string>
-	<string name="SeretideInfo">Alle sprayinhalasjoner må gis på inhalasjonskammer (Aerochamber, Optichamber, Babyhaler eller lignende) for å sikre at barnet får pustet inn medisinen på riktig måte. Etter inhalasjon med steroider må barnet alltid skylle munn, drikke eller pusse tenner for å fjerne rester av pulver fra munnen. Blir restene igjen i munnen kan det oppstå en smertefull soppinfeksjon i munnen.
+	<string name="SeretideInfo">Alle sprayinhalasjoner må gis med inhalasjonskammer (Aerochamber, Optichamber, Babyhaler eller lignende) for å sikre at barnet får pustet inn medisinen på riktig måte. Etter inhalasjon med steroider må barnet alltid skylle munn, drikke eller pusse tenner for å fjerne rester av pulver fra munnen. Blir restene igjen i munnen kan det oppstå en smertefull soppinfeksjon i munnen.
 	</string>
 	<string name="NextMonth">&gt;&gt;</string>
 	<string name="PreviousMonth">&lt;&lt;</string>
@@ -61,7 +61,8 @@
 	<string name="medicationInstruction3">Gjør deg klar!</string>
 	<string name="medicationInstructionCountup">Pust inn og ut!</string>
 	<string name="connect_message">Du er ikke koblet til internett. Vennligst koble enheten til internett og prøv igjen</string>
-	<string name="get_photo">Ta bilde</string>
+	<string name="get_photo">Ta bilde med kamera</string>
+	<string name="save_photo">Lagre bilde og returner</string>
 	<string name="order_rewards">Kjøp</string>
 	<string name="order">Bestilt</string>
 	<string name="buy_dialog">Vil du kjøpe %s</string>
