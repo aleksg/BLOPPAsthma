@@ -1,91 +1,39 @@
 package com.blopp.bloppasthma.activities;
 
-import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import com.blopp.bloppasthma.R;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.hardware.Camera;
-import android.net.Uri;
+import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.util.Log;
-import android.widget.FrameLayout;
-import android.widget.Toast;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 
 public class CameraActivity extends Activity {
-	
-		private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
-		private Uri fileUri;
-		private static final int MEDIA_TYPE_IMAGE = 1;
-		
-	  	
+    private static final int CAMERA_REQUEST = 1888; 
+    private ImageView imageView;
 
-	    @Override
-	    public void onCreate(Bundle savedInstanceState) {
-	        super.onCreate(savedInstanceState);
-	        setContentView(R.layout.camerapreview);
-	        
-	        
-	        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-	        
-	        fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
-	        intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
-	        
-	        startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
-	        
-	    }
-	    
-	    @Override
-	    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-	        if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
-	            if (resultCode == RESULT_OK) {
-	                // Image captured and saved to fileUri specified in the Intent
-	                Toast.makeText(this, "Image saved to:\n" +
-	                         data.getData(), Toast.LENGTH_LONG).show();
-	            } else if (resultCode == RESULT_CANCELED) {
-	                // User cancelled the image capture
-	            } else {
-	                // Image capture failed, advise user
-	            }
-	        }
-	    }
-	    
-	    private static Uri getOutputMediaFileUri(int type){
-	        return Uri.fromFile(getOutputMediaFile(type));
-	    }
-	    
-	    private static File getOutputMediaFile(int type){
-	        // To be safe, you should check that the SDCard is mounted
-	        // using Environment.getExternalStorageState() before doing this.
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.camerapreview);
+        this.imageView = (ImageView)this.findViewById(R.id.imageView1);
+        Button photoButton = (Button) this.findViewById(R.id.button1);
+        photoButton.setOnClickListener(new View.OnClickListener() {
 
-	        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
-	                  Environment.DIRECTORY_PICTURES), "MyCameraApp");
-	        // This location works best if you want the created images to be shared
-	        // between applications and persist after your app has been uninstalled.
+            @Override
+            public void onClick(View v) {
+                Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE); 
+                startActivityForResult(cameraIntent, CAMERA_REQUEST); 
+            }
+        });
+    }
 
-	        // Create the storage directory if it does not exist
-	        if (! mediaStorageDir.exists()){
-	            if (! mediaStorageDir.mkdirs()){
-	                Log.d("MyCameraApp", "failed to create directory");
-	                return null;
-	            }
-	        }
-
-	        // Create a media file name
-	        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-	        File mediaFile;
-	        if (type == MEDIA_TYPE_IMAGE){
-	            mediaFile = new File(mediaStorageDir.getPath() + File.separator +
-	            "IMG_"+ timeStamp + ".jpg");
-	        }  else {
-	            return null;
-	        }
-
-	        return mediaFile;
-	    }
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {  
+        if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {  
+            Bitmap photo = (Bitmap) data.getExtras().get("data"); 
+            imageView.setImageBitmap(photo);
+        }  
+    } 
 }
