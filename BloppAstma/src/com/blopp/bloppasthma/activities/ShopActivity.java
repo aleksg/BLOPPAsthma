@@ -27,13 +27,13 @@ public class ShopActivity extends Activity implements OnItemClickListener
 {
 	private static final String TAG = ShopActivity.class.getSimpleName();
 	private ListView activities;
-	
+	private SavedRewards savedRewards;
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.shop);
-
+		savedRewards = new SavedRewards(getApplicationContext());
 		activities = (ListView) findViewById(R.id.kidsrewardlist);
 		activities.setAdapter(new RewardListAdapter(getApplicationContext()));
 		activities.setOnItemClickListener(this);
@@ -66,6 +66,7 @@ public class ShopActivity extends Activity implements OnItemClickListener
 						public void onClick(DialogInterface dialog, int which)
 						{
 							Log.d(TAG, "User bought activity");
+							//savedRewards.orderReward(r);
 						}
 					})
 					.setNegativeButton("Nei", new DialogInterface.OnClickListener()
@@ -89,14 +90,13 @@ public class ShopActivity extends Activity implements OnItemClickListener
 		public RewardListAdapter(Context context)
 		{
 			rewards = new SavedRewards(getApplicationContext())
-					.getSavedRewards(getApplicationContext()).getRewards();
+					.getSavedRewards().getRewards();
 			this.context = context;
 		}
 
 		@Override
 		public int getCount()
 		{
-
 			return rewards.size();
 		}
 
@@ -135,7 +135,7 @@ public class ShopActivity extends Activity implements OnItemClickListener
 				costTextView.setText(String.valueOf(rewardItem.getStars()));
 				CheckBox isTakenCheckbox = (CheckBox) listView
 						.findViewById(R.id.checkBoxIsTaken);
-				isTakenCheckbox.setSelected(rewardItem.isReceived());
+				isTakenCheckbox.setSelected(rewardItem.isOrdered());
 				isTakenCheckbox.setEnabled(false);
 				isTakenCheckbox.setText(R.string.order_rewards);
 
