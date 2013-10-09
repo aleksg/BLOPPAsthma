@@ -74,7 +74,9 @@ public class AddRewardActivity extends Activity
 						.setOrdered(false)
 						.setRepeat(repeat);
 		if(selectedImage == null){
+
 			Log.d(TAG, "Selected image is null");
+
 			selectedImage = BitmapFactory.decodeResource(getResources(), R.drawable.book_small);
 		}
 		return r.setBitmap(selectedImage);

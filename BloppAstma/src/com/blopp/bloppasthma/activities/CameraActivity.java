@@ -47,7 +47,6 @@ public class CameraActivity extends Activity implements OnClickListener {
     private void insertPicturesinList() {
     	for (int i = 0; i < images.length; i++) {  
             
-    		Log.d(TAG, "Funker");
             cell = getLayoutInflater().inflate(R.layout.imagecell, null);  
               
             final ImageView imageView = (ImageView) cell.findViewById(R.id.chooserewardimage);  
