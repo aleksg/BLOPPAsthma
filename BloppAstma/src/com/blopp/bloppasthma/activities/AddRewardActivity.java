@@ -77,8 +77,16 @@ public class AddRewardActivity extends Activity
 		@Override
 		public void onClick(View v)
 		{
+			activityStarter(CameraActivity.class);
 			Log.d(TAG, "Should find images now.");
 		}
 		
+	}
+	
+	private void activityStarter(Class<?> c)
+	{
+		Log.d(c.getSimpleName(), "activityStarter");
+		Intent intent = new Intent(AddRewardActivity.this, c);
+		startActivity(intent);
 	}
 }
