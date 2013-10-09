@@ -11,10 +11,20 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 public class CameraActivity extends Activity implements OnClickListener {
-    private static final int CAMERA_REQUEST = 1888; 
+    private static final int CAMERA_REQUEST = 1888;
+	private static final String TAG = CameraActivity.class.getSimpleName(); 
     private ImageView imageView;
+    private LinearLayout mainLayout;  
+    
+    // this is an array that holds the IDs of the drawables ...  
+    private int[] images = {R.drawable.toalett, R.drawable.toalett, R.drawable.toalett,
+                 R.drawable.toalett, R.drawable.toalett, R.drawable.toalett, R.drawable.toalett};  
+      
+    private View cell; 
     
     private Button photoButton, savereturnButton;
 
@@ -23,12 +33,39 @@ public class CameraActivity extends Activity implements OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.camerapreview);
         this.imageView = (ImageView)this.findViewById(R.id.imageView1);
+        
+        mainLayout = (LinearLayout) findViewById(R.id._linearLayout); 
 
 
         setUpListeners();
+        insertPicturesinList();
     }
 
-    private void setUpListeners() {
+    private void insertPicturesinList() {
+    	for (int i = 0; i < images.length; i++) {  
+            
+    		Log.d(TAG, "Funker");
+            cell = getLayoutInflater().inflate(R.layout.imagecell, null);  
+              
+            final ImageView imageView = (ImageView) cell.findViewById(R.id.chooserewardimage);  
+            imageView.setOnClickListener(new OnClickListener() {  
+                         
+                       @Override  
+                       public void onClick(View v) {  
+                            Toast.makeText(CameraActivity.this, 
+                            (CharSequence) imageView.getTag(), Toast.LENGTH_SHORT).show();  
+                       }  
+                  });  
+              
+            imageView.setTag("Image#"+(i+1));  
+            imageView.setImageResource(images[i]);  
+              
+            mainLayout.addView(cell);  
+        } 
+		
+	}
+
+	private void setUpListeners() {
     	setUpListenerForButton(savereturnButton, R.id.savereturnbutton);
     	setUpListenerForButton(photoButton, R.id.photobutton);
 		
@@ -47,6 +84,14 @@ public class CameraActivity extends Activity implements OnClickListener {
         if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {  
             Bitmap photo = (Bitmap) data.getExtras().get("data"); 
             imageView.setImageBitmap(photo);
+            imageView.setOnClickListener(new OnClickListener() {  
+                
+                @Override  
+                public void onClick(View v) {  
+                     Toast.makeText(CameraActivity.this, 
+                     (CharSequence) imageView.getTag(), Toast.LENGTH_SHORT).show();  
+                }  
+           });  
         }  
     } 
     
