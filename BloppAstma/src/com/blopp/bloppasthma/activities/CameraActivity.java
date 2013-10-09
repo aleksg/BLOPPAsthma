@@ -1,10 +1,13 @@
 package com.blopp.bloppasthma.activities;
 
+import java.io.ByteArrayOutputStream;
+
 import com.blopp.bloppasthma.R;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -102,6 +105,12 @@ public class CameraActivity extends Activity implements OnClickListener {
     		Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE); 
     		startActivityForResult(cameraIntent, CAMERA_REQUEST);
     	} else if (vid == R.id.savereturnbutton) {
+    		Intent intent = new Intent();
+    		Bitmap image = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
+    		ByteArrayOutputStream out = new ByteArrayOutputStream();
+    		image.compress(Bitmap.CompressFormat.JPEG, 100, out);
+    		byte[] imageInByte = out.toByteArray();
+    		intent.putExtra("image", imageInByte);
     		finish();
     	}
     	
