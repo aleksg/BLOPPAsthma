@@ -19,8 +19,7 @@ public interface IInitializeFromJSON
 	}
 	public interface AirQualityParser
 	{
-		//TODO: Fix URL
-		public static final String MyURL = "http://dataservice.luftkvalitet.info/airqualityindex/StationsInArea/v2/?area=Trondheim&format=xml&hoursback=-3&key=yHYqw2iD";
+		public static final String MyURL = "http://dataservice.luftkvalitet.info/airqualityindex/StationsInArea/v2/?area=Trondheim&format=json&hoursback=-3&key=yHYqw2iD";
 	}
 	
 }

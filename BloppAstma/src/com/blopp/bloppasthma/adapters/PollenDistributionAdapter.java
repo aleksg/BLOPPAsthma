@@ -49,24 +49,24 @@ public class PollenDistributionAdapter extends BaseAdapter
 		LayoutInflater inflater = (LayoutInflater) this.context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-		View listView;
+		View listItem;
 
 		if (convertView == null)
 		{
 
-			listView = new View(context);
-			listView = inflater.inflate(R.layout.pollen_list_item, parent,
+			listItem = new View(context);
+			listItem= inflater.inflate(R.layout.pollen_list_item, parent,
 					false);
 			
-			listView.setPadding(0, 5, 5, 0);
-			TextView pollenTypeView = (TextView) listView
+			listItem.setPadding(0, 10, 0, 10);
+			TextView pollenTypeView = (TextView) listItem
 					.findViewById(R.id.pollen_type_textView);
 			pollenTypeView.setText(pollenStateArray[position].getPollenName());
 			pollenTypeView.setTextColor(Color.BLACK);
-			pollenTypeView.setPadding(5, 0, 0, 0);
+			pollenTypeView.setPadding(0, 0, 0, 5);
 			// Uses an icon matching pollenvarslingen.no's traditional icons for
 			// pollen spread
-			ImageView pollenDistributionView = (ImageView) listView
+			ImageView pollenDistributionView = (ImageView) listItem
 					.findViewById(R.id.pollen_spread_imageView);
 			pollenDistributionView
 					.setImageResource(getImageRecourceIdForPollenState(pollenStateArray[position]
@@ -74,9 +74,9 @@ public class PollenDistributionAdapter extends BaseAdapter
 
 		} else
 		{
-			listView = convertView;
+			listItem = convertView;
 		}
-		return listView;
+		return listItem;
 	}
 
 	/**

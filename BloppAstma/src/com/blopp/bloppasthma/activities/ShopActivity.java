@@ -90,7 +90,7 @@ public class ShopActivity extends Activity implements OnItemClickListener
 		{
 			AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 			
-			builder.setMessage(R.string.buy_dialog)
+			builder.setMessage(String.format("Vil du bestille %s", selected.getDescription()))
 					.setPositiveButton("Ja", new DialogInterface.OnClickListener()
 					{
 						
@@ -104,7 +104,6 @@ public class ShopActivity extends Activity implements OnItemClickListener
 					})
 					.setNegativeButton("Nei", new DialogInterface.OnClickListener()
 					{
-						
 						@Override
 						public void onClick(DialogInterface dialog, int which)
 						{

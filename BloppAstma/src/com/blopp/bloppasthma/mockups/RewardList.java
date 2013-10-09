@@ -37,6 +37,10 @@ public class RewardList
 		this.rewards.remove(oldReward);
 		this.rewards.add(newReward);
 	}
+	public void remove(Reward reward)
+	{
+		this.rewards.remove(reward);
+	}
 	public Reward findById(int id) throws IllegalArgumentException 
 	{
 		List<Reward> stored = getRewards();

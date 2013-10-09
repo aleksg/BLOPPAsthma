@@ -33,19 +33,14 @@ public class SavedRewards
 	
 	public void saveReward(Reward reward)
 	{
-		Gson gson = new Gson();
 		rewardList.add(reward);
-		String json = gson.toJson(rewardList);
-		context.getSharedPreferences(sharedPreferenceName, 0).edit().putString("Rewards", json)
-					.commit();
-		Log.d(TAG, context.getSharedPreferences(sharedPreferenceName, 0).getAll().toString());
+		commitRewards();
 	}
 	
 	public RewardList getSavedRewards()
 	{
 		Gson gson = new Gson(); 
 		String json = context.getSharedPreferences(sharedPreferenceName, 0).getString("Rewards", "");
-		Log.d(TAG, json);
 		if(json.isEmpty())
 		{
 			return rewardList;
@@ -56,15 +51,23 @@ public class SavedRewards
 	
 	public void orderReward(Reward r)
 	{
+		Log.d(TAG, "Child ordered reward with id: " + r.getId());
+		rewardList.storeOrderedReward(r);
+		commitRewards();
+
+	}
+	public void deleteReward(Reward r)
+	{
+		Log.d(TAG, "Parent deleted reward with id: " + r.getId());
+		rewardList.remove(r);	
+		commitRewards();
+	}
+	public void commitRewards()
+	{
 		Gson gson = new Gson();
-		Reward old = getSavedRewards().findById(r.getId());
-		Log.d(TAG, "User ordered reward with id: " + r.getId());
-		rewardList.storeOrderedReward(old);
 		String json = gson.toJson(rewardList);
 		context.getSharedPreferences(sharedPreferenceName, 0).edit().putString("Rewards", json).commit();
-		Log.d("Altered", context.getSharedPreferences(sharedPreferenceName, 0).getAll().toString());
 	}
-	
 	public int getMaximumIdentifier()
 	{
 		return rewardList.getMaximumIdentifier();

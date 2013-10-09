@@ -2,11 +2,11 @@ package com.blopp.bloppasthma.models;
 
 import java.util.ArrayList;
 
-public class AirQualityAtDayModel {
+public class AirQualityAtDay {
 	
 	private ArrayList<AirQuality> airQualityAtDay;
 	
-	public AirQualityAtDayModel()
+	public AirQualityAtDay()
 	{
 		this.airQualityAtDay = new ArrayList<AirQuality>();
 	}

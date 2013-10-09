@@ -14,7 +14,7 @@
         android:id="@+id/pollen_type_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/pollen_spread_imageView"
+        android:layout_alignTop="@+id/pollen_spread_imageView"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/pollen_spread_imageView"
         android:text="Or"
