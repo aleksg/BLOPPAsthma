@@ -10,6 +10,7 @@ import com.blopp.bloppasthma.mockups.SavedRewards;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,8 +30,6 @@ import android.widget.AdapterView.OnItemClickListener;
 public class ParentShowRewardsActivity extends Activity implements OnItemClickListener
 {
 	private static final String TAG = ParentShowRewardsActivity.class.getSimpleName();
-
-	private static String sharedPreferenceName = "RewardList";
 	
 	private ListView activities;
 	private Button addRewardButton;
@@ -45,7 +44,6 @@ public class ParentShowRewardsActivity extends Activity implements OnItemClickLi
 		activities.setOnItemClickListener(this);
 		addRewardButton = (Button) findViewById(R.id.addRewardButton);
 		addRewardButton.setOnClickListener(new AddRewardClickListener());
-		
 		
 	}
 	@Override
@@ -64,6 +62,20 @@ public class ParentShowRewardsActivity extends Activity implements OnItemClickLi
 		
 	}
 	
+	@Override
+	protected void onResume()
+	{
+		
+		super.onResume();
+		redrawList();
+	}
+	
+	private void redrawList()
+	{
+		activities = (ListView)findViewById(R.id.rewardList);
+		activities.setAdapter(new RewardListAdapter(getApplicationContext()));
+		
+	}
 	private class RewardListAdapter extends BaseAdapter
 	{
 		private final String MTAG = RewardListAdapter.class.getSimpleName();
@@ -110,12 +122,17 @@ public class ParentShowRewardsActivity extends Activity implements OnItemClickLi
 				
 				TextView rewardDescription = (TextView)listView.findViewById(R.id.rewardDescriptionTextView);
 				rewardDescription.setText(rewardItem.getDescription());
+				rewardDescription.setTextColor(Color.BLACK);
 				TextView costTextView = (TextView)listView.findViewById(R.id.rewardCostTextView);
 				costTextView.setText(String.valueOf(rewardItem.getStars()));
+				costTextView.setTextColor(Color.BLACK);
 				CheckBox isTakenCheckbox = (CheckBox)listView.findViewById(R.id.checkBoxIsTaken);
-				isTakenCheckbox.setSelected(rewardItem.isOrdered());
+				
+				isTakenCheckbox.setChecked(rewardItem.isOrdered());
 				isTakenCheckbox.setEnabled(false);
-				isTakenCheckbox.setText(R.string.order);
+				isTakenCheckbox.setText(rewardItem.isOrdered() ? R.string.order : R.string.not_ordered);
+				isTakenCheckbox.setPadding(0, 0, 5, 0);
+				isTakenCheckbox.setTextColor(Color.BLACK);
 			}else{
 				listView = convertView;
 			}

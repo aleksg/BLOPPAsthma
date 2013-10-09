@@ -68,8 +68,7 @@ public class AddRewardActivity extends Activity
 						.setDescription(desc)
 						.setStars(stars)
 						.setOrdered(false)
-						.setRepeat(repeat);
-		
+						.setRepeat(repeat);	
 	}
 	private class FindImageClickListener implements OnClickListener
 	{
