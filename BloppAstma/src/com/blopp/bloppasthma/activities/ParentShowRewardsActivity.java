@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.blopp.bloppasthma.R;
 import com.blopp.bloppasthma.mockups.Reward;
-import com.blopp.bloppasthma.mockups.RewardMockupList;
 import com.blopp.bloppasthma.mockups.SavedRewards;
 
 import android.app.Activity;
@@ -17,16 +16,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 
 
 
-public class ParentShowRewardsActivity extends Activity
+public class ParentShowRewardsActivity extends Activity implements OnItemClickListener
 {
+	private static final String TAG = ParentShowRewardsActivity.class.getSimpleName();
+
 	private static String sharedPreferenceName = "RewardList";
 	
 	private ListView activities;
@@ -39,13 +42,17 @@ public class ParentShowRewardsActivity extends Activity
 		
 		activities = (ListView)findViewById(R.id.rewardList);		
 		activities.setAdapter(new RewardListAdapter(getApplicationContext()));
-		
+		activities.setOnItemClickListener(this);
 		addRewardButton = (Button) findViewById(R.id.addRewardButton);
 		addRewardButton.setOnClickListener(new AddRewardClickListener());
 		
 		
 	}
-	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data)
+	{
+		super.onActivityResult(requestCode, resultCode, data);
+	}
 	private class AddRewardClickListener implements OnClickListener
 	{
 
@@ -66,7 +73,7 @@ public class ParentShowRewardsActivity extends Activity
 			Log.d(MTAG, getPreferences(MODE_PRIVATE).getAll().toString());
 			
 			rewards = new SavedRewards(getApplicationContext())
-					.getSavedRewards(getApplicationContext())
+					.getSavedRewards()
 					.getRewards();
 			this.context = context;
 		}
@@ -106,9 +113,9 @@ public class ParentShowRewardsActivity extends Activity
 				TextView costTextView = (TextView)listView.findViewById(R.id.rewardCostTextView);
 				costTextView.setText(String.valueOf(rewardItem.getStars()));
 				CheckBox isTakenCheckbox = (CheckBox)listView.findViewById(R.id.checkBoxIsTaken);
-				isTakenCheckbox.setSelected(rewardItem.isReceived());
+				isTakenCheckbox.setSelected(rewardItem.isOrdered());
 				isTakenCheckbox.setEnabled(false);
-				isTakenCheckbox.setText("Bestilt");
+				isTakenCheckbox.setText(R.string.order);
 			}else{
 				listView = convertView;
 			}
@@ -116,6 +123,10 @@ public class ParentShowRewardsActivity extends Activity
 		}
 		
 	}
-	
-	
+
+	@Override
+	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3)
+	{
+		Log.d(TAG, "received input");
+	}
 }
