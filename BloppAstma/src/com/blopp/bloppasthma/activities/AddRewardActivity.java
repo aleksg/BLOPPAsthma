@@ -2,6 +2,8 @@ package com.blopp.bloppasthma.activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -23,6 +25,7 @@ public class AddRewardActivity extends Activity
 	private Button findImageButton, saveRewardButton;
 	private CheckBox repeatRewardCheckbox;
 	private SavedRewards savedRewards;
+	private Bitmap selectedImage;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -64,11 +67,18 @@ public class AddRewardActivity extends Activity
 		boolean repeat = repeatRewardCheckbox.isSelected();
 		int currentMax = savedRewards.getMaximumIdentifier();
 		
-		return new Reward(currentMax)
+		Reward r = new Reward(currentMax)
 						.setDescription(desc)
 						.setStars(stars)
 						.setOrdered(false)
 						.setRepeat(repeat);	
+
+		if(selectedImage == null){
+			selectedImage = BitmapFactory.decodeResource(getResources(), R.drawable.book_small);
+			
+		}
+		return r.setBitmap(selectedImage);
+
 	}
 	private class FindImageClickListener implements OnClickListener
 	{
@@ -76,8 +86,28 @@ public class AddRewardActivity extends Activity
 		@Override
 		public void onClick(View v)
 		{
+			activityStarter(CameraActivity.class);
 			Log.d(TAG, "Should find images now.");
 		}
 		
+	}
+
+	
+
+	
+	private void activityStarter(Class<?> c)
+	{
+		Log.d(c.getSimpleName(), "activityStarter");
+		Intent intent = new Intent(AddRewardActivity.this, c);
+		startActivity(intent);
+	}
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		if(getIntent().hasExtra("image")){
+			byte[] image = getIntent().getExtras().getByteArray("image");
+			selectedImage = BitmapFactory.decodeByteArray(image, 0, image.length);
+		}	
 	}
 }

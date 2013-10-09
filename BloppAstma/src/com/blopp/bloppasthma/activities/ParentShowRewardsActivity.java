@@ -21,6 +21,7 @@ import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import com.blopp.bloppasthma.R;
@@ -183,12 +184,17 @@ public class ParentShowRewardsActivity extends Activity
 			if (convertView == null)
 			{
 				listView = new View(context);
-				listView = inflater.inflate(R.layout.show_reward_list_item,
-						parent, false);
-				Reward rewardItem = (Reward) getItem(position);
 
-				TextView rewardDescription = (TextView) listView
-						.findViewById(R.id.rewardDescriptionTextView);
+				listView = inflater.inflate(R.layout.show_reward_list_item, parent, false);
+				Reward rewardItem = (Reward)getItem(position);
+				
+				
+				ImageView iv = (ImageView)listView.findViewById(R.id.rewardImage);
+				
+				iv.setImageBitmap(rewardItem.getBitmap());
+				
+				TextView rewardDescription = (TextView)listView.findViewById(R.id.rewardDescriptionTextView);
+
 				rewardDescription.setText(rewardItem.getDescription());
 				rewardDescription.setTextColor(Color.BLACK);
 				TextView costTextView = (TextView) listView
