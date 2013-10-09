@@ -123,7 +123,6 @@ public class ViewMedicationPlanActivity extends Activity implements
 		} catch (ExecutionException e)
 		{
 			Toast.makeText(getApplicationContext(), R.string.download_error, Toast.LENGTH_SHORT).show();
-			
 			e.printStackTrace();
 			return;
 		}
@@ -203,7 +202,7 @@ public class ViewMedicationPlanActivity extends Activity implements
 	{
 		listView = (ListView) findViewById(R.id.medicine_listview);
 		intializeList();
-		
+		//TODO: Why subtract 1 here?
 		listView.setAdapter(new PlanMedicineListAdapter(timeMap, (HealthState.getIdByHealthZone(healthZone)-1)));
 	}
 	private String getMedicineName(String combined)

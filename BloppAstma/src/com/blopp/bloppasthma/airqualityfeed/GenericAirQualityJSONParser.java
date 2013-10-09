@@ -11,18 +11,12 @@ import com.blopp.bloppasthma.jsonparsers.IInitializeFromJSON.AirQualityParser;
  * @author gisvold
  *
  */
-public class GenericAirQualityJSONParser extends GenericJSONParser implements IInitializeFromJSON, AirQualityParser
+public abstract class GenericAirQualityJSONParser extends GenericJSONParser implements IInitializeFromJSON, AirQualityParser
 {
 
-	public GenericAirQualityJSONParser(String url) {
-		super(url);
-		URL = url;
+	public GenericAirQualityJSONParser() {
+		super(MyURL);
+		URL = MyURL;
 	}
-
-	@Override
-	public void initializeDataFromJSON(String result) {
-		
-	}
-	
 	
 }

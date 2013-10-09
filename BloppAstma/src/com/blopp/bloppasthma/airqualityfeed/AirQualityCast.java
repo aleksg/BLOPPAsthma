@@ -1,64 +1,59 @@
 package com.blopp.bloppasthma.airqualityfeed;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.xml.sax.SAXException;
+import android.util.Log;
 
 import com.blopp.bloppasthma.models.AirQuality;
-import com.blopp.bloppasthma.models.AirQualityAtDayModel;
-import com.blopp.bloppasthma.models.PollenStateAtDayModel;
+import com.blopp.bloppasthma.models.AirQualityAtDay;
 
-public class AirQualityCast {
-	
-	private AirQualityAtDayModel airQualityAtDayModel;
-	
+public class AirQualityCast extends GenericAirQualityJSONParser
+{
+
+	private AirQualityAtDay airQualityAtDayModel;
+
 	public AirQualityCast()
 	{
 		super();
 	}
-	
-	public void initializeDataFromXML(InputStream is)
-	{
-		try 
-		{
-			airQualityAtDayModel = new AirQualityAtDayModel();
-			ArrayList<AirQuality> airQualityList = new ArrayList<AirQuality>();
-			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder builder = factory.newDocumentBuilder();
-			Document doc = builder.parse(is);
-			
-			Element element = null;
-			//String location = getTagValue("Location", element);
-			//int aqi = Integer.parseInt(getTagValue("AQI", element));
-			
-			airQualityAtDayModel.setAirQualityAtDay(null);
-		
-	} catch (ParserConfigurationException e) {
-			e.printStackTrace();
-	} catch (SAXException e) {
-		e.printStackTrace();
-	} catch (IOException e){
-		e.printStackTrace();
-	}
-	}
-		
-	
-//	private static String getTagValue(String sTag, Element eElement)
-//	{
-//		
-//	}
-	
-	public AirQualityAtDayModel getPollenStateAtDayModel()
+
+	public AirQualityAtDay getPollenStateAtDayModel()
 	{
 		return this.airQualityAtDayModel;
+	}
+
+	@Override
+	public void initializeDataFromJSON(String result)
+	{
+		airQualityAtDayModel = new AirQualityAtDay();
+		ArrayList<AirQuality> airQualityList = new ArrayList<AirQuality>();
+		
+		JSONArray json_array;
+		try
+		{
+			json_array = new JSONArray(result);	
+			for (int i=0; i<json_array.length(); i++)
+			{
+				JSONObject place = (JSONObject) json_array.get(i);
+				JSONObject highestAqiIndex = (JSONObject)place.get("HighestAqiIndex");
+				JSONObject station = (JSONObject)place.get("Station");
+				AirQuality quality = new AirQuality()
+										.setAQI(highestAqiIndex.getInt("Index"))
+										.setColor(highestAqiIndex.getString("Color"))
+										.setDescription(highestAqiIndex.getString("ShortDescription"))
+										.setLocation(station.getString("Name"));
+				airQualityList.add(quality);
+			}
+			
+		} catch (JSONException e)
+		{
+			Log.d(TAG, "Could not parse json");
+			e.printStackTrace();
+		}
 	}
 
 }

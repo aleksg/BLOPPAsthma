@@ -3,6 +3,8 @@ package com.blopp.bloppasthma.mockups;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.content.Context;
+
 public class RewardList
 {
 	private List<Reward> rewards;
@@ -35,6 +37,10 @@ public class RewardList
 		this.rewards.remove(oldReward);
 		this.rewards.add(newReward);
 	}
+	public void remove(Reward reward)
+	{
+		this.rewards.remove(reward);
+	}
 	public Reward findById(int id) throws IllegalArgumentException 
 	{
 		List<Reward> stored = getRewards();
@@ -48,6 +54,16 @@ public class RewardList
 		}
 		throw new IllegalArgumentException("Id for reward does not exist");
 	}
-	
-	
+	public int getMaximumIdentifier()
+	{	
+		int max = -1;
+		for (Reward reward : rewards)
+		{
+			if(reward.getId() > max)
+			{
+				max = reward.getId();
+			}
+		}
+		return max;
+	}
 }

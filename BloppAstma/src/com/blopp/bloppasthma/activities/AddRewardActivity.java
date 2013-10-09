@@ -62,14 +62,13 @@ public class AddRewardActivity extends Activity
 		String desc = descriptionText.getText().toString();
 		int stars = Integer.parseInt(starsText.getText().toString());
 		boolean repeat = repeatRewardCheckbox.isSelected();
-		int currentMax = savedRewards.getMaximumIdentifier(getApplicationContext());
+		int currentMax = savedRewards.getMaximumIdentifier();
 		
 		return new Reward(currentMax)
 						.setDescription(desc)
 						.setStars(stars)
 						.setOrdered(false)
-						.setRepeat(repeat);
-		
+						.setRepeat(repeat);	
 	}
 	private class FindImageClickListener implements OnClickListener
 	{
