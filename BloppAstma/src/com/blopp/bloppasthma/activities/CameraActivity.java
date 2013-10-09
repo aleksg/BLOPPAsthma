@@ -88,8 +88,7 @@ public class CameraActivity extends Activity implements OnClickListener {
                 
                 @Override  
                 public void onClick(View v) {  
-                     Toast.makeText(CameraActivity.this, 
-                     (CharSequence) imageView.getTag(), Toast.LENGTH_SHORT).show();  
+                     //Do something 
                 }  
            });  
         }  
@@ -103,7 +102,7 @@ public class CameraActivity extends Activity implements OnClickListener {
     		Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE); 
     		startActivityForResult(cameraIntent, CAMERA_REQUEST);
     	} else if (vid == R.id.savereturnbutton) {
-    		//TODO: Send image object back to activity
+    		finish();
     	}
     	
     }
