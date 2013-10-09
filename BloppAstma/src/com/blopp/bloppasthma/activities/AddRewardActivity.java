@@ -1,5 +1,6 @@
 package com.blopp.bloppasthma.activities;
 
+import android.app.ActionBar.OnNavigationListener;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -73,22 +74,25 @@ public class AddRewardActivity extends Activity
 						.setOrdered(false)
 						.setRepeat(repeat);
 		if(selectedImage == null){
+			Log.d(TAG, "Selected image is null");
 			selectedImage = BitmapFactory.decodeResource(getResources(), R.drawable.book_small);
-			
 		}
 		return r.setBitmap(selectedImage);
 	}
 	private class FindImageClickListener implements OnClickListener
 	{
-
 		@Override
 		public void onClick(View v)
 		{
-			activityStarter(CameraActivity.class);
+//			activityStarter(CameraActivity.class);
+
+			startActivityForResult(new Intent(AddRewardActivity.this, CameraActivity.class), RESULT_OK);
 			Log.d(TAG, "Should find images now.");
 		}
 		
 	}
+	
+	
 	
 	private void activityStarter(Class<?> c)
 	{
@@ -97,12 +101,31 @@ public class AddRewardActivity extends Activity
 		startActivity(intent);
 	}
 	
+	
+	
 	@Override
 	protected void onResume() {
+		Log.d(TAG, "Resuming activity");
+		
 		super.onResume();
 		if(getIntent().hasExtra("image")){
 			byte[] image = getIntent().getExtras().getByteArray("image");
 			selectedImage = BitmapFactory.decodeByteArray(image, 0, image.length);
+		}else{
+			Log.d(TAG, "Had no extra");
 		}	
 	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data)
+	{
+		Log.d(TAG, "onActivityResult is called");
+		if(getIntent().hasExtra("image")){
+			byte[] image = getIntent().getExtras().getByteArray("image");
+			selectedImage = BitmapFactory.decodeByteArray(image, 0, image.length);
+		}else{
+			Log.d(TAG, "Had no extra");
+		}
+	}
+
 }

@@ -106,11 +106,16 @@ public class CameraActivity extends Activity implements OnClickListener {
     		startActivityForResult(cameraIntent, CAMERA_REQUEST);
     	} else if (vid == R.id.savereturnbutton) {
     		Intent intent = new Intent();
+    		//TODO: Sporadic problems
     		Bitmap image = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
     		ByteArrayOutputStream out = new ByteArrayOutputStream();
     		image.compress(Bitmap.CompressFormat.JPEG, 100, out);
     		byte[] imageInByte = out.toByteArray();
     		intent.putExtra("image", imageInByte);
+    		
+    		setResult(RESULT_OK, intent);
+    		
+    		
     		finish();
     	}
     	
