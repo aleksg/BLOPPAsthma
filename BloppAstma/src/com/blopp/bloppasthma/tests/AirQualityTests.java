@@ -2,8 +2,8 @@ package com.blopp.bloppasthma.tests;
 
 import org.junit.Assert;
 
-
 import android.test.AndroidTestCase;
+import android.widget.ImageView;
 
 import com.blopp.bloppasthma.airqualityfeed.AirQualityCast;
 
