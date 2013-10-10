@@ -19,6 +19,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -158,7 +159,10 @@ public class ShopActivity extends Activity implements OnItemClickListener
 				listView = inflater.inflate(R.layout.show_reward_list_item,
 						parent, false);
 				Reward rewardItem = (Reward) getItem(position);
-
+				
+				ImageView iv = (ImageView)listView.findViewById(R.id.rewardImage);
+				iv.setImageBitmap(rewardItem.getBitmap());
+				
 				TextView rewardDescription = (TextView) listView
 						.findViewById(R.id.rewardDescriptionTextView);
 				rewardDescription.setText(rewardItem.getDescription());

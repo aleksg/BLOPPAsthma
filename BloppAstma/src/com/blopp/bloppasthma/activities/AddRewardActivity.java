@@ -188,20 +188,21 @@ public class AddRewardActivity extends Activity
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data)
 	{
-		
+
 		if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK)
 		{
 			selectedImage = (Bitmap) data.getExtras().get("data");
 			Log.d(TAG, "Got activity result");
-		}else if(requestCode == 1337 && resultCode == RESULT_OK)
+		} else if (requestCode == 1337 && resultCode == RESULT_OK)
 		{
-			int resource = (Integer)data.getExtras().get("ResourceId");
-			selectedImage = BitmapFactory.decodeResource(getResources(), resource);
+			int resource = (Integer) data.getExtras().get("ResourceId");
+			selectedImage = BitmapFactory.decodeResource(getResources(),
+					resource);
 			Log.d(TAG, "Successfully got a resource");
-		}else{
+		} else
+		{
 			Log.d(TAG, "Did not get a good result");
 		}
-		
 
 	}
 
