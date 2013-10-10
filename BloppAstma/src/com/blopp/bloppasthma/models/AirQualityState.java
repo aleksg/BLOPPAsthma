@@ -2,14 +2,14 @@ package com.blopp.bloppasthma.models;
 
 import android.graphics.Color;
 
-public class AirQuality {
+public class AirQualityState {
 	
 	//AQI: Air Quality Index
 	private int AQI;
 	private String location;
 	private int color;
 	private String description;
-	public AirQuality(){
+	public AirQualityState(){
 		
 	}
 	
@@ -18,7 +18,7 @@ public class AirQuality {
 		return AQI;
 	}
 
-	public AirQuality setAQI(int AQI)
+	public AirQualityState setAQI(int AQI)
 	{
 		this.AQI = AQI;
 		return this;
@@ -29,13 +29,13 @@ public class AirQuality {
 		return location;
 	}
 	
-	public AirQuality setLocation(String location)
+	public AirQualityState setLocation(String location)
 	{
 		this.location = location;
 		return this;
 	}
 	
-	public AirQuality setColor(String color)
+	public AirQualityState setColor(String color)
 	{
 		this.color = Color.parseColor(String.format("#%s", color));
 		
@@ -45,7 +45,7 @@ public class AirQuality {
 	{
 		return this.color;
 	}
-	public AirQuality setDescription(String description)
+	public AirQualityState setDescription(String description)
 	{
 		this.description = description;
 		return this;

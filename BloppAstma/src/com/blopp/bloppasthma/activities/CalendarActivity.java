@@ -1,5 +1,3 @@
-
-
 package com.blopp.bloppasthma.activities;
 
 import java.util.ArrayList;
@@ -18,8 +16,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blopp.bloppasthma.R;
+import com.blopp.bloppasthma.adapters.AirQualityAdapter;
 import com.blopp.bloppasthma.adapters.PollenDistributionAdapter;
 import com.blopp.bloppasthma.adapters.TakenMedicinesAdapter;
+import com.blopp.bloppasthma.airqualityfeed.AirQualityCast;
+import com.blopp.bloppasthma.models.AirQualityState;
 import com.blopp.bloppasthma.models.LogModel;
 import com.blopp.bloppasthma.models.PollenState;
 import com.blopp.bloppasthma.utils.DateAdapter;
@@ -40,11 +41,14 @@ public class CalendarActivity extends Activity implements
 	
 	private ListView medicineTakenListView;
 	private ListView pollenListView;
+	private ListView airQualityView;
 	private LogModel logModel;
 	
 	private PollenCast pollenCast;
 	private DateAdapter dateAdapter;
 	private int day, month, year;
+	
+	private AirQualityCast airQualityCast;
 	
 	private DateTime dateTime = new DateTime();
 	private TakenMedicinesAdapter medicineGridAdapter;
@@ -60,6 +64,7 @@ public class CalendarActivity extends Activity implements
 		
 		calendarView = (CalendarView) findViewById(R.id.calendarview);
 		calendarView.setOnCellTouchListener(this);
+		
 		
 		initializeDaysShownInMedicineList();
 		
@@ -79,6 +84,10 @@ public class CalendarActivity extends Activity implements
 		pollenListView = (ListView)findViewById(R.id.pollen_listView);
 		pollenListView.setAdapter(new PollenDistributionAdapter(getApplicationContext(), getPollenStates()));
 		pollenListView.setDivider(null);
+		
+		airQualityView = (ListView)findViewById(R.id.airquality_listview);
+		airQualityView.setAdapter(new AirQualityAdapter(getApplicationContext(), getAirQualityStates()));
+		airQualityView.setDivider(null);
 	}
 	
 
@@ -164,6 +173,24 @@ public class CalendarActivity extends Activity implements
 		}
 		return pollenCast.getPollenStateAtDayModel().getPollenStatesAtDay();
 		
+	}
+	
+	private ArrayList<AirQualityState> getAirQualityStates()
+	{
+		this.airQualityCast = new AirQualityCast();
+		airQualityCast.execute();
+		try
+		{
+			airQualityCast.get();
+		} catch (InterruptedException e)
+		{
+			makeToast(R.string.download_error, Toast.LENGTH_SHORT);
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			makeToast(R.string.download_error, Toast.LENGTH_SHORT);
+			e.printStackTrace();
+		}
+		return airQualityCast.getAirQualityStateAtDayModel().getAirQualityAtDay();
 	}
 	/*
 	 * Used to infrom the user about which date is set.
