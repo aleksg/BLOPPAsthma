@@ -62,7 +62,7 @@
     </ListView>
 
     <ListView
-        android:id="@+id/listView1"
+        android:id="@+id/airquality_listview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignRight="@+id/month_of_year_textview"
