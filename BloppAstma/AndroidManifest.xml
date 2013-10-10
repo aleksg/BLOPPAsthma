@@ -120,7 +120,7 @@
         <activity android:name=".activities.ShopActivity"></activity>
         <activity android:name="com.blopp.bloppasthma.activities.ParentShowRewardsActivity"></activity>
         <activity android:name="com.blopp.bloppasthma.activities.AddRewardActivity"></activity>
-        <activity android:name=".activities.CameraActivity"></activity>
+        <activity android:name=".activities.SelectDefaultRewardImageActivity"></activity>
     </application>
 
 </manifest>

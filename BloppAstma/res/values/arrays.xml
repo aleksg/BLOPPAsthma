@@ -14,4 +14,8 @@
         <item>Moderat</item>
         <item>Sterk</item>
     </string-array>
+    <string-array name="reward_image_options">
+        <item>Kamera</item>
+        <item>Standard bilder</item>
+    </string-array>
 </resources>
