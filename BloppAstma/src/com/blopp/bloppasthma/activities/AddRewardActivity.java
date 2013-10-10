@@ -1,5 +1,6 @@
 package com.blopp.bloppasthma.activities;
 
+import android.app.ActionBar.OnNavigationListener;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -15,6 +16,7 @@ import android.widget.EditText;
 import com.blopp.bloppasthma.R;
 import com.blopp.bloppasthma.mockups.Reward;
 import com.blopp.bloppasthma.mockups.SavedRewards;
+import com.blopp.bloppasthma.utils.TemporarilyImageStore;
 
 public class AddRewardActivity extends Activity
 {
@@ -58,6 +60,8 @@ public class AddRewardActivity extends Activity
 	private void save()
 	{
 		savedRewards.saveReward(createReward());
+		TemporarilyImageStore store = new TemporarilyImageStore(getApplicationContext());
+		store.removeTemporarilyImage();
 	}
 	
 	private Reward createReward()
@@ -74,19 +78,26 @@ public class AddRewardActivity extends Activity
 						.setRepeat(repeat);	
 
 		if(selectedImage == null){
+
+			Log.d(TAG, "Selected image is null");
+
 			selectedImage = BitmapFactory.decodeResource(getResources(), R.drawable.book_small);
-			
+			r.setBitmap(selectedImage);
+		}else{
+			Log.d(TAG, "Selected image was not null");
+			r.setBitmap(selectedImage);
 		}
-		return r.setBitmap(selectedImage);
+
+		return r;
 
 	}
 	private class FindImageClickListener implements OnClickListener
 	{
-
 		@Override
 		public void onClick(View v)
 		{
-			activityStarter(CameraActivity.class);
+
+			startActivityForResult(new Intent(AddRewardActivity.this, CameraActivity.class), RESULT_OK);
 			Log.d(TAG, "Should find images now.");
 		}
 		
@@ -95,6 +106,8 @@ public class AddRewardActivity extends Activity
 	
 
 	
+	
+	
 	private void activityStarter(Class<?> c)
 	{
 		Log.d(c.getSimpleName(), "activityStarter");
@@ -102,12 +115,34 @@ public class AddRewardActivity extends Activity
 		startActivity(intent);
 	}
 	
+	
+	
 	@Override
 	protected void onResume() {
+		Log.d(TAG, "Resuming activity");
+		
 		super.onResume();
+		
+		TemporarilyImageStore store = new TemporarilyImageStore(getApplicationContext());
+		if(store.hasStoredAnImage())
+		{
+			Log.d(TAG, "Found an image. WOHO!");
+			selectedImage = store.getByteImage().getImageAsBitmap();
+		}
+		
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data)
+	{
+		Log.d(TAG, "onActivityResult is called");
 		if(getIntent().hasExtra("image")){
 			byte[] image = getIntent().getExtras().getByteArray("image");
 			selectedImage = BitmapFactory.decodeByteArray(image, 0, image.length);
-		}	
+		}else{
+			Log.d(TAG, "Had no extra");
+		}
 	}
+
 }
+
