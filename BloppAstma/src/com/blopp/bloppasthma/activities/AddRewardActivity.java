@@ -20,13 +20,12 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.blopp.bloppasthma.R;
 import com.blopp.bloppasthma.mockups.Reward;
 import com.blopp.bloppasthma.mockups.SavedRewards;
 import com.blopp.bloppasthma.utils.TemporarilyImageStore;
-
-
 
 public class AddRewardActivity extends Activity
 {
@@ -77,6 +76,13 @@ public class AddRewardActivity extends Activity
 
 	private Reward createReward()
 	{
+		if (descriptionText.getText().toString() == null
+				|| starsText.getText().toString() == null)
+		{
+			Toast.makeText(getApplicationContext(),
+					"Fyll inn beskrivelse og antall stjerner",
+					Toast.LENGTH_SHORT).show();
+		}
 		String desc = descriptionText.getText().toString();
 		int stars = Integer.parseInt(starsText.getText().toString());
 		boolean repeat = repeatRewardCheckbox.isSelected();
@@ -129,62 +135,74 @@ public class AddRewardActivity extends Activity
 		}
 
 	}
-	
+
 	@SuppressLint("ValidFragment")
 	public class FindImageDialog extends DialogFragment
 	{
-		
+
 		public FindImageDialog()
 		{
-			
+
 		}
-		
+
 		@Override
 		public Dialog onCreateDialog(Bundle savedInstanceState)
 		{
 			AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-			builder.setTitle("Velg methode")
-					.setItems(R.array.reward_image_options, new DialogInterface.OnClickListener()
-			{
-				
-				@Override
-				public void onClick(DialogInterface dialog, int which)
-				{
-					if(which==0)
+			builder.setTitle("Velg methode").setItems(
+					R.array.reward_image_options,
+					new DialogInterface.OnClickListener()
 					{
-						startCamera();
-					}else if(which==1)
-					{
-						startImageGallery();
-					}
-					
-				}
-			});
+
+						@Override
+						public void onClick(DialogInterface dialog, int which)
+						{
+							if (which == 0)
+							{
+								startCamera();
+							} else if (which == 1)
+							{
+								startImageGallery();
+							}
+
+						}
+					});
 			return builder.create();
 		}
 	}
+
 	public void startCamera()
 	{
-		Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+		Intent cameraIntent = new Intent(
+				android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
 		startActivityForResult(cameraIntent, CAMERA_REQUEST);
 	}
+
 	public void startImageGallery()
 	{
-		Intent imageIntent = new Intent(AddRewardActivity.this, SelectDefaultRewardImageActivity.class);
-		Log.d(TAG, "Should start Image Gallery now");
-		startActivity(imageIntent);
+		Intent imageIntent = new Intent(AddRewardActivity.this,
+				SelectDefaultRewardImageActivity.class);
+		startActivityForResult(imageIntent, 1337);
 	}
-	
+
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data)
 	{
-		Log.d(TAG, "On activity result");
-		if(requestCode == CAMERA_REQUEST && resultCode == RESULT_OK)
+		
+		if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK)
 		{
-			selectedImage = (Bitmap)data.getExtras().get("data");
+			selectedImage = (Bitmap) data.getExtras().get("data");
 			Log.d(TAG, "Got activity result");
+		}else if(requestCode == 1337 && resultCode == RESULT_OK)
+		{
+			int resource = (Integer)data.getExtras().get("ResourceId");
+			selectedImage = BitmapFactory.decodeResource(getResources(), resource);
+			Log.d(TAG, "Successfully got a resource");
+		}else{
+			Log.d(TAG, "Did not get a good result");
 		}
 		
+
 	}
 
 }

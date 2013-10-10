@@ -1,7 +1,9 @@
 package com.blopp.bloppasthma.activities;
 
 import android.app.Activity;
+import android.app.Instrumentation.ActivityResult;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -23,7 +25,7 @@ import com.blopp.bloppasthma.R;
 
 public class SelectDefaultRewardImageActivity extends Activity
 {
-	
+
 	private static final String TAG = SelectDefaultRewardImageActivity.class
 			.getSimpleName();
 
@@ -31,19 +33,17 @@ public class SelectDefaultRewardImageActivity extends Activity
 	private int[] images = { R.drawable.toalett, R.drawable.toalett,
 			R.drawable.toalett, R.drawable.toalett, R.drawable.toalett,
 			R.drawable.toalett, R.drawable.toalett };
-	
-	private Bitmap selectedImage;
-	
+
+	private int selectedImageResourceId;
+
 	private View previouslySelected;
-	
+
 	private Button selectImageButton;
 
 	private GridView imageGrid;
-	
+
 	private ImageGridAdapter adapter;
-	
-	
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -54,39 +54,45 @@ public class SelectDefaultRewardImageActivity extends Activity
 		imageGrid = (GridView) findViewById(R.id.image_grid_view);
 		imageGrid.setAdapter(adapter);
 		imageGrid.setOnItemClickListener(new ImageClickedListener());
-		selectImageButton = (Button)findViewById(R.id.use_image_button);
+		selectImageButton = (Button) findViewById(R.id.use_image_button);
 		selectImageButton.setOnClickListener(new SelectedImageClickListener());
-		
+
 	}
-	
-	private class ImageClickedListener implements OnItemClickListener{
+
+	private class ImageClickedListener implements OnItemClickListener
+	{
 
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position,
 				long id)
 		{
-			if(previouslySelected != null){
+			if (previouslySelected != null)
+			{
 				previouslySelected.setBackgroundColor(Color.TRANSPARENT);
 			}
-			
+
 			view.setBackgroundColor(Color.YELLOW);
 			previouslySelected = view;
-			selectedImage = BitmapFactory.decodeResource(getResources(), adapter.getItem(position));
-			
-			Log.d(TAG, "User clicked an image");
+			selectedImageResourceId = adapter.getItem(position);
+
 		}
-		
+
 	}
-	
-	private class SelectedImageClickListener implements OnClickListener{
+
+	private class SelectedImageClickListener implements OnClickListener
+	{
 
 		@Override
 		public void onClick(View v)
 		{
 			Log.d(TAG, "Saved button pressed");
+			Intent intent = new Intent();
+			intent.putExtra("ResourceId", selectedImageResourceId);
+			setResult(RESULT_OK, intent);
 			finish();
-		}	
+		}
 	}
+
 	private class ImageGridAdapter extends BaseAdapter
 	{
 		private Context context;
@@ -123,18 +129,21 @@ public class SelectDefaultRewardImageActivity extends Activity
 			LayoutInflater inflater = (LayoutInflater) this.context
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			View _view;
-			if(convertView==null)
+			if (convertView == null)
 			{
 				_view = new View(context);
-				_view = inflater.inflate(R.layout.reward_image_list_item, parent, false);
+				_view = inflater.inflate(R.layout.reward_image_list_item,
+						parent, false);
 				int resource = getItem(position);
-				
-				ImageView iv = (ImageView)_view.findViewById(R.id.reward_image_view);
+
+				ImageView iv = (ImageView) _view
+						.findViewById(R.id.reward_image_view);
 				iv.setImageResource(resource);
 				iv.setPadding(3, 3, 3, 3);
 				_view.setBackgroundColor(Color.TRANSPARENT);
-				
-			}else{
+
+			} else
+			{
 				_view = convertView;
 			}
 			return _view;
