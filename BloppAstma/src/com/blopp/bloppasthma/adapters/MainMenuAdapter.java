@@ -37,7 +37,7 @@ public class MainMenuAdapter extends BaseAdapter
 		items[2] = new MainMenuItem("Medisinlogg", medicineLog, MenuOptions.LOG);
 		items[3] = new MainMenuItem("Legemiddelinformasjon", instructions, MenuOptions.INSTRUCTIONS);		
 		items[4] = new MainMenuItem("Manual", information, MenuOptions.MANUAL);
-		items[5] = new MainMenuItem("Belonning", medicinePlan, MenuOptions.REWARD);
+		items[5] = new MainMenuItem("Premier", medicinePlan, MenuOptions.REWARD);
 		
 	}
 	/**

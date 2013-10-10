@@ -25,19 +25,11 @@
         android:focusable="false"
         android:text="Beskrivelse" />
 
-    <CheckBox
-        android:id="@+id/checkBoxIsTaken"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:focusable="false"
-        android:text="Solgt" />
-
     <TextView
         android:id="@+id/rewardCostTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:focusable="false"
         android:layout_alignBottom="@+id/rewardImage"
         android:layout_alignLeft="@+id/rewardDescriptionTextView"
@@ -45,13 +37,14 @@
         android:layout_toLeftOf="@+id/checkBoxIsTaken"
         android:text="Stjerner: " />
 
-    <ImageView
-        android:id="@+id/imageView1"
+    <CheckBox
+        android:id="@+id/checkBoxIsTaken"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="16dp"
         android:focusable="false"
-        android:layout_alignTop="@+id/rewardCostTextView"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/star_small" />
+        android:text="Solgt" />
 
 </RelativeLayout>

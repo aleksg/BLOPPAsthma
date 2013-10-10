@@ -68,4 +68,5 @@
 	<string name="buy_dialog">Vil du kjøpe %s</string>
 	<string name="not_ordered">Ikke bestilt</string>
 	<string name="not_bought">Ikke kjøpt</string>
+	<string name="reward_menu_item">Belønning</string>
 </resources>
