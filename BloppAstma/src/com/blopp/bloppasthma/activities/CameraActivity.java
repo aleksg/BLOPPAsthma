@@ -1,9 +1,5 @@
 package com.blopp.bloppasthma.activities;
 
-import java.io.ByteArrayOutputStream;
-
-import com.blopp.bloppasthma.R;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -16,6 +12,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import com.blopp.bloppasthma.R;
+import com.blopp.bloppasthma.utils.ByteImage;
+import com.blopp.bloppasthma.utils.TemporarilyImageStore;
 
 public class CameraActivity extends Activity implements OnClickListener {
     private static final int CAMERA_REQUEST = 1888;
@@ -49,18 +49,18 @@ public class CameraActivity extends Activity implements OnClickListener {
             
             cell = getLayoutInflater().inflate(R.layout.imagecell, null);  
               
-            final ImageView imageView = (ImageView) cell.findViewById(R.id.chooserewardimage);  
-            imageView.setOnClickListener(new OnClickListener() {  
+            final ImageView defaultRewardImageView = (ImageView) cell.findViewById(R.id.chooserewardimage);  
+            defaultRewardImageView.setOnClickListener(new OnClickListener() {  
                          
                        @Override  
                        public void onClick(View v) {  
                             Toast.makeText(CameraActivity.this, 
-                            (CharSequence) imageView.getTag(), Toast.LENGTH_SHORT).show();  
+                            (CharSequence) defaultRewardImageView.getTag(), Toast.LENGTH_SHORT).show();  
                        }  
                   });  
               
-            imageView.setTag("Image#"+(i+1));  
-            imageView.setImageResource(images[i]);  
+            defaultRewardImageView.setTag("Image#"+(i+1));  
+            defaultRewardImageView.setImageResource(images[i]);  
               
             mainLayout.addView(cell);  
         } 
@@ -105,12 +105,20 @@ public class CameraActivity extends Activity implements OnClickListener {
     		startActivityForResult(cameraIntent, CAMERA_REQUEST);
     	} else if (vid == R.id.savereturnbutton) {
     		Intent intent = new Intent();
-    		//TODO: Sporadic problems
-    		Bitmap image = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
-    		ByteArrayOutputStream out = new ByteArrayOutputStream();
-    		image.compress(Bitmap.CompressFormat.JPEG, 100, out);
-    		byte[] imageInByte = out.toByteArray();
-    		intent.putExtra("image", imageInByte);
+    		Bitmap image;
+    		try{
+    			
+    			image = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
+    			ByteImage byteImage = new ByteImage();
+        		byteImage.setBytes(image);
+        		TemporarilyImageStore store = new TemporarilyImageStore(getApplicationContext());
+        		
+        		store.storeTemporarily(byteImage);
+    		}catch(NullPointerException e)
+    		{
+    			Toast.makeText(getApplicationContext(), "Try again", Toast.LENGTH_SHORT).show();
+    			return;
+    		}
     		
     		setResult(RESULT_OK, intent);
     		
