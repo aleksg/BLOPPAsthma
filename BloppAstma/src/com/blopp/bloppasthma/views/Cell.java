@@ -43,9 +43,10 @@ public class Cell {
 		dy = (int) (-painter.ascent() + painter.descent()) / 2;
 	}
 	
-	public Cell(int dayOfMon, Rect rect, float textSize, int worstSpread, int healthState) {
+	//Removed int worstSpread
+	public Cell(int dayOfMon, Rect rect, float textSize, int healthState) {
 		this(dayOfMon, rect, textSize, false);
-		this.worstSpread = worstSpread;
+		//this.worstSpread = worstSpread;
 		this.healthState = healthState;
 	}
 	
