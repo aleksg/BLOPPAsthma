@@ -102,11 +102,6 @@ public class AddRewardActivity extends Activity
 		}
 		
 	}
-
-	
-
-	
-	
 	
 	private void activityStarter(Class<?> c)
 	{
