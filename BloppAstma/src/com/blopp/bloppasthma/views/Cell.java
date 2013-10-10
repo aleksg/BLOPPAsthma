@@ -58,9 +58,9 @@ public class Cell {
 		painter.setColor(getHealthStateColor());
 		canvas.drawRect(bound.left, bound.top, bound.right, bound.exactCenterY()-dy, painter);
 		//Draw pollen state at that date
-		painter.setColor(getPollenColor(worstSpread));
-		canvas.drawRect(bound.left, bound.centerY()+dy+5, bound.right, bound.bottom, painter);
-		
+//		painter.setColor(getPollenColor(worstSpread));
+//		canvas.drawRect(bound.left, bound.centerY()+dy+5, bound.right, bound.bottom, painter);
+//		
 	}
 	public int getHealthStateColor()
 	{
