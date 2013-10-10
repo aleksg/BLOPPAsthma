@@ -23,7 +23,7 @@ public class AirQualityTests extends AndroidTestCase
 	
 	public void objectIsNotNull()
 	{
-		Assert.assertNotNull(airQualityCast.getPollenStateAtDayModel());
+		Assert.assertNotNull(airQualityCast.getAirQualityStateAtDayModel());
 	}
 	
 }

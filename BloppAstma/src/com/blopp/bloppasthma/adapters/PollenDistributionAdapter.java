@@ -69,7 +69,7 @@ public class PollenDistributionAdapter extends BaseAdapter
 			ImageView pollenDistributionView = (ImageView) listItem
 					.findViewById(R.id.pollen_spread_imageView);
 			pollenDistributionView
-					.setImageResource(getImageRecourceIdForPollenState(pollenStateArray[position]
+					.setImageResource(getImageResourceIdForPollenState(pollenStateArray[position]
 							.getDistribution()));
 
 		} else
@@ -83,7 +83,7 @@ public class PollenDistributionAdapter extends BaseAdapter
 	 * @param pollenDistribution
 	 * @return Resource Id of a pollen state icon
 	 */
-	public int getImageRecourceIdForPollenState(int pollenDistribution)
+	public int getImageResourceIdForPollenState(int pollenDistribution)
 	{
 		switch (pollenDistribution) {
 		case 0:
