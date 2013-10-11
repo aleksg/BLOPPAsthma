@@ -57,7 +57,7 @@ public abstract class DatabasePoster extends AsyncTask<Void, Void, Void> impleme
 			wr.flush();
 			wr.close();
 			
-			Log.d("DatabasePoster", connection.getResponseMessage());
+			//Log.d("DatabasePoster", connection.getResponseMessage());
 			InputStream in = connection.getInputStream();
 			StringBuffer sb = new StringBuffer();
 			

@@ -43,9 +43,10 @@ public class Cell {
 		dy = (int) (-painter.ascent() + painter.descent()) / 2;
 	}
 	
-	public Cell(int dayOfMon, Rect rect, float textSize, int worstSpread, int healthState) {
+	//Removed int worstSpread
+	public Cell(int dayOfMon, Rect rect, float textSize, int healthState) {
 		this(dayOfMon, rect, textSize, false);
-		this.worstSpread = worstSpread;
+		//this.worstSpread = worstSpread;
 		this.healthState = healthState;
 	}
 	
@@ -57,9 +58,9 @@ public class Cell {
 		painter.setColor(getHealthStateColor());
 		canvas.drawRect(bound.left, bound.top, bound.right, bound.exactCenterY()-dy, painter);
 		//Draw pollen state at that date
-		painter.setColor(getPollenColor(worstSpread));
-		canvas.drawRect(bound.left, bound.centerY()+dy+5, bound.right, bound.bottom, painter);
-		
+//		painter.setColor(getPollenColor(worstSpread));
+//		canvas.drawRect(bound.left, bound.centerY()+dy+5, bound.right, bound.bottom, painter);
+//		
 	}
 	public int getHealthStateColor()
 	{

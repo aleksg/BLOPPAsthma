@@ -57,10 +57,10 @@ public abstract class GenericJSONParser extends AsyncTask<Void, Void, Void> impl
 			HttpResponse response = httpclient.execute(httpGet);
 			HttpEntity entity = response.getEntity();
 			is = entity.getContent();
-			Log.e(TAG, "connection success ");
+			//Log.e(TAG, "connection success ");
 		} catch (Exception e)
 		{
-			Log.e(TAG, "Error in http connection " + e.toString());
+			//Log.e(TAG, "Error in http connection " + e.toString());
 
 		}
 		// convert response to string

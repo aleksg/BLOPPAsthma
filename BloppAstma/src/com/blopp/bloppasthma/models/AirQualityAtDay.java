@@ -4,21 +4,21 @@ import java.util.ArrayList;
 
 public class AirQualityAtDay {
 	
-	private ArrayList<AirQuality> airQualityAtDay;
+	private ArrayList<AirQualityState> airQualityAtDay;
 	
 	public AirQualityAtDay()
 	{
-		this.airQualityAtDay = new ArrayList<AirQuality>();
+		this.airQualityAtDay = new ArrayList<AirQualityState>();
 	}
 	
-	public ArrayList<AirQuality> getAirQualityAtDay()
+	public ArrayList<AirQualityState> getAirQualityAtDay()
 	{
 		return airQualityAtDay;
 	}
 	
-	public void setAirQualityAtDay(ArrayList<AirQuality> airQualityAtDay)
+	public void setAirQualityAtDay(ArrayList<AirQualityState> airQualityAtDay)
 	{
 		this.airQualityAtDay = airQualityAtDay;
 	}
-
+	
 }

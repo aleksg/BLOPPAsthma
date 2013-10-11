@@ -8,20 +8,21 @@ import org.json.JSONObject;
 
 import android.util.Log;
 
-import com.blopp.bloppasthma.models.AirQuality;
 import com.blopp.bloppasthma.models.AirQualityAtDay;
+import com.blopp.bloppasthma.models.AirQualityState;
 
 public class AirQualityCast extends GenericAirQualityJSONParser
 {
 
 	private AirQualityAtDay airQualityAtDayModel;
+	private String TAG = AirQualityCast.class.getSimpleName();
 
 	public AirQualityCast()
 	{
 		super();
 	}
 
-	public AirQualityAtDay getPollenStateAtDayModel()
+	public AirQualityAtDay getAirQualityStateAtDayModel()
 	{
 		return this.airQualityAtDayModel;
 	}
@@ -30,8 +31,8 @@ public class AirQualityCast extends GenericAirQualityJSONParser
 	public void initializeDataFromJSON(String result)
 	{
 		airQualityAtDayModel = new AirQualityAtDay();
-		ArrayList<AirQuality> airQualityList = new ArrayList<AirQuality>();
-		
+		ArrayList<AirQualityState> airQualityList = new ArrayList<AirQualityState>();
+		Log.d(TAG, "getting states");
 		JSONArray json_array;
 		try
 		{
@@ -41,13 +42,15 @@ public class AirQualityCast extends GenericAirQualityJSONParser
 				JSONObject place = (JSONObject) json_array.get(i);
 				JSONObject highestAqiIndex = (JSONObject)place.get("HighestAqiIndex");
 				JSONObject station = (JSONObject)place.get("Station");
-				AirQuality quality = new AirQuality()
+				AirQualityState quality = new AirQualityState()
 										.setAQI(highestAqiIndex.getInt("Index"))
 										.setColor(highestAqiIndex.getString("Color"))
-										.setDescription(highestAqiIndex.getString("ShortDescription"))
+										.setShortDescription(highestAqiIndex.getString("ShortDescription"))
+										.setLongDescription(highestAqiIndex.getString("Description"))
 										.setLocation(station.getString("Name"));
 				airQualityList.add(quality);
 			}
+			airQualityAtDayModel.setAirQualityAtDay(airQualityList);
 			
 		} catch (JSONException e)
 		{

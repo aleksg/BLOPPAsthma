@@ -23,7 +23,7 @@ public class HealthStatePoster extends DatabasePoster
 	{
 		JSONObject result_data = null;
 		healthStatePostResult = new HealthStatePostResult();
-		Log.d(TAG, result);
+		//Log.d(TAG, result);
 		try
 		{
 			Log.d(TAG, "Trying to get json-result");
