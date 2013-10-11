@@ -24,11 +24,11 @@ public class AirQualityAdapter extends BaseAdapter
 	private AirQualityState[] airQualityStateArray;
 	
 	public AirQualityAdapter(Context context, 
-			ArrayList<AirQualityState> airQualitStates)
+			ArrayList<AirQualityState> airQualityStates)
 	{
 		this.context = context;
-		this.airQualityStateArray = new AirQualityState[airQualitStates.size()];
-		airQualitStates.toArray(airQualityStateArray);
+		this.airQualityStateArray = new AirQualityState[airQualityStates.size()];
+		airQualityStates.toArray(airQualityStateArray);
 	}
 	
 	public int getCount() 
@@ -64,8 +64,7 @@ public class AirQualityAdapter extends BaseAdapter
 			airQualityView.setText(airQualityStateArray[position].getDescription());
 			airQualityView.setTextColor(Color.BLACK);
 			airQualityView.setPadding(0, 0, 0, 5);
-			
-			Log.d(TAG, "Dette blir kjørt");
+
 			ImageView airQualityImageView = (ImageView) listItem.findViewById(R.id.air_quality_imageView);
 			airQualityImageView
 				.setImageResource(getImageResourceForAirQualityState(airQualityStateArray[position]

@@ -8,7 +8,9 @@ public class AirQualityState {
 	private int AQI;
 	private String location;
 	private int color;
-	private String description;
+	private String shortDescription;
+	private String longDescription;
+	
 	public AirQualityState(){
 		
 	}
@@ -45,14 +47,27 @@ public class AirQualityState {
 	{
 		return this.color;
 	}
-	public AirQualityState setDescription(String description)
+	
+	//Refers to the short description
+	public AirQualityState setShortDescription(String shortDescription)
 	{
-		this.description = description;
+		this.shortDescription = shortDescription;
 		return this;
 	}
 	public String getDescription()
 	{
-		return this.description;
+		return this.shortDescription;
+	}
+	
+	//Refers to the long description
+	public AirQualityState setLongDescription(String longDescription)
+	{
+		this.longDescription = longDescription;
+		return this;
+	}
+	public String longDescription()
+	{
+		return this.longDescription;
 	}
 	
 }

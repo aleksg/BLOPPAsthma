@@ -44,7 +44,8 @@ public class AirQualityCast extends GenericAirQualityJSONParser
 				AirQualityState quality = new AirQualityState()
 										.setAQI(highestAqiIndex.getInt("Index"))
 										.setColor(highestAqiIndex.getString("Color"))
-										.setDescription(highestAqiIndex.getString("ShortDescription"))
+										.setShortDescription(highestAqiIndex.getString("ShortDescription"))
+										.setLongDescription(highestAqiIndex.getString("Description"))
 										.setLocation(station.getString("Name"));
 				airQualityList.add(quality);
 			}
