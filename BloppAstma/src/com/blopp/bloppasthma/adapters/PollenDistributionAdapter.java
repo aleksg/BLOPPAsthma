@@ -33,9 +33,9 @@ public class PollenDistributionAdapter extends BaseAdapter
 		return pollenStateArray.length;
 	}
 
-	public Object getItem(int arg0)
+	public Object getItem(int position)
 	{
-		return pollenStateArray[arg0];
+		return pollenStateArray[position];
 	}
 
 	public long getItemId(int position)
@@ -58,18 +58,18 @@ public class PollenDistributionAdapter extends BaseAdapter
 			listItem= inflater.inflate(R.layout.pollen_list_item, parent,
 					false);
 			
-			listItem.setPadding(0, 10, 0, 10);
+			listItem.setPadding(0, 5, 0, 0);
 			TextView pollenTypeView = (TextView) listItem
 					.findViewById(R.id.pollen_type_textView);
 			pollenTypeView.setText(pollenStateArray[position].getPollenName());
 			pollenTypeView.setTextColor(Color.BLACK);
-			pollenTypeView.setPadding(0, 0, 0, 5);
+			pollenTypeView.setPadding(5, 0, 0, 0);
 			// Uses an icon matching pollenvarslingen.no's traditional icons for
 			// pollen spread
 			ImageView pollenDistributionView = (ImageView) listItem
 					.findViewById(R.id.pollen_spread_imageView);
 			pollenDistributionView
-					.setImageResource(getImageRecourceIdForPollenState(pollenStateArray[position]
+					.setImageResource(getImageResourceIdForPollenState(pollenStateArray[position]
 							.getDistribution()));
 
 		} else
@@ -83,7 +83,7 @@ public class PollenDistributionAdapter extends BaseAdapter
 	 * @param pollenDistribution
 	 * @return Resource Id of a pollen state icon
 	 */
-	public int getImageRecourceIdForPollenState(int pollenDistribution)
+	public int getImageResourceIdForPollenState(int pollenDistribution)
 	{
 		switch (pollenDistribution) {
 		case 0:

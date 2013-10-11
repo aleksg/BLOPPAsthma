@@ -40,10 +40,10 @@ public abstract class XMLFeed extends AsyncTask<Void, Void, Void> implements IIn
 			HttpResponse response = httpclient.execute(httpGet);
 			HttpEntity entity = response.getEntity();
 			inputStream = entity.getContent();
-			Log.e(TAG, "connection success ");
+			//Log.e(TAG, "connection success ");
 		} catch (Exception e)
 		{
-			Log.e(TAG, "Error in http connection " + e.toString());
+			//Log.e(TAG, "Error in http connection " + e.toString());
 
 		}
 		// convert response to string

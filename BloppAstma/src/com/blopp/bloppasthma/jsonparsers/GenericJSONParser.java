@@ -58,7 +58,7 @@ public abstract class GenericJSONParser extends AsyncTask<Void, Void, Void> impl
 			//Log.e(TAG, "connection success ");
 		} catch (Exception e)
 		{
-			Log.e(TAG, "Error in http connection " + e.toString());
+			//Log.e(TAG, "Error in http connection " + e.toString());
 
 		}
 		// convert response to string

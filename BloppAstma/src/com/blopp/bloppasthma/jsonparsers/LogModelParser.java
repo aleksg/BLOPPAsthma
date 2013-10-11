@@ -72,7 +72,7 @@ public class LogModelParser extends GenericJSONParser implements BLOPParser
 
 		} catch (JSONException e)
 		{
-			Log.e(TAG, e.getMessage());
+			//Log.e(TAG, e.getMessage());
 		}
 
 	}

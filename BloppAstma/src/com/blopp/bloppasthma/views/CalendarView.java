@@ -339,7 +339,8 @@ public class CalendarView extends ImageView
 		public GreenCell(int dayOfMon, Rect rect, float s, int worstSpread,
 				int healthState)
 		{
-			super(dayOfMon, rect, s, worstSpread, healthState);
+			//Removed pollenargument
+			super(dayOfMon, rect, s, healthState);
 			painter.setColor(Color.GREEN);
 		}
 	}
@@ -350,7 +351,8 @@ public class CalendarView extends ImageView
 		public RedCell(int dayOfMon, Rect rect, float s, int worstSpread,
 				int healthState)
 		{
-			super(dayOfMon, rect, s, worstSpread, healthState);
+			//Removed pollenargument
+			super(dayOfMon, rect, s, healthState);
 			painter.setColor(Color.RED);
 		}
 	}
@@ -361,7 +363,8 @@ public class CalendarView extends ImageView
 		public YellowCell(int dayOfMon, Rect rect, float s, int worstSpread,
 				int healthState)
 		{
-			super(dayOfMon, rect, s, worstSpread, healthState);
+			//Removed pollenargument
+			super(dayOfMon, rect, s, healthState);
 			painter.setColor(Color.rgb(255, 165, 0));
 		}
 
@@ -372,7 +375,7 @@ public class CalendarView extends ImageView
 	{
 		public BlackCell(int dayOfMon, Rect rect, float s, int healthState)
 		{
-			super(dayOfMon, rect, s, -1, healthState);
+			super(dayOfMon, rect, s, healthState);
 			painter.setColor(Color.BLACK);
 		}
 
