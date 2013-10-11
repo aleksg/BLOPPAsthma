@@ -56,7 +56,7 @@ public class TreatmentActivity extends Activity
 		dateTextField.setPadding(10, 0, 0, 0);
 		chooseMedicineTextField = (TextView) findViewById(R.id.treatment_choose_medicine);
 		chooseMedicineTextField.setPadding(10, 0, 0, 0);
-//		medicineListView.setOnItemClickListener(this);
+
 		initDateEditText();
 		submitButton.setOnClickListener(new OnClickListener()
 		{
@@ -237,8 +237,9 @@ public class TreatmentActivity extends Activity
 	 */
 	private void returnToMainMenu()
 	{
-		Intent intent = new Intent(TreatmentActivity.this, ParentsMainMenu.class);
-		startActivity(intent);
+//		Intent intent = new Intent(TreatmentActivity.this, ParentsMainMenu.class);
+//		startActivity(intent);
+		finish();
 	}
 
 

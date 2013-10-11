@@ -51,7 +51,7 @@ public class DisplayRewardsActivity extends Activity
 
 		public int getCount()
 		{
-			return childRewards.getCredits() + 1;
+			return childRewards.getCredits();
 		}
 
 		public Object getItem(int position)

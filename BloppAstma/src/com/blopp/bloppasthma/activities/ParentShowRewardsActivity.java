@@ -1,6 +1,7 @@
 package com.blopp.bloppasthma.activities;
 
 import java.util.List;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -24,9 +25,12 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
 import com.blopp.bloppasthma.R;
+import com.blopp.bloppasthma.mockups.ChildIdService;
 import com.blopp.bloppasthma.mockups.Reward;
 import com.blopp.bloppasthma.mockups.SavedRewards;
+import com.blopp.bloppasthma.models.ChildRewards;
 
 public class ParentShowRewardsActivity extends Activity
 {
@@ -37,14 +41,22 @@ public class ParentShowRewardsActivity extends Activity
 	private Button addRewardButton;
 	private RewardListAdapter adapter;
 	private SavedRewards savedRewards;
-	
-	
+	private ChildIdService childIdService;
+	private ChildRewards childRewards;
+	private TextView numStars;
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.guardian_add_activity_to_shop);
-
+		
+		childIdService = new ChildIdService(getApplicationContext());
+		childRewards = new ChildRewards(childIdService.getChildId());
+		childRewards.initChildModelParser();
+		
+		numStars = (TextView)findViewById(R.id.num_stars_child_has);
+		numStars.setText(String.format("%d", childRewards.getCredits()));
+		
 		activities = (ListView) findViewById(R.id.rewardList);
 		adapter = new RewardListAdapter(getApplicationContext());
 		activities.setAdapter(adapter);

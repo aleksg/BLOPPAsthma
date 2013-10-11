@@ -7,9 +7,7 @@ import org.json.JSONObject;
 import android.util.Log;
 
 import com.blopp.bloppasthma.jsonparsers.IInitializeFromJSON.BLOPParser;
-/**
- * Used to get the current healthstate of the child
- */
+
 public class HealthStateParser extends GenericJSONParser implements BLOPParser
 {
 	public static final String TAG = HealthStateParser.class.getSimpleName(); 
