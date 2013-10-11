@@ -11,7 +11,7 @@ import android.util.Log;
 public class DownloadImageTask extends AsyncTask<Void, Void, ArrayList<Bitmap>>
 {
 
-	private static final String urlBody = "http://folk.ntnu.no/yngvesva/blopp/img/";
+	private static final String urlBody = "http://folk.ntnu.no/esbena/blopp/img/";
 	 
 	private String imageUrl;
 	
@@ -70,7 +70,7 @@ public class DownloadImageTask extends AsyncTask<Void, Void, ArrayList<Bitmap>>
 			Log.d(this.getClass().getSimpleName(), "Found image");
 		} catch (Exception e)
 		{
-			Log.e("Error", e.getMessage());
+			//Log.e("Error", e.getMessage());
 
 		}
 
@@ -93,7 +93,7 @@ public class DownloadImageTask extends AsyncTask<Void, Void, ArrayList<Bitmap>>
 				bitmaps.add(image);
 			} catch (Exception e)
 			{
-				Log.e("Error", e.getMessage());
+				//Log.e("Error", e.getMessage());
 
 			}
 		}

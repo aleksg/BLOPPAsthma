@@ -58,7 +58,7 @@ public class TakenMedicinesAdapter extends BaseAdapter
 				listView = new View(context);
 				
 				listView = inflater.inflate(R.layout.daily_details, parent, false);
-				listView.setPadding(20, 5, 0, 0);
+				listView.setPadding(0, 0, 0, 0);
 				
 				TextView medicineNameView = (TextView) listView.findViewById(R.id.daily_details_type_textview);
 				medicineNameView.setText(medicines[position][0]);

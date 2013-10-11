@@ -83,11 +83,9 @@ public class CalendarActivity extends Activity implements
 		
 		pollenListView = (ListView)findViewById(R.id.pollen_listView);
 		pollenListView.setAdapter(new PollenDistributionAdapter(getApplicationContext(), getPollenStates()));
-		pollenListView.setDivider(null);
 		
 		airQualityView = (ListView)findViewById(R.id.airquality_listview);
 		airQualityView.setAdapter(new AirQualityAdapter(getApplicationContext(), getAirQualityStates()));
-		airQualityView.setDivider(null);
 	}
 	
 

@@ -54,7 +54,7 @@ public class AirQualityState {
 		this.shortDescription = shortDescription;
 		return this;
 	}
-	public String getDescription()
+	public String getShortDescription()
 	{
 		return this.shortDescription;
 	}
@@ -69,5 +69,9 @@ public class AirQualityState {
 	{
 		return this.longDescription;
 	}
-	
+	@Override
+	public String toString() {
+		
+		return super.toString();
+	}
 }

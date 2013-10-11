@@ -1,6 +1,7 @@
 package com.blopp.bloppasthma.adapters;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.blopp.bloppasthma.R;
 import com.blopp.bloppasthma.models.AirQualityState;
@@ -17,28 +18,28 @@ import android.widget.TextView;
 
 public class AirQualityAdapter extends BaseAdapter
 {
-	private static final String TAG = "AirQualityAdapter";
+	private static final String TAG = AirQualityAdapter.class.getSimpleName();
 
 	private Context context;
 	
-	private AirQualityState[] airQualityStateArray;
+	private List<AirQualityState> airQualityStateArray;
 	
 	public AirQualityAdapter(Context context, 
 			ArrayList<AirQualityState> airQualityStates)
 	{
 		this.context = context;
-		this.airQualityStateArray = new AirQualityState[airQualityStates.size()];
-		airQualityStates.toArray(airQualityStateArray);
+		this.airQualityStateArray = airQualityStates;
+		
 	}
 	
 	public int getCount() 
 	{
-		return airQualityStateArray.length;
+		return airQualityStateArray.size();
 	}
 	
-	public Object getItem(int arg0)
+	public Object getItem(int position)
 	{
-		return airQualityStateArray[arg0];
+		return airQualityStateArray.get(position);
 	}
 	
 	public long getItemId(int position)
@@ -48,26 +49,29 @@ public class AirQualityAdapter extends BaseAdapter
 	
 	public View getView(int position, View convertView, ViewGroup parent)
 	{
-		LayoutInflater inflater = (LayoutInflater) this.context
+		LayoutInflater airQualityInflater = (LayoutInflater) this.context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		
 		View listItem;
-		
+		Log.d(TAG, "Iam in getView at "+TAG);
 		if (convertView == null)
 		{
 			listItem = new View(context);
-			listItem = inflater.inflate(R.layout.air_quality_list_item, parent, 
+			listItem = airQualityInflater.inflate(R.layout.air_quality_list_item, parent, 
 					false);
-			listItem.setPadding(0, 10, 0, 10);
+			listItem.setPadding(0, 0, 0, 0);
+			
+			AirQualityState state = (AirQualityState)getItem(position);
+			
 			TextView airQualityView = (TextView) listItem
 					.findViewById(R.id.air_quality_comment_textView);
-			airQualityView.setText(airQualityStateArray[position].getDescription());
+			airQualityView.setText(state.getShortDescription());
 			airQualityView.setTextColor(Color.BLACK);
-			airQualityView.setPadding(0, 0, 0, 5);
+			airQualityView.setPadding(0, 0, 0, 0);
 
 			ImageView airQualityImageView = (ImageView) listItem.findViewById(R.id.air_quality_imageView);
 			airQualityImageView
-				.setImageResource(getImageResourceForAirQualityState(airQualityStateArray[position]
+				.setImageResource(getImageResourceForAirQualityState(state
 						.getAQI()));
 		} else
 		{

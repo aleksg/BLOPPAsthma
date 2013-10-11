@@ -15,6 +15,7 @@ public class AirQualityCast extends GenericAirQualityJSONParser
 {
 
 	private AirQualityAtDay airQualityAtDayModel;
+	private String TAG = AirQualityCast.class.getSimpleName();
 
 	public AirQualityCast()
 	{
@@ -31,7 +32,7 @@ public class AirQualityCast extends GenericAirQualityJSONParser
 	{
 		airQualityAtDayModel = new AirQualityAtDay();
 		ArrayList<AirQualityState> airQualityList = new ArrayList<AirQualityState>();
-		
+		Log.d(TAG, "getting states");
 		JSONArray json_array;
 		try
 		{
@@ -49,6 +50,7 @@ public class AirQualityCast extends GenericAirQualityJSONParser
 										.setLocation(station.getString("Name"));
 				airQualityList.add(quality);
 			}
+			airQualityAtDayModel.setAirQualityAtDay(airQualityList);
 			
 		} catch (JSONException e)
 		{
