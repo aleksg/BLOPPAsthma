@@ -69,4 +69,7 @@
 	<string name="not_ordered">Ikke bestilt</string>
 	<string name="not_bought">Ikke kjøpt</string>
 	<string name="reward_menu_item">Belønning</string>
+	<string name="medicine_topbar">Medisinforbruk</string>
+	<string name="airquality_topbar">Luftkvalitet</string>
+	<string name="pollen_topbar">Pollen</string>
 </resources>
