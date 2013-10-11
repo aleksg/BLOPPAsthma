@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.blopp.bloppasthma.R;
 import com.blopp.bloppasthma.adapters.PollenDistributionAdapter;
 import com.blopp.bloppasthma.adapters.TakenMedicinesAdapter;
+import com.blopp.bloppasthma.mockups.ChildIdService;
 import com.blopp.bloppasthma.models.LogModel;
 import com.blopp.bloppasthma.models.PollenState;
 import com.blopp.bloppasthma.utils.DateAdapter;
@@ -32,7 +33,7 @@ import com.blopp.bloppasthma.xmlfeed.PollenCast;
 public class CalendarActivity extends Activity implements
 		OnCellTouchListener
 {
-	private static final int CHILD_ID = 6;
+//	private static final int CHILD_ID = 6;
 	private static final String TAG = CalendarActivity.class.getSimpleName();
 	CalendarView calendarView;
 	TextView monthTextView;
@@ -48,7 +49,7 @@ public class CalendarActivity extends Activity implements
 	
 	private DateTime dateTime = new DateTime();
 	private TakenMedicinesAdapter medicineGridAdapter;
-	
+	private ChildIdService childIdService;
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState)
@@ -56,7 +57,9 @@ public class CalendarActivity extends Activity implements
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.calendar);
 		
-		logModel = new LogModel(CHILD_ID, dateTime.getMonthOfYear(), dateTime.getYear());
+		childIdService = new ChildIdService(getApplicationContext());
+		
+		logModel = new LogModel(childIdService.getChildId(), dateTime.getMonthOfYear(), dateTime.getYear());
 		
 		calendarView = (CalendarView) findViewById(R.id.calendarview);
 		calendarView.setOnCellTouchListener(this);
@@ -187,7 +190,7 @@ public class CalendarActivity extends Activity implements
 		{
 			calendarView.nextMonth();
 			dateTime = dateTime.plusMonths(1);
-			logModel = new LogModel(CHILD_ID, dateTime.getMonthOfYear(), dateTime.getYear());
+			logModel = new LogModel(childIdService.getChildId(), dateTime.getMonthOfYear(), dateTime.getYear());
 			update();
 		}
 		
@@ -200,7 +203,7 @@ public class CalendarActivity extends Activity implements
 		{
 			calendarView.previousMonth();
 			dateTime = dateTime.minusMonths(1);
-			logModel = new LogModel(CHILD_ID, dateTime.getMonthOfYear(), dateTime.getYear());
+			logModel = new LogModel(childIdService.getChildId(), dateTime.getMonthOfYear(), dateTime.getYear());
 			update();
 		}
 		

@@ -4,7 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 public class DeleteMedicineModel {
-	private static final int CHILDID = 6; //Replace when support for several children is possible
+	private int childId;
 	private int medicineId;
 	private String time;
 	private int healthStateId;
@@ -13,8 +13,9 @@ public class DeleteMedicineModel {
 	 * @param id. The id of the medicine
 	 * @param time, the time when the medicine was originally to be taken
 	 */
-	public DeleteMedicineModel(int id, String time, int healthStateId)
+	public DeleteMedicineModel(int childId, int id, String time, int healthStateId)
 	{
+		this.childId = childId;
 		this.medicineId = id;
 		this.time= time; 
 		this.healthStateId = healthStateId;
@@ -42,7 +43,7 @@ public class DeleteMedicineModel {
 	public String toString() {
 		String medicine, timer, child, health;
 		try {
-			child = URLEncoder.encode(Integer.toString(CHILDID), "UTF-8");
+			child = URLEncoder.encode(Integer.toString(childId), "UTF-8");
 			timer = URLEncoder.encode(this.time, "UTF-8");
 			medicine = URLEncoder.encode(Integer.toString(this.medicineId), "UTF-8");
 			health = URLEncoder.encode(Integer.toString(this.healthStateId), "UTF-8");

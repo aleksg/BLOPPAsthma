@@ -31,6 +31,7 @@ import android.widget.Toast;
 import com.blopp.bloppasthma.R;
 import com.blopp.bloppasthma.JsonModels.HealthStatePostModel;
 import com.blopp.bloppasthma.jsonposters.HealthStatePoster;
+import com.blopp.bloppasthma.mockups.ChildIdService;
 import com.blopp.bloppasthma.models.HealthState;
 import com.blopp.bloppasthma.models.HealthZone;
 import com.blopp.bloppasthma.models.LogModel;
@@ -47,15 +48,19 @@ public class MedicationPlanActivity extends Activity implements
 {
 	private static final String TAG = MedicationInformationActivity.class
 			.getSimpleName();
-	private static final int CHILD_ID = 6;
+	
 	private ArrayList<HealthZone> healthZones;
 	private ListView medicationPlanListView;
-
+	
+	private ChildIdService childIdService;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		Log.d(TAG, "Started activity " + TAG);
+		childIdService = new ChildIdService(getApplicationContext());
+		
 		setContentView(R.layout.medication_plan_list);
 		medicationPlanListView = (ListView) findViewById(R.id.medication_plan_listView);
 		medicationPlanListView.setDivider(null);
@@ -263,9 +268,9 @@ public class MedicationPlanActivity extends Activity implements
 	private void changeHealthState(int healthStateId)
 	{
 		HealthStatePostModel model = new HealthStatePostModel();
-		model.setChildId(CHILD_ID);
+		model.setChildId(childIdService.getChildId());
 		DateTime dateTime = new DateTime();
-
+		
 		DateAdapter da = new DateAdapter(dateTime.getDayOfMonth(),
 				dateTime.getMonthOfYear(), dateTime.getYear());
 		

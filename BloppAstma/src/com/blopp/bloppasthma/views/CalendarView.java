@@ -32,6 +32,7 @@ import android.view.MotionEvent;
 import android.widget.ImageView;
 
 import com.blopp.bloppasthma.R;
+import com.blopp.bloppasthma.mockups.ChildIdService;
 import com.blopp.bloppasthma.models.HealthZone;
 import com.blopp.bloppasthma.models.LogModel;
 import com.blopp.bloppasthma.models.PollenState;
@@ -46,7 +47,7 @@ public class CalendarView extends ImageView
 	private static int CELL_MARGIN_TOP = 0;
 	private static int CELL_MARGIN_LEFT = 0;
 	private static float CELL_TEXT_SIZE;
-	private static final int CHILD_ID = 6; //Replace this with the actual id of the current child
+	private ChildIdService childIdService;
 	private static final String TAG = "CalendarView";
 	private Calendar mRightNow = null;
 	private Drawable mWeekTitle = null;
@@ -57,7 +58,7 @@ public class CalendarView extends ImageView
 	MonthDisplayHelper monthDisplayHelper;
 	Drawable mDecoration = null;
 	private Context context;
-	private LogModel logModel = new LogModel(CHILD_ID); 
+	private LogModel logModel; 
 	private PollenCast pollenFeed;
 
 	public interface OnCellTouchListener
@@ -67,14 +68,17 @@ public class CalendarView extends ImageView
 
 	public CalendarView(Context context)
 	{
-
+		
 		this(context, null);
 		this.context = context;
+		childIdService = new ChildIdService(context);
+		
 	}
 
 	public CalendarView(Context context, AttributeSet attrs)
 	{
 		this(context, attrs, 0);
+		childIdService = new ChildIdService(context);
 	}
 
 	public CalendarView(Context context, AttributeSet attrs, int defStyle)
@@ -82,6 +86,7 @@ public class CalendarView extends ImageView
 		super(context, attrs, defStyle);
 		mDecoration = context.getResources().getDrawable(
 				R.drawable.typeb_calendar_today);
+		childIdService = new ChildIdService(context);
 		initCalendarView();
 	}
 
@@ -162,7 +167,7 @@ public class CalendarView extends ImageView
 		int worstSpread = getWorstPollenFeed();
 		
 		//Initialize the logmodel with children id and date.
-		logModel = new LogModel(CHILD_ID, monthDisplayHelper.getMonth()+1, monthDisplayHelper.getYear());
+		logModel = new LogModel(childIdService.getChildId(), monthDisplayHelper.getMonth()+1, monthDisplayHelper.getYear());
 
 		for (int week = 0; week < mCells.length; week++)
 		{

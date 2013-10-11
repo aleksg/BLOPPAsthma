@@ -11,6 +11,7 @@ public class AllTests
 		TestSuite suite = new TestSuite(AllTests.class.getName());
 		//$JUnit-BEGIN$
 		suite.addTestSuite(AirQualityTests.class);
+		suite.addTestSuite(AddChildTest.class);
 		//$JUnit-END$
 		return suite;
 	}
