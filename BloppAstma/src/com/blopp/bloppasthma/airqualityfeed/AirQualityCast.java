@@ -32,24 +32,26 @@ public class AirQualityCast extends GenericAirQualityJSONParser
 	{
 		airQualityAtDayModel = new AirQualityAtDay();
 		ArrayList<AirQualityState> airQualityList = new ArrayList<AirQualityState>();
-		Log.d(TAG, "getting states");
 		JSONArray json_array;
 		try
 		{
 			json_array = new JSONArray(result);	
-			for (int i=0; i<json_array.length(); i++)
+			int size = json_array.length();
+			if(size >= 1)
 			{
-				JSONObject place = (JSONObject) json_array.get(i);
+				JSONObject place = (JSONObject) json_array.get(0);
 				JSONObject highestAqiIndex = (JSONObject)place.get("HighestAqiIndex");
 				JSONObject station = (JSONObject)place.get("Station");
 				AirQualityState quality = new AirQualityState()
-										.setAQI(highestAqiIndex.getInt("Index"))
-										.setColor(highestAqiIndex.getString("Color"))
-										.setShortDescription(highestAqiIndex.getString("ShortDescription"))
-										.setLongDescription(highestAqiIndex.getString("Description"))
-										.setLocation(station.getString("Name"));
+				.setAQI(highestAqiIndex.getInt("Index"))
+				.setColor(highestAqiIndex.getString("Color"))
+				.setShortDescription(highestAqiIndex.getString("ShortDescription"))
+				.setLongDescription(highestAqiIndex.getString("Description"))
+				.setLocation(station.getString("Name"));
 				airQualityList.add(quality);
+				
 			}
+			
 			airQualityAtDayModel.setAirQualityAtDay(airQualityList);
 			
 		} catch (JSONException e)

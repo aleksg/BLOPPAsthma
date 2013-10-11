@@ -20,4 +20,15 @@
         android:text="Ingen informasjon om luftkvalitet"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
+    <TextView
+        android:id="@+id/air_quality_long_comment_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/air_quality_comment_textView"
+        android:layout_alignRight="@+id/air_quality_comment_textView"
+        android:layout_below="@+id/air_quality_comment_textView"
+        android:text="Ingen detaljert informasjon tilgjengelig"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="14sp" />
+
 </RelativeLayout>

@@ -53,7 +53,6 @@ public class AirQualityAdapter extends BaseAdapter
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		
 		View listItem;
-		Log.d(TAG, "Iam in getView at "+TAG);
 		if (convertView == null)
 		{
 			listItem = new View(context);
@@ -68,6 +67,12 @@ public class AirQualityAdapter extends BaseAdapter
 			airQualityView.setText(state.getShortDescription());
 			airQualityView.setTextColor(Color.BLACK);
 			airQualityView.setPadding(0, 0, 0, 0);
+			
+			TextView airQualityLongCommentView = (TextView) listItem
+					.findViewById(R.id.air_quality_long_comment_textView);
+			airQualityLongCommentView.setText(state.getLongDescription());
+			airQualityLongCommentView.setTextColor(Color.BLACK);
+			airQualityLongCommentView.setPadding(0, 0, 0, 0);
 
 			ImageView airQualityImageView = (ImageView) listItem.findViewById(R.id.air_quality_imageView);
 			airQualityImageView

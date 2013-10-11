@@ -65,7 +65,7 @@ public class AirQualityState {
 		this.longDescription = longDescription;
 		return this;
 	}
-	public String longDescription()
+	public String getLongDescription()
 	{
 		return this.longDescription;
 	}
