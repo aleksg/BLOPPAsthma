@@ -21,12 +21,13 @@ import com.blopp.bloppasthma.adapters.MedicineListModel;
 import com.blopp.bloppasthma.adapters.MedicineRadioAdapter;
 import com.blopp.bloppasthma.jsonparsers.HealthStateParser;
 import com.blopp.bloppasthma.jsonposters.PostRegisterTreatment;
+import com.blopp.bloppasthma.mockups.ChildIdService;
 import com.blopp.bloppasthma.utils.AvailableMedicines;
 
 public class TreatmentActivity extends Activity
 {
 	private static final String TAG = TreatmentActivity.class.getSimpleName();
-	private static final int CHILD_ID = 6;
+	private ChildIdService childIdService;
 	private EditText dateEditText;
 	
 	private AvailableMedicines availableMedicines;
@@ -40,7 +41,9 @@ public class TreatmentActivity extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.treatment);
-
+		
+		childIdService = new ChildIdService(getApplicationContext());
+		
 		submitButton = (Button) findViewById(R.id.register_treatment_button);
 		dateEditText = (EditText) findViewById(R.id.treatment_date_editText);
 		availableMedicines = new AvailableMedicines();
@@ -53,7 +56,7 @@ public class TreatmentActivity extends Activity
 		dateTextField.setPadding(10, 0, 0, 0);
 		chooseMedicineTextField = (TextView) findViewById(R.id.treatment_choose_medicine);
 		chooseMedicineTextField.setPadding(10, 0, 0, 0);
-//		medicineListView.setOnItemClickListener(this);
+
 		initDateEditText();
 		submitButton.setOnClickListener(new OnClickListener()
 		{
@@ -127,7 +130,7 @@ public class TreatmentActivity extends Activity
 			return; //Return if we could not retrieve healthstate 
 		}
 		RegisterMedicinePostModel model = new RegisterMedicinePostModel(date,
-				medicineId, CHILD_ID, healthStateId);
+				medicineId, childIdService.getChildId(), healthStateId);
 		PostRegisterTreatment poster = new PostRegisterTreatment(
 				model.toString());
 		//Execute the post
@@ -234,8 +237,9 @@ public class TreatmentActivity extends Activity
 	 */
 	private void returnToMainMenu()
 	{
-		Intent intent = new Intent(TreatmentActivity.this, ParentsMainMenu.class);
-		startActivity(intent);
+//		Intent intent = new Intent(TreatmentActivity.this, ParentsMainMenu.class);
+//		startActivity(intent);
+		finish();
 	}
 
 
@@ -245,7 +249,7 @@ public class TreatmentActivity extends Activity
 	}
 	private int getCurrentHealthState()
 	{
-		HealthStateParser hParser = new HealthStateParser(CHILD_ID);
+		HealthStateParser hParser = new HealthStateParser(childIdService.getChildId());
 		int healthStateId = -1;
 		hParser.execute();
 		try

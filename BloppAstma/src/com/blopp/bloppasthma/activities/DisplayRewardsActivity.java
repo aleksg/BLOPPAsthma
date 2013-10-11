@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.blopp.bloppasthma.R;
+import com.blopp.bloppasthma.mockups.ChildIdService;
 import com.blopp.bloppasthma.models.ChildRewards;
 
 public class DisplayRewardsActivity extends Activity
@@ -18,7 +19,7 @@ public class DisplayRewardsActivity extends Activity
 	GridView gridView;
 	TextView countView;
 	
-	private int childId = 6;
+	private ChildIdService childIdService;
 	private ChildRewards childRewards;
 	
 	@Override
@@ -31,7 +32,8 @@ public class DisplayRewardsActivity extends Activity
 		gridView = (GridView) findViewById(R.id.rewardsView);
 		countView = (TextView) findViewById(R.id.displayRewardsTextView);
 		
-		childRewards = new ChildRewards(childId);
+		childIdService = new ChildIdService(getApplicationContext());
+		childRewards = new ChildRewards(childIdService.getChildId());
 		childRewards.initChildModelParser();
 		
 		gridView.setAdapter(new StarAdapter(this));
@@ -49,7 +51,7 @@ public class DisplayRewardsActivity extends Activity
 
 		public int getCount()
 		{
-			return childRewards.getCredits() + 1;
+			return childRewards.getCredits();
 		}
 
 		public Object getItem(int position)

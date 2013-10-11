@@ -30,6 +30,7 @@ import com.blopp.bloppasthma.JsonModels.DeleteMedicineModel;
 import com.blopp.bloppasthma.JsonModels.MedicationPlanResult;
 import com.blopp.bloppasthma.jsonparsers.MedicationPlanParser;
 import com.blopp.bloppasthma.jsonposters.DeleteMedicineFromPlanPoster;
+import com.blopp.bloppasthma.mockups.ChildIdService;
 import com.blopp.bloppasthma.models.HealthState;
 import com.blopp.bloppasthma.models.HealthZone;
 import com.blopp.bloppasthma.models.MedicinePlanModel;
@@ -42,7 +43,7 @@ import com.blopp.bloppasthma.utils.AvailableMedicines;
 public class ViewMedicationPlanActivity extends Activity implements
 		OnItemClickListener
 {
-	private static final int CHILD_ID = 6;
+	private ChildIdService childIdService;
 	private static final String TAG = ViewMedicationPlanActivity.class
 			.getSimpleName();
 	private HealthZone healthZone;
@@ -56,6 +57,9 @@ public class ViewMedicationPlanActivity extends Activity implements
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.medication_plan_view);
+		
+		childIdService = new ChildIdService(getApplicationContext());
+		
 		if (getIntent().getExtras().containsKey("healthZone"))
 			try
 			{
@@ -110,7 +114,7 @@ public class ViewMedicationPlanActivity extends Activity implements
 
 		timeMap = new HashMap<String, String>();
 		// TODO: Update the static number 6 with the childs ID
-		parser = new MedicationPlanParser(CHILD_ID);
+		parser = new MedicationPlanParser(childIdService.getChildId());
 		parser.execute();
 		try
 		{
@@ -173,7 +177,7 @@ public class ViewMedicationPlanActivity extends Activity implements
 					String medicineName = getMedicineName(combinedString);
 					AvailableMedicines am = new AvailableMedicines();
 					int medicine_id = am.getMedicineByName(medicineName);
-					DeleteMedicineModel model = new DeleteMedicineModel(medicine_id, time, HealthState.getIdByHealthZone(healthZone));
+					DeleteMedicineModel model = new DeleteMedicineModel(childIdService.getChildId(), medicine_id, time, HealthState.getIdByHealthZone(healthZone));
 					DeleteMedicineFromPlanPoster poster = new DeleteMedicineFromPlanPoster(model.toString());
 					poster.execute();
 					try {

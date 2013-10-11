@@ -28,7 +28,7 @@ public class MedicineListParser extends GenericJSONParser implements BLOPParser
 
 	public void initializeDataFromJSON(String result)
 	{
-		Log.d("mlp", "started init data");
+		
 		JSONObject json_data;
 		try
 		{

@@ -38,7 +38,9 @@ public abstract class GenericJSONParser extends AsyncTask<Void, Void, Void> impl
 	 */
 	public GenericJSONParser(String url)
 	{
+		
 		URL = url;
+		Log.d(TAG, URL);
 	}
 	
 	

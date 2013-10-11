@@ -31,15 +31,18 @@ import com.blopp.bloppasthma.div.ColorMeds;
 import com.blopp.bloppasthma.div.SoundStreamer;
 import com.blopp.bloppasthma.jsonparsers.MedicineListParser;
 import com.blopp.bloppasthma.jsonposters.PostRegisterTreatment;
+import com.blopp.bloppasthma.mockups.ChildIdService;
 import com.blopp.bloppasthma.models.Medicine;
 import com.blopp.bloppasthma.models.MedicinePlanModel;
 
 public class DistractionActivity extends Activity {
 	private MedicinePlanModel medicinePlanModel;
 	private Medicine medicine;
-	private static final int CHILD_ID = 6;
+	
 	private int healthStateId;
 	private int reward;
+	
+	private ChildIdService childIdService;
 	
 	private static final String TAG = DistractionActivity.class.getSimpleName();
 	
@@ -50,7 +53,7 @@ public class DistractionActivity extends Activity {
         super.onCreate(savedInstanceState);
         
         setContentView(R.layout.distraction_screen);
-        
+        childIdService = new ChildIdService(getApplicationContext());
         Bundle b = getIntent().getExtras();
         if(b!=null){
         	if(getIntent().getExtras().containsKey("medicinePlanModel")) {
@@ -298,7 +301,7 @@ public class DistractionActivity extends Activity {
 		}
 		Date sqlToday = new Date(new java.util.Date().getTime());
 		
-		RegisterMedicinePostModel postModel = new RegisterMedicinePostModel(sqlToday.toString(), medicineId, CHILD_ID, healthStateId);
+		RegisterMedicinePostModel postModel = new RegisterMedicinePostModel(sqlToday.toString(), medicineId, childIdService.getChildId(), healthStateId);
 		PostRegisterTreatment poster = new PostRegisterTreatment(postModel.toString());
 		
 		poster.execute();

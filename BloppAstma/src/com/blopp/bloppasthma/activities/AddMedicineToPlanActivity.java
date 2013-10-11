@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.blopp.bloppasthma.R;
 import com.blopp.bloppasthma.JsonModels.AddMedicineToPlanModel;
 import com.blopp.bloppasthma.jsonposters.AddMedicineToPlanPoster;
+import com.blopp.bloppasthma.mockups.ChildIdService;
 import com.blopp.bloppasthma.utils.AvailableMedicines;
 
 
@@ -25,14 +26,13 @@ public class AddMedicineToPlanActivity extends Activity
 {
 	private static final String TAG = AddMedicineToPlanActivity.class
 			.getSimpleName();
-	private static final int CHILD_ID = 6;
 	private Spinner spinnerMedicine;
 	private TimePicker timepickerMedicine;
 	private LinearLayout mLayout;
 	private AvailableMedicines availableMeds;
 	private Button btnAddMedicine;
 	private int healthStateId;
-
+	private ChildIdService childIdService;
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -48,6 +48,8 @@ public class AddMedicineToPlanActivity extends Activity
 		mLayout = (LinearLayout) findViewById(R.id.add_medicine_linearlayout);
 		timepickerMedicine = (TimePicker) findViewById(R.id.timePicker_medicine);
 		timepickerMedicine.setIs24HourView(true);
+		
+		childIdService = new ChildIdService(getApplicationContext());
 	}
 	/**
 	 * Initialize the medicine spinner to the medicines existing in the database. 
@@ -102,7 +104,7 @@ public class AddMedicineToPlanActivity extends Activity
 					.getSelectedItem().toString());
 			String time = getTime();
 			
-			AddMedicineToPlanModel model = new AddMedicineToPlanModel(CHILD_ID,
+			AddMedicineToPlanModel model = new AddMedicineToPlanModel(childIdService.getChildId(),
 					healthStateId, time, medicineId);
 			boolean wasSuccess = executePost(model);
 			if (!(wasSuccess))

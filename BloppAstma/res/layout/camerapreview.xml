@@ -4,7 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
-    <ImageView android:id="@+id/imageView1" android:layout_height="wrap_content"  android:layout_width="wrap_content"></ImageView>
+
 
     <Button
         android:id="@+id/savereturnbutton"
@@ -14,29 +14,6 @@
         android:layout_alignParentLeft="true"
         android:text="@string/save_photo" />
 
-    <Button
-        android:id="@+id/photobutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/imageView1"
-        android:layout_marginTop="140dp"
-        android:text="@string/get_photo" />
 
-    <HorizontalScrollView
-        android:id="@+id/horizontalScrollView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/savereturnbutton"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/photobutton" >
-
-        <LinearLayout android:id="@+id/_linearLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal" >
-        </LinearLayout>
-    </HorizontalScrollView>
 
 </RelativeLayout>

@@ -19,7 +19,7 @@ public abstract class DatabasePoster extends AsyncTask<Void, Void, Void> impleme
 {
 //	register_medicine_taken.php
 	private HttpPost httpPost;
-	private String urlBody = "http://folk.ntnu.no/yngvesva/blopp/";
+	private String urlBody = "http://folk.ntnu.no/esbena/blopp/";
 	private String params;
 	/**
 	 * 

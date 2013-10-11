@@ -7,6 +7,7 @@ import android.util.Log;
 
 public class RegisterMedicinePostModel
 {
+	private static final String TAG = RegisterMedicinePostModel.class.getSimpleName();
 	private String date;
 	private int medicineId;
 	private int healthStateId;
@@ -32,7 +33,7 @@ public class RegisterMedicinePostModel
 			dato = URLEncoder.encode(date, "UTF-8");
 			medisinId = URLEncoder.encode(Integer.toString(medicineId), "UTF-8");
 			healthState = URLEncoder.encode(Integer.toString(healthStateId), "UTF-8");
-			Log.d("RegisterMedicine", "child_id="+child + "&day_date=" + dato + "&medicine_id=" + medisinId + "&health_state_id=" + healthState);
+			Log.d(TAG, "child_id="+child + "&day_date=" + dato + "&medicine_id=" + medisinId + "&health_state_id=" + healthState);
 			return "child_id="+child + "&day_date=" + dato + "&medicine_id=" + medisinId + "&health_state_id=" + healthState; 
 		} catch (UnsupportedEncodingException e)
 		{
