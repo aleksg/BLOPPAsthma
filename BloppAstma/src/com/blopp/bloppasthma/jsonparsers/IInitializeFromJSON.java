@@ -15,7 +15,7 @@ public interface IInitializeFromJSON
 	
 	public interface BLOPParser
 	{
-		public static final String MyURL = "http://folk.ntnu.no/yngvesva/blopp/";
+		public static final String MyURL = "http://folk.ntnu.no/esbena/blopp/";
 	}
 	public interface AirQualityParser
 	{
