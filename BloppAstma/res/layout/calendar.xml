@@ -76,10 +76,14 @@
         android:id="@+id/medicinetopbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/medicine_taken_listView"
+        android:layout_alignParentLeft="true"
         android:layout_below="@+id/calendarview"
         android:layout_toLeftOf="@+id/airquality_listview"
         android:text="@string/medicine_topbar"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:gravity="center"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="12sp" />
 
     <TextView
         android:id="@+id/pollentopbar"
@@ -90,7 +94,9 @@
         android:layout_alignTop="@+id/medicinetopbar"
         android:layout_toRightOf="@+id/airquality_listview"
         android:text="@string/pollen_topbar"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:gravity="center"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="12sp" />
 
     <TextView
         android:id="@+id/airqualitytopbar"
@@ -101,6 +107,8 @@
         android:layout_alignTop="@+id/medicinetopbar"
         android:layout_toRightOf="@+id/medicine_taken_listView"
         android:text="@string/airquality_topbar"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:gravity="center"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="12sp" />
 
 </RelativeLayout>
