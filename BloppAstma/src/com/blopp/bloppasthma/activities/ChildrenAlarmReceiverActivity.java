@@ -26,6 +26,7 @@ import com.blopp.bloppasthma.models.MedicinePlanModel;
  * <code>MedicinePlanModel</code> is in the extras from the intent.
  */
 public class ChildrenAlarmReceiverActivity extends Activity {
+	private static final String TAG = ChildrenAlarmReceiverActivity.class.getSimpleName();
     private MedicinePlanModel medicinePlanModel;
     private Ringtone ringtone;
     private AudioManager audioManager;
@@ -34,10 +35,11 @@ public class ChildrenAlarmReceiverActivity extends Activity {
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate is called in ChildrenAlarmReceiverActivity");
         //update medicinePlanModel with the medicine sent in with the intent
 		medicinePlanModel = (MedicinePlanModel) getIntent().getExtras().getSerializable("medicinePlanModel");
        
-       
+		
         // set window related stuff, view etc.
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,

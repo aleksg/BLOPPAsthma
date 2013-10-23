@@ -6,6 +6,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.util.Log;
+
 import com.blopp.bloppasthma.JsonModels.MedicationPlanResult;
 import com.blopp.bloppasthma.jsonparsers.IInitializeFromJSON.BLOPParser;
 import com.blopp.bloppasthma.models.MedicinePlanModel;
@@ -14,10 +16,11 @@ public class MedicationPlanParser extends GenericJSONParser implements BLOPParse
 {
 	public static String phpPage = MyURL + "get_plan.php?";
 	private MedicationPlanResult medicationPlanResult;
-
+	private static String TAG = MedicationPlanParser.class.getSimpleName();
 	public MedicationPlanParser(int child_id)
 	{
 		super(phpPage + "child_id=" + child_id);
+		
 	}
 
 	public void initializeDataFromJSON(String result)
@@ -40,7 +43,7 @@ public class MedicationPlanParser extends GenericJSONParser implements BLOPParse
 				JSONObject plan = array.getJSONObject(i);
 				int healthStateId = (plan.getInt("health_state_id"));
 				MedicinePlanModel mpl = elementExists(arrayList, healthStateId);
-
+				
 				if (elementExists(arrayList, healthStateId) != null)
 				{
 					String time = (plan.getString("time"));
@@ -63,7 +66,6 @@ public class MedicationPlanParser extends GenericJSONParser implements BLOPParse
 			medicationPlanResult.setPlans(arrayList);
 		} catch (JSONException e)
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

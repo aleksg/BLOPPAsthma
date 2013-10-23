@@ -9,12 +9,7 @@
 	
 	$mysqli = new mysqli($dburl, $dbuser, $dbpwd, $dbname);
     
-    $medical_plan_q = "INSERT INTO `MEDICAL_PLANS` (`id`, `label`)"
-                     ." VALUES ("
-                        ."'', '".$name."'"
-                     .")";
-    $mysqli->query($medical_plan_q);
-    $medical_plan_id = $mysqli->insert_id;
+    
     
     $q = "INSERT INTO `CHILDREN` (`id`, `name`, `pers_num`, `medical_plan_id`, `credits`)"
         ." VALUES ("
@@ -27,6 +22,15 @@
     $mysqli->query($q);
     $child_id = $mysqli->insert_id;
     
+
+    $medical_plan_q = "INSERT INTO `MEDICAL_PLANS` (`id`, `child_id`)"
+                     ." VALUES ("
+                        ."'', '".$child_id."'"
+                     .")";
+    $mysqli->query($medical_plan_q);
+    $medical_plan_id = $mysqli->insert_id;
+
+
     $all_states_q = "SELECT id FROM `HEALTH_STATES`";
     $result = $mysqli->query($all_states_q);
     

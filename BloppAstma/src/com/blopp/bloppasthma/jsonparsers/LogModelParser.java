@@ -58,10 +58,14 @@ public class LogModelParser extends GenericJSONParser implements BLOPParser
 			for (int i = 0; i < array.length(); i++)
 			{
 				JSONObject day = array.getJSONObject(i);
-				LogDayResult log_day = new LogDayResult()
+				LogDayResult log_day = new LogDayResult().setDate(day.getString("date"));
 				
-				.setDate(day.getString("date"))
-				.setHealthStateId(Integer.parseInt(day.getString("health_state_id")));
+				if(day.has("health_state_id") && !(day.isNull("health_state_id"))){
+					
+					log_day.setHealthStateId(Integer.parseInt(day.getString("health_state_id")));
+				}else{
+					log_day.setHealthStateId(1);
+				}
 				
 				JSONArray doses = day.getJSONArray("doses");
 				

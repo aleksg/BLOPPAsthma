@@ -20,7 +20,7 @@ public class MedicinePlanModel implements Serializable
 	private String time;
 	public MedicinePlanModel()
 	{
-		medicinePlanMap = new HashMap<String, String>();
+		this.medicinePlanMap = new HashMap<String, String>();
 	}
 	public String getTime()
 	{
@@ -98,7 +98,7 @@ public class MedicinePlanModel implements Serializable
 	}
 	/**
 	 * 
-	 * @return the hashmap with key: Time and value: Name
+	 * @return the hashmap with key: Time and value: Medicine
 	 */
 	public HashMap<String, String> getMedicinePlanMap()
 	{

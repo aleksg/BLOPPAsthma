@@ -12,6 +12,7 @@ import android.util.Log;
  */
 public class DeleteMedicineFromPlanPoster extends DatabasePoster {
 	private static final String PHP_STRING = "remove_plan_medicine_at_time?";
+	private static final String TAG = DeleteMedicineFromPlanPoster.class.getSimpleName();
 	private boolean success;
 	/**
 	 * 
@@ -19,6 +20,7 @@ public class DeleteMedicineFromPlanPoster extends DatabasePoster {
 	 */
 	public DeleteMedicineFromPlanPoster(String params) {
 		super(params, PHP_STRING);
+		Log.d(TAG, params);
 	}
 
 	public void initializeDataFromJSON(String result) {

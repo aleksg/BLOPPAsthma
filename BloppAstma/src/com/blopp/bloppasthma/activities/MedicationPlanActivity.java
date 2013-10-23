@@ -117,7 +117,7 @@ public class MedicationPlanActivity extends Activity implements
 		}
 		private int getCurrentMedicationPlan()
 		{
-			LogModel logModel = new LogModel(6);
+			LogModel logModel = new LogModel(childIdService.getChildId());
 			DateTime date = new DateTime();
 			DateAdapter adapter = new DateAdapter(date.getDayOfMonth(), date.getMonthOfYear(), date.getYear());
 			return HealthState.getIdByHealthZone(logModel.getHealthZoneAtDay(adapter.getSqlFormattedDate()));

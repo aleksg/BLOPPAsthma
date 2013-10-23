@@ -11,6 +11,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -97,7 +98,6 @@ public class ViewMedicationPlanActivity extends Activity implements
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data)
 	{
-		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, data);
 		if (requestCode == Activity.RESULT_OK)
 		{
@@ -113,7 +113,6 @@ public class ViewMedicationPlanActivity extends Activity implements
 	{
 
 		timeMap = new HashMap<String, String>();
-		// TODO: Update the static number 6 with the childs ID
 		parser = new MedicationPlanParser(childIdService.getChildId());
 		parser.execute();
 		try
@@ -178,6 +177,8 @@ public class ViewMedicationPlanActivity extends Activity implements
 					AvailableMedicines am = new AvailableMedicines();
 					int medicine_id = am.getMedicineByName(medicineName);
 					DeleteMedicineModel model = new DeleteMedicineModel(childIdService.getChildId(), medicine_id, time, HealthState.getIdByHealthZone(healthZone));
+					Log.d("Deleting medicine", model.toString());
+					
 					DeleteMedicineFromPlanPoster poster = new DeleteMedicineFromPlanPoster(model.toString());
 					poster.execute();
 					try {

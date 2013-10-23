@@ -16,10 +16,12 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.blopp.bloppasthma.JsonModels.MedicationPlanResult;
 import com.blopp.bloppasthma.activities.ChildrenAlarmReceiverActivity;
 import com.blopp.bloppasthma.jsonparsers.MedicationPlanParser;
+import com.blopp.bloppasthma.mockups.ChildIdService;
 import com.blopp.bloppasthma.models.MedicinePlanModel;
 
 /**
@@ -28,11 +30,16 @@ import com.blopp.bloppasthma.models.MedicinePlanModel;
  * delete them regardless of database inconsistencies next time it updates.
  */
 public class AlarmUpdateReceiver extends BroadcastReceiver {
+	private static final String TAG = AlarmUpdateReceiver.class.getSimpleName();
 	Context context;
+	private ChildIdService childIdService;
+	
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		this.context = context;
+		Log.d(TAG, "onReceive is called");
     	updateAlarms();
+    	
 	}
 		
 	/**
@@ -41,12 +48,13 @@ public class AlarmUpdateReceiver extends BroadcastReceiver {
      * database, is set.
      */
 	public void updateAlarms(){
+		Log.d(TAG, "Updating alarms");
 		deleteOldAlarms();
     	Calendar calendar = Calendar.getInstance();
 
     	ArrayList<String> alarmIdList = new ArrayList<String>(); 
-    	
-		MedicationPlanParser parser = new MedicationPlanParser(6);
+    	childIdService = new ChildIdService(context);
+		MedicationPlanParser parser = new MedicationPlanParser(childIdService.getChildId());
 		parser.execute();
 		
 		try {
@@ -58,36 +66,37 @@ public class AlarmUpdateReceiver extends BroadcastReceiver {
 		}
     	
 		MedicationPlanResult result = parser.medicationPlanResult();
+		Log.d(TAG, "Looking through results");
 		try{
-			for (MedicinePlanModel m : result.getPlans() )
+			Log.d(TAG, "Found: " + result.getPlans().size() + " results in the set");
+			for (MedicinePlanModel m : result.getPlans())
 			{
-					
 				String time = m.getTime();
-			
-			
+				
+				Log.d(TAG, "time set for medicine is: " + time);
 				/**/
+				calendar.set(Calendar.MONTH, calendar.get(Calendar.MONTH)+1);
 				calendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt(time.split(":")[0]));
 				calendar.set(Calendar.MINUTE, Integer.parseInt(time.split(":")[1]));
 				calendar.set(Calendar.SECOND, Integer.parseInt(time.split(":")[2]));
 				//check if we want to wake up tomorrow
-				if (System.currentTimeMillis() > calendar.getTimeInMillis()){
-					calendar.setTimeInMillis(calendar.getTimeInMillis()+ 24*60*60*1000);// Okay, then tomorrow ...
-				}
-			
+//				if (System.currentTimeMillis() > calendar.getTimeInMillis()){
+//					Log.d(TAG, "Why the fuck do we want to wake up tomorrow?");
+//					calendar.setTimeInMillis(calendar.getTimeInMillis()+ 24*60*60*1000);// Okay, then tomorrow ...
+//				}
+				Log.d(TAG, "Alarm set at month: " + calendar.get(Calendar.MONTH));
 				alarmIdList.add(Integer.toString((calendar.get(Calendar.MONTH)*1000000 + calendar.get(Calendar.DAY_OF_MONTH)*10000+ 
 		        		calendar.get(Calendar.HOUR_OF_DAY)*100+calendar.get(Calendar.MINUTE))));
+				
 				createAlarm(calendar, m);
-				//Log.d("ALARM SET AT:","Time of alarm: year:" + calendar.get(Calendar.YEAR) + " month: " + 
-				//		calendar.get(Calendar.MONTH) + " day: "+ calendar.get(Calendar.DAY_OF_MONTH) + " time:" + 
-				//		calendar.get(Calendar.HOUR_OF_DAY)+ ":"+calendar.get(Calendar.MINUTE)+":"+calendar.get(Calendar.SECOND));
 				calendar = Calendar.getInstance();
 			}
 		}
 		catch(NullPointerException e){
 			e.printStackTrace();
 		}
+		Log.d(TAG, "Creating alarm files");
 		generateAlarmFile(alarmIdList);
-		
     }
     
 
@@ -142,12 +151,13 @@ public class AlarmUpdateReceiver extends BroadcastReceiver {
         //Add the bundle to the intent and do the standard alarmfiring calls. NOTE: 12345 is a placeholder for a 
         //requestcode, and should be changed with a nonstatic number when more alarms are being lined up.
         intent.putExtras(bundle);
-        int index = (calendar.get(Calendar.MONTH)*1000000 + calendar.get(Calendar.DAY_OF_MONTH)*10000+ 
+        int index = (calendar.get(Calendar.MONTH +1 )*1000000 + calendar.get(Calendar.DAY_OF_MONTH)*10000+ 
         		calendar.get(Calendar.HOUR_OF_DAY)*100+calendar.get(Calendar.MINUTE));
         //Log.d("index",""+index);
         
         boolean alarmAlreadyUp = (PendingIntent.getBroadcast(context, index, intent, PendingIntent.FLAG_NO_CREATE) != null);
         if(!alarmAlreadyUp){
+        	Log.d(TAG, "Alarm is not already put up");
         	PendingIntent pendingIntent = PendingIntent.getActivity(context,
         			index, intent, PendingIntent.FLAG_CANCEL_CURRENT);
         	AlarmManager alarmManager = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
@@ -164,15 +174,13 @@ public class AlarmUpdateReceiver extends BroadcastReceiver {
     	
     	String FILENAME = "alarms.txt";
     	String alarms = "";
-    	
+    	Log.d(TAG, "Size of alarm list in generate alarm file" + list.size());
     	for(int i = 0; i<list.size();i++){
     		if (i ==0)
     			alarms += list.get(i);
     		else
     			alarms += "," + list.get(i);
     	}
-    	
-
     	FileOutputStream fos;
 		try {
 			fos = context.openFileOutput(FILENAME, context.MODE_PRIVATE);
