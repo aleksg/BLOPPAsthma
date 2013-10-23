@@ -1,17 +1,25 @@
 package com.blopp.bloppasthma.activities;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -33,6 +41,7 @@ public class AddMedicineToPlanActivity extends Activity
 	private Button btnAddMedicine;
 	private int healthStateId;
 	private ChildIdService childIdService;
+	private MedicineSpinnerAdapter spinnerAdapter;
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -56,14 +65,22 @@ public class AddMedicineToPlanActivity extends Activity
 	 */
 	public void initializeSpinner()
 	{
-		this.spinnerMedicine = (Spinner) findViewById(R.id.medicine_spinner);
+		this.spinnerMedicine = (Spinner) findViewById(R.id.medicine_spinner);		
+		spinnerAdapter = new MedicineSpinnerAdapter(getApplicationContext(), getMedicines());
+		this.spinnerMedicine.setAdapter(spinnerAdapter);
+	}
+	private List<String> getMedicines()
+	{
 		availableMeds = new AvailableMedicines();
+		List<String> medicines = new ArrayList<String>();
 		Set<String> keys = availableMeds.medicinesMap.keySet();
 		String[] medicationNames = new String[keys.size()];
 		medicationNames = keys.toArray(medicationNames);
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-				R.layout.standard_text_list_item, medicationNames);
-		this.spinnerMedicine.setAdapter(adapter);
+		for (String string : medicationNames)
+		{
+			medicines.add(string);
+		}
+		return medicines;
 	}
 	/**
 	 * Get the health state given the input from the last activity
@@ -94,7 +111,56 @@ public class AddMedicineToPlanActivity extends Activity
 
 		return poster.getPlanSuccessfullyPosted();
 	}
-	
+	public class MedicineSpinnerAdapter extends BaseAdapter
+	{
+		private List<String> medicines;
+		private Context context;
+		public MedicineSpinnerAdapter(Context context, List<String> medicines){
+			this.medicines = medicines;
+			this.context = context;
+		}
+		@Override
+		public int getCount()
+		{
+			return medicines.size();
+		}
+
+		@Override
+		public Object getItem(int position)
+		{
+			
+			return medicines.get(position);
+		}
+
+		@Override
+		public long getItemId(int position)
+		{
+			// TODO Auto-generated method stub
+			return 0;
+		}
+
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent)
+		{
+			LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			View spinnerItem;
+			if(convertView == null)
+			{
+				spinnerItem = new View(context);
+				spinnerItem = inflater.inflate(R.layout.single_string_list_adapter, parent, false);
+				TextView textView = (TextView)spinnerItem.findViewById(R.id.string_textView);
+				
+				textView.setText((String)getItem(position));
+				textView.setTextColor(Color.BLACK);
+				textView.setTextSize(31);
+				
+			}else{
+				spinnerItem = convertView;
+			}
+			return spinnerItem;
+		}
+		
+	}
 	private class AddMedicineClickListener implements OnClickListener{
 
 		@Override
