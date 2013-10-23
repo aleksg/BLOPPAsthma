@@ -9,12 +9,12 @@ import android.widget.ImageView;
 
 import com.blopp.bloppasthma.R;
 
-public class RewardsAdapter extends BaseAdapter
+public class StarsAdapter extends BaseAdapter
 {
 	private Context context;
 	private int size;
 	private int reward;
-	public RewardsAdapter(Context context, int columnWidth, int reward)
+	public StarsAdapter(Context context, int columnWidth, int reward)
 	{
 		this.context = context;
 		this.size = columnWidth;

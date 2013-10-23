@@ -16,37 +16,15 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class AirQualityAdapter extends BaseAdapter
+public class AirQualityAdapter extends GenericListAdapter<AirQualityState>
 {
 	private static final String TAG = AirQualityAdapter.class.getSimpleName();
-
-	private Context context;
-	
-	private List<AirQualityState> airQualityStateArray;
 	
 	public AirQualityAdapter(Context context, 
 			ArrayList<AirQualityState> airQualityStates)
 	{
-		this.context = context;
-		this.airQualityStateArray = airQualityStates;
-		
+		super(context, airQualityStates);
 	}
-	
-	public int getCount() 
-	{
-		return airQualityStateArray.size();
-	}
-	
-	public Object getItem(int position)
-	{
-		return airQualityStateArray.get(position);
-	}
-	
-	public long getItemId(int position)
-	{
-		return 0;
-	}
-	
 	public View getView(int position, View convertView, ViewGroup parent)
 	{
 		LayoutInflater airQualityInflater = (LayoutInflater) this.context

@@ -1,10 +1,6 @@
 package com.blopp.bloppasthma.activities;
 
-import java.util.Calendar;
-
 import android.app.Activity;
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -17,7 +13,6 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.blopp.bloppasthma.R;
-import com.blopp.bloppasthma.services.AlarmUpdateReceiver;
 
 public class KidsMainMenu extends Activity implements
 		android.view.View.OnClickListener
@@ -31,22 +26,7 @@ public class KidsMainMenu extends Activity implements
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.kids_main_menu);
 		setUpListeners();
-		//startAlarmUpdater();
 	}
-
-//	private void startAlarmUpdater() {
-//		//Set up the Calendar used for the first AlarmUpdateReceiver, 10 seconds from current time.
-//		Calendar calendar = Calendar.getInstance();
-//		calendar.add(Calendar.SECOND,10);
-//		Intent i = new Intent(this, AlarmUpdateReceiver.class);
-//		int updateTime = 30*1000;
-//		//Set up the pendingIntent, and set the alarm to repeat according to updateTime.
-//		PendingIntent pendingIntent = PendingIntent.getBroadcast(this,
-//		    	0, i, PendingIntent.FLAG_CANCEL_CURRENT);
-//		AlarmManager alarmManager = (AlarmManager)this.getSystemService(Context.ALARM_SERVICE);
-//		alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), updateTime, pendingIntent);  	
-//	}
-
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
 	{

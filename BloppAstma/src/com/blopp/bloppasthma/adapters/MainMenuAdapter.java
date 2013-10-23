@@ -12,7 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.blopp.bloppasthma.R;
-import com.blopp.bloppasthma.adapters.MainMenuItem.MenuOptions;
+import com.blopp.bloppasthma.utils.MainMenuItem;
+import com.blopp.bloppasthma.utils.MainMenuItem.MenuOptions;
 
 public class MainMenuAdapter extends BaseAdapter
 {

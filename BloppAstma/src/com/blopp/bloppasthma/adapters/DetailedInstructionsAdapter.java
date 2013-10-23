@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.blopp.bloppasthma.R;
+import com.blopp.bloppasthma.models.DetailedInfoModel;
 
 
 /**
@@ -74,6 +75,7 @@ public class DetailedInstructionsAdapter extends BaseAdapter
 		}
 		return detailedInstructionsView;
 	}
+	
 	
 }
 

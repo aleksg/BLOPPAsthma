@@ -1,4 +1,4 @@
-package com.blopp.bloppasthma.adapters;
+package com.blopp.bloppasthma.utils;
 
 import android.graphics.Bitmap;
 public class MainMenuItem

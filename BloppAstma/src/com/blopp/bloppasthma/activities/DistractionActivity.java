@@ -25,7 +25,7 @@ import android.widget.Toast;
 import com.blopp.bloppasthma.R;
 import com.blopp.bloppasthma.JsonModels.RegisterMedicinePostModel;
 import com.blopp.bloppasthma.adapters.MedicineListAdapter;
-import com.blopp.bloppasthma.adapters.RewardsAdapter;
+import com.blopp.bloppasthma.adapters.StarsAdapter;
 import com.blopp.bloppasthma.div.Actions;
 import com.blopp.bloppasthma.div.ColorMeds;
 import com.blopp.bloppasthma.div.SoundStreamer;
@@ -63,6 +63,7 @@ public class DistractionActivity extends Activity {
         	}
         }
         else{
+        	//TODO: This is probably wrong health state id. Use parser!
         	healthStateId = 1;
 			initPickMedicine();
 		}
@@ -327,7 +328,7 @@ public class DistractionActivity extends Activity {
 		GridView rewardStarsView = (GridView) findViewById(R.id.rewards_grid);
 		int width = rewardStarsView.getWidth()/5;
 		rewardStarsView.setColumnWidth(width);
-		rewardStarsView.setAdapter(new RewardsAdapter(this, Math.min(width, rewardStarsView.getHeight()), reward));
+		rewardStarsView.setAdapter(new StarsAdapter(this, Math.min(width, rewardStarsView.getHeight()), reward));
 		TextView rewardsTextView = (TextView) findViewById(R.id.distraction_finished_reward_text);
 		rewardsTextView.setText(String.format(getString(R.string.RewardsText), reward));
 		final ImageView chestView = (ImageView) findViewById(R.id.distraction_finished_chest);

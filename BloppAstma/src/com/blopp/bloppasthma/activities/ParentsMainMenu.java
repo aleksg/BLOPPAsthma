@@ -14,8 +14,8 @@ import android.widget.Toast;
 
 import com.blopp.bloppasthma.R;
 import com.blopp.bloppasthma.adapters.MainMenuAdapter;
-import com.blopp.bloppasthma.adapters.MainMenuItem;
-import com.blopp.bloppasthma.adapters.MainMenuItem.MenuOptions;
+import com.blopp.bloppasthma.utils.MainMenuItem;
+import com.blopp.bloppasthma.utils.MainMenuItem.MenuOptions;
 
 public class ParentsMainMenu extends Activity implements OnItemClickListener
 {

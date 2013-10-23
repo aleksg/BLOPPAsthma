@@ -27,6 +27,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.blopp.bloppasthma.R;
+import com.blopp.bloppasthma.adapters.GenericListAdapter;
 import com.blopp.bloppasthma.mockups.ChildIdService;
 import com.blopp.bloppasthma.mockups.Reward;
 import com.blopp.bloppasthma.mockups.SavedRewards;
@@ -155,36 +156,12 @@ public class ParentShowRewardsActivity extends Activity
 			return builder.create();
 		}
 	}
-
-	private class RewardListAdapter extends BaseAdapter
+	private class RewardListAdapter extends GenericListAdapter<Reward>
 	{
-		private final String MTAG = RewardListAdapter.class.getSimpleName();
-		private List<Reward> rewards;
-		private Context context;
 
 		public RewardListAdapter(Context context)
 		{
-			rewards = new SavedRewards(getApplicationContext())
-					.getSavedRewards().getRewards();
-			this.context = context;
-		}
-
-		@Override
-		public int getCount()
-		{
-			return rewards.size();
-		}
-
-		@Override
-		public Object getItem(int position)
-		{
-			return rewards.get(position);
-		}
-
-		@Override
-		public long getItemId(int position)
-		{
-			return 0;
+			super(context, new SavedRewards(context).getSavedRewards().getRewards());
 		}
 
 		@Override
@@ -227,7 +204,6 @@ public class ParentShowRewardsActivity extends Activity
 			}
 			return listView;
 		}
-
+		
 	}
-
 }

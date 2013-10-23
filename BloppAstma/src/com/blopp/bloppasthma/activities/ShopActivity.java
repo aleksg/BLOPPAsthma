@@ -25,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blopp.bloppasthma.R;
+import com.blopp.bloppasthma.adapters.GenericListAdapter;
 import com.blopp.bloppasthma.mockups.ChildIdService;
 import com.blopp.bloppasthma.mockups.Reward;
 import com.blopp.bloppasthma.mockups.SavedRewards;
@@ -124,39 +125,11 @@ public class ShopActivity extends Activity implements OnItemClickListener
 			return builder.create();
 		}
 	}
-	
-	public class RewardListAdapter extends BaseAdapter
+	public class RewardListAdapter extends GenericListAdapter<Reward>
 	{
-		private List<Reward> rewards;
-		private Context context;
-
-		public RewardListAdapter(Context context)
-		{
-			rewards = new SavedRewards(getApplicationContext())
-					.getSavedRewards().getRewards();
-			this.context = context;
+		public RewardListAdapter(Context context){
+			super(context, new SavedRewards(getApplicationContext()).getSavedRewards().getRewards());
 		}
-
-		@Override
-		public int getCount()
-		{
-			return rewards.size();
-		}
-
-		@Override
-		public Object getItem(int position)
-		{
-
-			return rewards.get(position);
-		}
-
-		@Override
-		public long getItemId(int position)
-		{
-
-			return 0;
-		}
-
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent)
 		{
@@ -194,5 +167,6 @@ public class ShopActivity extends Activity implements OnItemClickListener
 
 			return listView;
 		}
+		
 	}
 }

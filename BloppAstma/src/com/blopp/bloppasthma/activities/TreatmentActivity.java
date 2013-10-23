@@ -241,8 +241,6 @@ public class TreatmentActivity extends Activity
 //		startActivity(intent);
 		finish();
 	}
-
-
 	private void showPostError()
 	{
 		Toast.makeText(getApplicationContext(), R.string.post_error, Toast.LENGTH_SHORT).show();

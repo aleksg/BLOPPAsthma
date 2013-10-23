@@ -1,5 +1,7 @@
 package com.blopp.bloppasthma.utils;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * This is a helper class to get the available medicines in the database.
@@ -17,7 +19,15 @@ public class AvailableMedicines
 		medicinesMap.put("Ventoline", 2);
 		medicinesMap.put("Seretide", 3);
 	}
-	
+	public List<String> getAllMedicineNames(){
+		List<String> medicines = new ArrayList<String>();
+		for (String string : medicinesMap.keySet())
+		{
+			medicines.add(string);
+		}
+		return medicines;
+		
+	}
 	public int getMedicineByName(String name)
 	{
 		for (String s : medicinesMap.keySet())

@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import com.blopp.bloppasthma.R;
 import com.blopp.bloppasthma.JsonModels.AddMedicineToPlanModel;
+import com.blopp.bloppasthma.adapters.GenericListAdapter;
 import com.blopp.bloppasthma.jsonposters.AddMedicineToPlanPoster;
 import com.blopp.bloppasthma.mockups.ChildIdService;
 import com.blopp.bloppasthma.utils.AvailableMedicines;
@@ -111,37 +112,16 @@ public class AddMedicineToPlanActivity extends Activity
 
 		return poster.getPlanSuccessfullyPosted();
 	}
-	public class MedicineSpinnerAdapter extends BaseAdapter
+	public class MedicineSpinnerAdapter extends GenericListAdapter<String>
 	{
-		private List<String> medicines;
-		private Context context;
-		public MedicineSpinnerAdapter(Context context, List<String> medicines){
-			this.medicines = medicines;
-			this.context = context;
-		}
-		@Override
-		public int getCount()
+		public MedicineSpinnerAdapter(Context context, List<String> medicines)
 		{
-			return medicines.size();
+			super(context, medicines);
 		}
-
-		@Override
-		public Object getItem(int position)
-		{
-			
-			return medicines.get(position);
-		}
-
-		@Override
-		public long getItemId(int position)
-		{
-			// TODO Auto-generated method stub
-			return 0;
-		}
-
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent)
 		{
+
 			LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			View spinnerItem;
 			if(convertView == null)
@@ -161,6 +141,7 @@ public class AddMedicineToPlanActivity extends Activity
 		}
 		
 	}
+
 	private class AddMedicineClickListener implements OnClickListener{
 
 		@Override

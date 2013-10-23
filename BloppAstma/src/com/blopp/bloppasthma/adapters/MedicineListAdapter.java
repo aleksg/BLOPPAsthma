@@ -1,47 +1,36 @@
 package com.blopp.bloppasthma.adapters;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.blopp.bloppasthma.R;
 import com.blopp.bloppasthma.models.Medicine;
 
-public class MedicineListAdapter extends BaseAdapter 
+public class MedicineListAdapter extends GenericListAdapter<Medicine>
 {
-	private Medicine[] medicines;
-	private Context context;
-
-	public MedicineListAdapter(Context c, Medicine[] medicines)
-	{
-		this.context = c;
-		this.medicines = medicines;
+	public MedicineListAdapter(Context context, Medicine[] medicines){
+		super(context, convertToList(medicines));
 	}
-
-	public int getCount()
+	private static List<Medicine> convertToList(Medicine[] medicines)
 	{
-		return medicines.length;
+		List<Medicine> meds = new ArrayList<Medicine>();
+		for (Medicine medicine : medicines)
+		{
+			meds.add(medicine);
+		}
+		return meds;
 	}
-
-	public Object getItem(int position)
-	{
-
-		return medicines[position];
-	}
-
-	public long getItemId(int position)
-	{
-		return 0;
-	}
-
+	@Override
 	public View getView(int position, View convertView, ViewGroup parent)
 	{
-
 		LayoutInflater inflater = (LayoutInflater) this.context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -57,13 +46,13 @@ public class MedicineListAdapter extends BaseAdapter
 
 			ImageView medicineIconView = (ImageView) medicineListView
 					.findViewById(R.id.medicine_imageView);
-			
-			medicineIconView.setImageBitmap(medicines[position].getBitmap());
+			Medicine medicine = (Medicine)getItem(position);
+			medicineIconView.setImageBitmap(medicine.getBitmap());
 			
 			medicineIconView.setPadding(10, 5, 0, 0);
 			TextView medicineNameView = (TextView) medicineListView
 					.findViewById(R.id.medicine_name_textView);
-			medicineNameView.setText(medicines[position].getName());
+			medicineNameView.setText(medicine.getName());
 			medicineNameView.setTextColor(Color.BLACK);
 			medicineNameView.setPadding(10,15,0,0);
 			
@@ -78,9 +67,5 @@ public class MedicineListAdapter extends BaseAdapter
 			medicineListView = convertView;
 		}
 		return medicineListView;
-
 	}
-
-	
-
 }
