@@ -72,8 +72,8 @@ public class DistractionActivity extends Activity {
 	{
 		if (medicinePlanModel != null)
 		{
-			Log.d("color", medicinePlanModel.getMedicineKarotzColor());
-			return medicinePlanModel.getMedicineKarotzColor();
+			Log.d("color", medicinePlanModel.getMedicineColor());
+			return medicinePlanModel.getMedicineColor();
 		}
 		return medicine.getColor();	
 	}

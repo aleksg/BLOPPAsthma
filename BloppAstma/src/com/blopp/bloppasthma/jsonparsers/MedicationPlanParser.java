@@ -39,30 +39,20 @@ public class MedicationPlanParser extends GenericJSONParser implements BLOPParse
 
 			for (int i = 0; i < array.length(); i++)
 			{
-
-				JSONObject plan = array.getJSONObject(i);
-				int healthStateId = (plan.getInt("health_state_id"));
-				MedicinePlanModel mpl = elementExists(arrayList, healthStateId);
 				
-				if (elementExists(arrayList, healthStateId) != null)
-				{
-					String time = (plan.getString("time"));
-					String name = (plan.getString("medicine_name"));
-					mpl.addEntryToMap(time, name);
-				} else
-				{
-					mpl = new MedicinePlanModel()
-							.setHealthStateId(plan.getInt("health_state_id"))
-							.setId(plan.getInt("id"))
-							.setMedicalPlanId(plan.getInt("medical_plan_id"))
-							.setMedicineId(plan.getInt("medicine_id"));
-					String time = plan.getString("time");
-					String medicineName = plan.getString("medicine_name");
-					mpl.addEntryToMap(time, medicineName);
-					arrayList.add(mpl);
-				}
-
+				JSONObject plan = array.getJSONObject(i);
+				MedicinePlanModel mpl = new MedicinePlanModel();				
+				mpl = new MedicinePlanModel()
+						.setHealthStateId(plan.getInt("health_state_id"))
+						.setId(plan.getInt("id"))
+						.setMedicalPlanId(plan.getInt("medical_plan_id"))
+						.setMedicineId(plan.getInt("medicine_id"))
+						.setMedicineName(plan.getString("medicine_name"))
+						.setTime(plan.getString("time"))
+						.setMedicineColor(plan.getString("medicine_color"));
+				arrayList.add(mpl);
 			}
+			Log.d(TAG, "Found " + arrayList.size() + " planned treatments");
 			medicationPlanResult.setPlans(arrayList);
 		} catch (JSONException e)
 		{
@@ -73,18 +63,5 @@ public class MedicationPlanParser extends GenericJSONParser implements BLOPParse
 	public MedicationPlanResult medicationPlanResult()
 	{
 		return this.medicationPlanResult;
-	}
-
-	public MedicinePlanModel elementExists(
-			ArrayList<MedicinePlanModel> arrayList, int healthStateId)
-	{
-		for (MedicinePlanModel model : arrayList)
-		{
-			if (model.getHealthStateId() == healthStateId)
-			{
-				return model;
-			}
-		}
-		return null;
 	}
 }

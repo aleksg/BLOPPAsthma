@@ -48,7 +48,7 @@ public class SelectUserActivity extends Activity
 		//Set up the Calendar used for the first AlarmUpdateReceiver, 10 seconds from current time.
 		Calendar calendar = Calendar.getInstance();
 		calendar.add(Calendar.SECOND,10);
-		Intent i = new Intent(getApplicationContext(), AlarmUpdateReceiver.class);
+		Intent i = new Intent(this, AlarmUpdateReceiver.class);
 		int updateTime = 30*1000;
 		//Set up the pendingIntent, and set the alarm to repeat according to updateTime.
 		PendingIntent pendingIntent = PendingIntent.getBroadcast(this,

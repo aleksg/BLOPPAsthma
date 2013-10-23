@@ -15,12 +15,13 @@ public class MedicinePlanModel implements Serializable
 	private int medicalPlanId;
 	private int healthStateId;
 	private int medicineId;
-	private String medicineKarotzColor;
-	private HashMap<String, String> medicinePlanMap; //<Time, Medicine>
+	private String medicineName;
+	private String medicineColor;
 	private String time;
+	
 	public MedicinePlanModel()
 	{
-		this.medicinePlanMap = new HashMap<String, String>();
+		
 	}
 	public String getTime()
 	{
@@ -77,33 +78,25 @@ public class MedicinePlanModel implements Serializable
 		this.medicineId = medicineId;
 		return this;
 	}
-	public String getMedicineKarotzColor()
+	public String getMedicineColor()
 	{
-		return medicineKarotzColor;
+		return medicineColor;
 	}
-	public MedicinePlanModel setMedicineKarotzColor(String medicineKarotzColor)
+	public MedicinePlanModel setMedicineColor(String medicineColor)
 	{
-		this.medicineKarotzColor = medicineKarotzColor;
+		this.medicineColor = medicineColor;
 		return this;
 	}
-	/**
-	 * Adds an entry to the plan map with time and name
-	 * @param medicationTime
-	 * @param medicineName
-	 */
-	public MedicinePlanModel addEntryToMap(String medicationTime, String medicineName)
+	public String getMedicineName()
 	{
-		this.medicinePlanMap.put(medicationTime, medicineName);
+		return medicineName;
+	}
+	public MedicinePlanModel setMedicineName(String medicineName)
+	{
+		this.medicineName = medicineName;
 		return this;
 	}
-	/**
-	 * 
-	 * @return the hashmap with key: Time and value: Medicine
-	 */
-	public HashMap<String, String> getMedicinePlanMap()
-	{
-		return this.medicinePlanMap;
-	}
+	
 	
 	
 }

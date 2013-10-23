@@ -31,7 +31,7 @@ import com.blopp.bloppasthma.models.MedicinePlanModel;
  */
 public class AlarmUpdateReceiver extends BroadcastReceiver {
 	private static final String TAG = AlarmUpdateReceiver.class.getSimpleName();
-	Context context;
+	private Context context;
 	private ChildIdService childIdService;
 	
 	@Override
@@ -51,21 +51,8 @@ public class AlarmUpdateReceiver extends BroadcastReceiver {
 		Log.d(TAG, "Updating alarms");
 		deleteOldAlarms();
     	Calendar calendar = Calendar.getInstance();
-
     	ArrayList<String> alarmIdList = new ArrayList<String>(); 
-    	childIdService = new ChildIdService(context);
-		MedicationPlanParser parser = new MedicationPlanParser(childIdService.getChildId());
-		parser.execute();
-		
-		try {
-			parser.get();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			e.printStackTrace();
-		}
-    	
-		MedicationPlanResult result = parser.medicationPlanResult();
+    	MedicationPlanResult result = getMedicationPlanResult();
 		Log.d(TAG, "Looking through results");
 		try{
 			Log.d(TAG, "Found: " + result.getPlans().size() + " results in the set");
@@ -75,16 +62,16 @@ public class AlarmUpdateReceiver extends BroadcastReceiver {
 				
 				Log.d(TAG, "time set for medicine is: " + time);
 				/**/
-				calendar.set(Calendar.MONTH, calendar.get(Calendar.MONTH)+1);
 				calendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt(time.split(":")[0]));
 				calendar.set(Calendar.MINUTE, Integer.parseInt(time.split(":")[1]));
 				calendar.set(Calendar.SECOND, Integer.parseInt(time.split(":")[2]));
-				//check if we want to wake up tomorrow
-//				if (System.currentTimeMillis() > calendar.getTimeInMillis()){
-//					Log.d(TAG, "Why the fuck do we want to wake up tomorrow?");
-//					calendar.setTimeInMillis(calendar.getTimeInMillis()+ 24*60*60*1000);// Okay, then tomorrow ...
-//				}
-				Log.d(TAG, "Alarm set at month: " + calendar.get(Calendar.MONTH));
+				
+				//check if we want to set the alarm tomorrow instead of today
+				if (System.currentTimeMillis() > calendar.getTimeInMillis()){
+					
+					calendar.setTimeInMillis(calendar.getTimeInMillis()+ 24*60*60*1000);// Okay, then tomorrow ...
+				}
+				Log.d(TAG, "Alarm set at: " + calendar.toString());
 				alarmIdList.add(Integer.toString((calendar.get(Calendar.MONTH)*1000000 + calendar.get(Calendar.DAY_OF_MONTH)*10000+ 
 		        		calendar.get(Calendar.HOUR_OF_DAY)*100+calendar.get(Calendar.MINUTE))));
 				
@@ -98,7 +85,22 @@ public class AlarmUpdateReceiver extends BroadcastReceiver {
 		Log.d(TAG, "Creating alarm files");
 		generateAlarmFile(alarmIdList);
     }
-    
+
+	private MedicationPlanResult getMedicationPlanResult()
+	{
+		childIdService = new ChildIdService(context);
+		MedicationPlanParser parser = new MedicationPlanParser(childIdService.getChildId());
+		parser.execute();
+		try {
+			parser.get();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+		}
+		MedicationPlanResult result = parser.medicationPlanResult();
+		return result;
+	}
 
 	private void deleteOldAlarms() {
 		// Read alarm indexes from file
@@ -140,24 +142,21 @@ public class AlarmUpdateReceiver extends BroadcastReceiver {
 	 * @param medicinePlanModel, The <code>MedicationPlanModel</code> that triggers the alarm.
 	 */
     public void createAlarm(Calendar calendar, MedicinePlanModel medicinePlanModel){
-	
+    	Log.d(TAG, "Create alarm is called");
         //Create a new PendingIntent and add it to the AlarmManager
         Intent intent = new Intent(context, ChildrenAlarmReceiverActivity.class);
-        
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         //Make a bundle to get the Medicine object across to the alarm, and add the relevant medicine
         Bundle bundle = new Bundle();
         bundle.putSerializable("medicinePlanModel", medicinePlanModel);
-
-        //Add the bundle to the intent and do the standard alarmfiring calls. NOTE: 12345 is a placeholder for a 
-        //requestcode, and should be changed with a nonstatic number when more alarms are being lined up.
         intent.putExtras(bundle);
-        int index = (calendar.get(Calendar.MONTH +1 )*1000000 + calendar.get(Calendar.DAY_OF_MONTH)*10000+ 
+        int index = (calendar.get(Calendar.MONTH)*1000000 + calendar.get(Calendar.DAY_OF_MONTH)*10000+ 
         		calendar.get(Calendar.HOUR_OF_DAY)*100+calendar.get(Calendar.MINUTE));
+        Log.d(TAG, "Alarm is being set at: " + calendar.toString());
         //Log.d("index",""+index);
         
         boolean alarmAlreadyUp = (PendingIntent.getBroadcast(context, index, intent, PendingIntent.FLAG_NO_CREATE) != null);
         if(!alarmAlreadyUp){
-        	Log.d(TAG, "Alarm is not already put up");
         	PendingIntent pendingIntent = PendingIntent.getActivity(context,
         			index, intent, PendingIntent.FLAG_CANCEL_CURRENT);
         	AlarmManager alarmManager = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);

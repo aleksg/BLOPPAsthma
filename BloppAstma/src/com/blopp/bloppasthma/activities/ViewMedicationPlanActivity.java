@@ -136,7 +136,7 @@ public class ViewMedicationPlanActivity extends Activity implements
 		{
 			if(m.getHealthStateId()==HealthState.getIdByHealthZone(healthZone))
 			{
-				timeMap = m.getMedicinePlanMap();
+				timeMap.put(m.getTime(), m.getMedicineName());
 			}
 		}
 		
