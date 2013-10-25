@@ -16,12 +16,11 @@
      
     <ImageView
         android:id="@+id/alarm_medicine_imageview"
-        android:background="@drawable/medicine_button_background"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:src="@drawable/medicine_flutide_125microg" />
+        android:src="@drawable/medicine_flutide_125mg_right" />
 
     <TextView
         android:id="@+id/alarm_textview"

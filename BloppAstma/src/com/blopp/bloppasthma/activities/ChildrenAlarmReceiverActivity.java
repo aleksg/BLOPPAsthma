@@ -96,6 +96,6 @@ public class ChildrenAlarmReceiverActivity extends Activity {
     	ImageView imgv = (ImageView) findViewById(R.id.alarm_medicine_imageview);
     	TextView txtv = (TextView) findViewById(R.id.alarm_medicine_textview);
     	imgv.setImageResource(ColorMeds.medicineImage(medicinePlanModel.getMedicineColor()));
-//		txtv.setText(String.format("Husk å ta %s!", medicinePlanModel.getMedicineName()));
+		txtv.setText(medicinePlanModel.getMedicineName());
 	}
 }
