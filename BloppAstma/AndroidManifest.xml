@@ -127,7 +127,7 @@
         <activity android:name=".activities.InstructionsActivity" android:screenOrientation="portrait"></activity>
         <activity android:name=".activities.ShopActivity"></activity>
         <activity android:name="com.blopp.bloppasthma.activities.ParentShowRewardsActivity"
-            	  android:label="Ditt har barn">
+            	  android:label="Brukeren har oppnådd følgende antall stjerner:">
             
         </activity>
         <activity android:name="com.blopp.bloppasthma.activities.AddRewardActivity"></activity>
