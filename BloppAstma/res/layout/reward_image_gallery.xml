@@ -10,7 +10,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:text="Button" />
+        android:text="@string/choose_reward_image" />
 
     <GridView
         android:id="@+id/image_grid_view"

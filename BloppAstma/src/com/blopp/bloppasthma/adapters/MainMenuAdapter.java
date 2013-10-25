@@ -19,7 +19,7 @@ public class MainMenuAdapter extends BaseAdapter
 {
 	private MainMenuItem[] items;
 	private Context context;
-	public Bitmap medicinePlan, instructions, medicineLog, registerTreatment, information;
+	public Bitmap medicinePlan, instructions, medicineLog, registerTreatment, information, reward;
 	
 	public MainMenuAdapter(Context context)
 	{
@@ -38,7 +38,7 @@ public class MainMenuAdapter extends BaseAdapter
 		items[2] = new MainMenuItem("Medisinlogg", medicineLog, MenuOptions.LOG);
 		items[3] = new MainMenuItem("Legemiddelinformasjon", instructions, MenuOptions.INSTRUCTIONS);		
 		items[4] = new MainMenuItem("Manual", information, MenuOptions.MANUAL);
-		items[5] = new MainMenuItem("Premier", medicinePlan, MenuOptions.REWARD);
+		items[5] = new MainMenuItem("Premier", reward, MenuOptions.REWARD);
 		
 	}
 	/**
@@ -47,10 +47,11 @@ public class MainMenuAdapter extends BaseAdapter
 	public void initBitmaps()
 	{
 		medicinePlan = BitmapFactory.decodeResource(context.getResources(), R.drawable.medicineplan);
-		medicineLog= BitmapFactory.decodeResource(context.getResources(), R.drawable.log);
+		medicineLog = BitmapFactory.decodeResource(context.getResources(), R.drawable.log);
 		information = BitmapFactory.decodeResource(context.getResources(), R.drawable.info);
 		instructions = BitmapFactory.decodeResource(context.getResources(), R.drawable.instructions);
 		registerTreatment = BitmapFactory.decodeResource(context.getResources(), R.drawable.etterregistrer);
+		reward = BitmapFactory.decodeResource(context.getResources(), R.drawable.mainmenureward);
 	}
 	public int getCount()
 	{
