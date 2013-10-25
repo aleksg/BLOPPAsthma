@@ -70,6 +70,7 @@ public class ChildrenAlarmReceiverActivity extends Activity{
         
         //Button for stopping the alarm
         ImageView stopAlarm = (ImageView) findViewById(R.id.stop_alarm_imageview);
+        
         stopAlarm.setOnClickListener(new OnClickListener() {
             public void onClick(View arg0) {
             	stopAlarm();
@@ -89,6 +90,34 @@ public class ChildrenAlarmReceiverActivity extends Activity{
     	audioManager.setRingerMode(ringerMode);
         finish();
     }
+    private void startTreatmentActivity()
+    {
+    	Intent intent = new Intent(ChildrenAlarmReceiverActivity.this,DistractionActivity.class);
+    	Bundle bundle = new Bundle();
+    	bundle.putSerializable("medicinePlanModel", medicinePlanModel);
+    	intent.putExtras(bundle);
+    	startActivity(intent);
+    	ringtone.stop();
+    	audioManager.setRingerMode(ringerMode);
+    	finish();
+    }
+    private ImageView getStopAlarmImageView(){
+    	return (ImageView)findViewById(R.id.stop_alarm_imageview);
+    }
+    
+    private ImageView getMaskImageView(){
+    	return (ImageView) findViewById(R.id.alarm_mask_imageview);
+    }
+    /**
+     * Updates the view with the medicine that was found in the intents extras.
+     * this means updating the image and text according to medicinePlanModel.
+     */
+    private void updateViewWithMedicine() {
+    	ImageView imgv = (ImageView) findViewById(R.id.alarm_medicine_imageview);
+//    	TextView txtv = (TextView) findViewById(R.id.alarm_medicine_textview);
+//    	imgv.setImageResource(ColorMeds.medicineImage(medicinePlanModel.getMedicineColor()));
+//		txtv.setText(medicinePlanModel.getMedicineName());
+    }
     private class MedicineTouchListener implements OnTouchListener
     {
 
@@ -99,7 +128,6 @@ public class ChildrenAlarmReceiverActivity extends Activity{
 				ClipData data = ClipData.newPlainText("", "");
 				DragShadowBuilder builder = new DragShadowBuilder(medicineImageView);
 				medicineImageView.startDrag(data, builder, medicineImageView, 0);
-				Log.d(TAG, "Touch recognized");
 				return true;
 				
 			}return false;
@@ -116,12 +144,9 @@ public class ChildrenAlarmReceiverActivity extends Activity{
 			{
 				case DragEvent.ACTION_DROP:
 					if(collidesWithStopAlarmButton(event)){
-						Log.d(TAG, "Stopping alarm");
 						stopAlarm();
 					}
-					
 					break;
-
 				default:
 					break;
 			}
@@ -150,24 +175,13 @@ public class ChildrenAlarmReceiverActivity extends Activity{
 		{
 			switch (event.getAction())
 			{
-				case DragEvent.ACTION_DRAG_EXITED:
-					break;
 				case DragEvent.ACTION_DROP:
 					if(collidesWithMask(event)){
-						Log.d(TAG, "Collided with mask");
 						startTreatmentActivity();
-						Log.d(TAG, "Dropped");
 					}
-				case DragEvent.ACTION_DRAG_ENDED:
-					Log.d(TAG, "Ended");
-					break;
-				case DragEvent.ACTION_DRAG_ENTERED:
-					Log.d(TAG, "Entered");
-					break;
 				default:
 					break;
-			}
-			
+			}			
 			return true;
 		}
 		
@@ -181,34 +195,4 @@ public class ChildrenAlarmReceiverActivity extends Activity{
 			return medRect.contains(x,y);
 		}	
     }
-    private void startTreatmentActivity()
-    {
-    	Intent intent = new Intent(ChildrenAlarmReceiverActivity.this,DistractionActivity.class);
-		Bundle bundle = new Bundle();
-		bundle.putSerializable("medicinePlanModel", medicinePlanModel);
-		intent.putExtras(bundle);
-		startActivity(intent);
-		ringtone.stop();
-    	audioManager.setRingerMode(ringerMode);
-		finish();
-    }
-    private ImageView getStopAlarmImageView(){
-    	return (ImageView)findViewById(R.id.stop_alarm_imageview);
-    }
-    private ImageView getMedicineImageView(){
-    	return (ImageView) findViewById(R.id.alarm_medicine_imageview);
-    }
-    private ImageView getMaskImageView(){
-    	return (ImageView) findViewById(R.id.alarm_mask_imageview);
-    }
-    /**
-     * Updates the view with the medicine that was found in the intents extras.
-     * this means updating the image and text according to medicinePlanModel.
-     */
-    private void updateViewWithMedicine() {
-    	ImageView imgv = (ImageView) findViewById(R.id.alarm_medicine_imageview);
-//    	TextView txtv = (TextView) findViewById(R.id.alarm_medicine_textview);
-//    	imgv.setImageResource(ColorMeds.medicineImage(medicinePlanModel.getMedicineColor()));
-//		txtv.setText(medicinePlanModel.getMedicineName());
-	}
 }

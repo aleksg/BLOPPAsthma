@@ -72,4 +72,6 @@
 	<string name="medicine_topbar">Medisinforbruk</string>
 	<string name="airquality_topbar">Luftkvalitet</string>
 	<string name="pollen_topbar">Pollen</string>
+	<string name="alarm_drag_message">Dra medisinen til masken for å starte</string>
+	<string name="alarm_time_to_take">Det er på tide å ta medisin</string>
 </resources>
