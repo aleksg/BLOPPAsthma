@@ -4,14 +4,6 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <ImageView
-        android:id="@+id/alarm_medicine_imageview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        android:src="@drawable/medicine_seretide_template" />
-
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
@@ -38,6 +30,15 @@
         android:textSize="21sp" />
 
     <ImageView
+        android:id="@+id/stop_alarm_imageview"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_above="@+id/alarm_medicine_imageview"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="60dp"
+        android:src="@drawable/cancel_alarm_image" />
+
+    <ImageView
         android:id="@+id/alarm_mask_imageview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -46,12 +47,12 @@
         android:src="@drawable/mask" />
 
     <ImageView
-        android:id="@+id/stop_alarm_imageview"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginRight="10dp"
-        android:layout_above="@+id/alarm_medicine_imageview"
-        android:layout_alignParentRight="true"
-        android:src="@drawable/cancel_alarm_image" />
+        android:id="@+id/alarm_medicine_imageview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="32dp"
+        android:src="@drawable/medicine_seretide_template" />
 
 </RelativeLayout>
