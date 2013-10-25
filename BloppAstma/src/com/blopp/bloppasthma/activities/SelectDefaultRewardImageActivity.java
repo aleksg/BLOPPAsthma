@@ -30,9 +30,11 @@ public class SelectDefaultRewardImageActivity extends Activity
 			.getSimpleName();
 
 	// this is an array that holds the IDs of the drawables ...
-	private int[] images = { R.drawable.toalett, R.drawable.toalett,
-			R.drawable.toalett, R.drawable.toalett, R.drawable.toalett,
-			R.drawable.toalett, R.drawable.toalett };
+	private int[] images = { R.drawable.reward1, R.drawable.reward2,
+			R.drawable.reward3, R.drawable.reward4, R.drawable.reward5,
+			R.drawable.reward6, R.drawable.reward7, R.drawable.reward8, 
+			R.drawable.reward9, R.drawable.reward10, R.drawable.reward11
+			, R.drawable.reward12, R.drawable.reward13, R.drawable.reward14};
 
 	private int selectedImageResourceId;
 
