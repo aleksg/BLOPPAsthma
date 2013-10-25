@@ -277,10 +277,10 @@ public class ViewMedicationPlanActivity extends Activity implements
 					/**
 					 * Top item. Displays
 					 */
-					v = inflater.inflate(R.layout.main_menu_list_item, null);
-					ImageView imageView = (ImageView) v.findViewById(R.id.main_menu_icon);
+					v = inflater.inflate(R.layout.medicine_list_for_plan_menu, null);
+					ImageView imageView = (ImageView) v.findViewById(R.id.medicine_plan_alarm_list_icon);
 					imageView.setImageBitmap(planViewHolder.getImage());
-					TextView planName = (TextView) v.findViewById(R.id.main_menu_list_textView);
+					TextView planName = (TextView) v.findViewById(R.id.medicine_plan_alarm_list_textView);
 					planName.setText(planViewHolder.getPlanName());
 					planName.setPadding(20, 20, 20, 20);
 					planName.setGravity(Gravity.CENTER_VERTICAL);
