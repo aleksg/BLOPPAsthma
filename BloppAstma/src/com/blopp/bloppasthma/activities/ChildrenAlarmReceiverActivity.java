@@ -3,6 +3,8 @@ package com.blopp.bloppasthma.activities;
 import android.app.Activity;
 import android.content.ClipData;
 import android.content.Intent;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
@@ -70,9 +72,7 @@ public class ChildrenAlarmReceiverActivity extends Activity{
         ImageView stopAlarm = (ImageView) findViewById(R.id.stop_alarm_imageview);
         stopAlarm.setOnClickListener(new OnClickListener() {
             public void onClick(View arg0) {
-            	ringtone.stop();
-            	audioManager.setRingerMode(ringerMode);
-                finish();
+            	stopAlarm();
             }
         });
         
@@ -80,38 +80,65 @@ public class ChildrenAlarmReceiverActivity extends Activity{
         ImageView startTreatment = (ImageView) findViewById(R.id.alarm_medicine_imageview);
         startTreatment.setOnTouchListener(new MedicineTouchListener());
         ImageView maskImage = (ImageView) findViewById(R.id.alarm_mask_imageview);
+        stopAlarm.setOnDragListener(new StopAlarmDragListener());
         maskImage.setOnDragListener(new MaskDragListener());
-        
-        
-        
-//        startTreatment.setOnClickListener(new OnClickListener() {
-//			
-//			public void onClick(View arg0) {
-//				Log.d(DistractionActivity.class.getSimpleName(), "activityStarter");
-//				Intent intent = new Intent(ChildrenAlarmReceiverActivity.this,DistractionActivity.class);
-//				Bundle bundle = new Bundle();
-//				bundle.putSerializable("medicinePlanModel", medicinePlanModel);
-//				intent.putExtras(bundle);
-//				startActivity(intent);
-//				ringtone.stop();
-//            	audioManager.setRingerMode(ringerMode);
-//				finish();
-//			}
-//		});
-        
+    }
+    private void stopAlarm()
+    {
+    	ringtone.stop();
+    	audioManager.setRingerMode(ringerMode);
+        finish();
     }
     private class MedicineTouchListener implements OnTouchListener
     {
 
 		@Override
-		public boolean onTouch(View v, MotionEvent event)
+		public boolean onTouch(View medicineImageView, MotionEvent event)
 		{
-			ClipData data = ClipData.newPlainText("", "");
-			DragShadowBuilder builder = new DragShadowBuilder(v);
-			v.startDrag(data, builder, v, 0);
-			
-			Log.d(TAG, "Touch recognized");
+			if(event.getAction() == MotionEvent.ACTION_DOWN){
+				ClipData data = ClipData.newPlainText("", "");
+				DragShadowBuilder builder = new DragShadowBuilder(medicineImageView);
+				medicineImageView.startDrag(data, builder, medicineImageView, 0);
+				Log.d(TAG, "Touch recognized");
+				return true;
+				
+			}return false;
+		}
+    	
+    }
+    private class StopAlarmDragListener implements OnDragListener
+    {
+
+		@Override
+		public boolean onDrag(View v, DragEvent event)
+		{
+			switch (event.getAction())
+			{
+				case DragEvent.ACTION_DROP:
+					if(collidesWithStopAlarmButton(event)){
+						Log.d(TAG, "Stopping alarm");
+						stopAlarm();
+					}
+					
+					break;
+
+				default:
+					break;
+			}
 			return true;
+		}
+
+		private boolean collidesWithStopAlarmButton(DragEvent event)
+		{
+			Rect stopRect = getStopAlarmImageView().getDrawable().getBounds();
+			int x = (int) Math.round(event.getX());
+			int y = (int) Math.round(event.getY());
+			if(stopRect.contains(x, y))
+			{
+				Log.d(TAG, "Collided with stop alarm");
+				return true;
+			}
+			return false;
 		}
     	
     }
@@ -121,28 +148,58 @@ public class ChildrenAlarmReceiverActivity extends Activity{
 		@Override
 		public boolean onDrag(View v, DragEvent event)
 		{
-			ImageView medicineView = getMedicineImageView();
 			switch (event.getAction())
 			{
-				case DragEvent.ACTION_DRAG_ENDED:
-					Log.d(TAG, "Drag ended");
-					break;
 				case DragEvent.ACTION_DRAG_EXITED:
-					Log.d(TAG, "Drag exited");
 					break;
 				case DragEvent.ACTION_DROP:
-					Log.d(TAG, "Drag dropped");
+					if(collidesWithMask(event)){
+						Log.d(TAG, "Collided with mask");
+						startTreatmentActivity();
+						Log.d(TAG, "Dropped");
+					}
+				case DragEvent.ACTION_DRAG_ENDED:
+					Log.d(TAG, "Ended");
+					break;
+				case DragEvent.ACTION_DRAG_ENTERED:
+					Log.d(TAG, "Entered");
 					break;
 				default:
 					break;
 			}
-			Log.d(TAG, "Dragged something");
-			return false;
+			
+			return true;
 		}
-    	
+		
+		private boolean collidesWithMask(DragEvent event)
+		{
+			Drawable maskDrawable = getMaskImageView().getDrawable();
+			Rect medRect = maskDrawable.getBounds();
+			int x = (int)Math.round(event.getX());
+			int y = (int)Math.round(event.getY());
+			
+			return medRect.contains(x,y);
+		}	
+    }
+    private void startTreatmentActivity()
+    {
+    	Intent intent = new Intent(ChildrenAlarmReceiverActivity.this,DistractionActivity.class);
+		Bundle bundle = new Bundle();
+		bundle.putSerializable("medicinePlanModel", medicinePlanModel);
+		intent.putExtras(bundle);
+		startActivity(intent);
+		ringtone.stop();
+    	audioManager.setRingerMode(ringerMode);
+		finish();
+    }
+    private ImageView getStopAlarmImageView(){
+    	return (ImageView)findViewById(R.id.stop_alarm_imageview);
     }
     private ImageView getMedicineImageView(){
     	return (ImageView) findViewById(R.id.alarm_medicine_imageview);
+    }
+    private ImageView getMaskImageView(){
+    	return (ImageView) findViewById(R.id.alarm_mask_imageview);
     }
     /**
      * Updates the view with the medicine that was found in the intents extras.
