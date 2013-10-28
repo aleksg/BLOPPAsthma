@@ -51,7 +51,7 @@ public class MainMenuAdapter extends BaseAdapter
 		information = BitmapFactory.decodeResource(context.getResources(), R.drawable.info);
 		instructions = BitmapFactory.decodeResource(context.getResources(), R.drawable.instructions);
 		registerTreatment = BitmapFactory.decodeResource(context.getResources(), R.drawable.etterregistrer);
-		reward = BitmapFactory.decodeResource(context.getResources(), R.drawable.mainmenureward);
+		reward = BitmapFactory.decodeResource(context.getResources(), R.drawable.mainmenutrophy);
 	}
 	public int getCount()
 	{

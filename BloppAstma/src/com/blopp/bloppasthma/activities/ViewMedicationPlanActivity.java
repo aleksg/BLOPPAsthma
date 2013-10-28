@@ -296,6 +296,7 @@ public class ViewMedicationPlanActivity extends Activity implements
 				nameTextView.setText(medicineNames[position]);
 				timeTextView.setText(times[position]);
 
+
 			} else
 			{
 				view = convertView;
