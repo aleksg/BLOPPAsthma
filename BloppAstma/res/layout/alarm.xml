@@ -4,51 +4,55 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-     <ImageView
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="10dp"
+        android:text="@string/alarm_drag_message"
+        android:textSize="19sp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="@string/alarm_time_to_take"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="21sp" />
+
+    <ImageView
         android:id="@+id/stop_alarm_imageview"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_above="@+id/alarm_medicine_imageview"
         android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginRight="60dp"
         android:src="@drawable/cancel_alarm_image" />
-     
+
+    <ImageView
+        android:id="@+id/alarm_mask_imageview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/stop_alarm_imageview"
+        android:layout_below="@+id/alarm_medicine_imageview"
+        android:src="@drawable/mask" />
+
     <ImageView
         android:id="@+id/alarm_medicine_imageview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:layout_alignLeft="@+id/textView2"
         android:layout_centerVertical="true"
-        android:src="@drawable/medicine_flutide_125mg_right" />
+        android:layout_marginLeft="32dp"
+        android:src="@drawable/medicine_seretide_template" />
 
-    <TextView
-        android:id="@+id/alarm_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/alarm_medicine_imageview"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="37dp"
-        android:text="Nå må du huske å ta medisin!"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
-        android:id="@+id/alarm_medicine_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/alarm_medicine_imageview"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="26dp"
-        android:text="Medisin 1"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
-        android:id="@+id/start_treatment_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="50dp"
-        android:text="@string/StartTreatment"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
 </RelativeLayout>
