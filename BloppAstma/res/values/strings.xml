@@ -64,6 +64,7 @@
 	<string name="get_photo">Ta bilde med kamera</string>
 	<string name="save_photo">Lagre bilde og returner</string>
 	<string name="order_rewards">Kjøp</string>
+	<string name="is_bought">Kjøpt</string>
 	<string name="order">Bestilt</string>
 	<string name="buy_dialog">Vil du kjøpe %s</string>
 	<string name="not_ordered">Ikke bestilt</string>
