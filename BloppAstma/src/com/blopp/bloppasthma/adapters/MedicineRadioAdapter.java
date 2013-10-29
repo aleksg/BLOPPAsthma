@@ -84,19 +84,20 @@ public class MedicineRadioAdapter extends BaseAdapter implements OnClickListener
 
 			medicineListView = new View(context);
 			medicineListView.setPadding(30, 0, 0, 0);
+			
 			medicineListView = inflater.inflate(R.layout.register_medicine_item, parent,
 					false);
-
+			
+			
+			
 			ImageView imageView = (ImageView) medicineListView
 					.findViewById(R.id.register_medicine_item_imageview);
 			imageView.setImageBitmap(medicines[position].getBitmap());
-			imageView.setPadding(15, 0, 0, 0);
 			
 			
 			CheckBox checkBox = (CheckBox) medicineListView.findViewById(R.id.register_medicine_checkBox);
 			checkBox.setOnClickListener(this);
 			checkBox.setText("");
-			checkBox.setPadding(10, -15, 0, 0);
 			//There is a bug in the framework, that confuses this view a bit. 
 			//We need this to control the size of number of checkboxes.
 			if (checkList.size() < 3)
@@ -108,7 +109,6 @@ public class MedicineRadioAdapter extends BaseAdapter implements OnClickListener
 					.findViewById(R.id.register_medicine_item_textview);
 			nameView.setText(medicines[position].getName());
 			nameView.setTextColor(Color.BLACK);
-			nameView.setPadding(30, 15,0,0);
 
 		} else
 		{
