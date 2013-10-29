@@ -9,10 +9,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -53,6 +51,10 @@ public class ViewMedicationPlanActivity extends Activity implements
 	private Button addMedicineButton;
 	private HashMap<String, String> timeMap;
 	private int pressedMedicine;
+	private ImageView medicinePlanImageView;
+	private TextView medicineNameTextView;
+	
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -61,24 +63,14 @@ public class ViewMedicationPlanActivity extends Activity implements
 		
 		childIdService = new ChildIdService(getApplicationContext());
 		
-		if (getIntent().getExtras().containsKey("healthZone"))
-			try
-			{
-				healthZone = (HealthZone) getIntent().getExtras().getSerializable(
-						"healthZone");
-			} catch (Exception e)
-			{
-				healthZone = HealthZone.GREEN_ZONE;
-			}
-		else
-		{
-			healthZone = HealthZone.GREEN_ZONE;
-		}
+		
+		initHealthZone();
 		listView = (ListView) findViewById(R.id.medicine_listview);
+		
 		intializeList();
+		initializeHeader(HealthState.getIdByHealthZone(healthZone));
 		
-		listView.setAdapter(new PlanMedicineListAdapter(timeMap, (HealthState.getIdByHealthZone(healthZone)-1)));
-		
+		listView.setAdapter(new PlanMedicineListAdapter(timeMap));
 		listView.setOnItemClickListener(this);		
 		addMedicineButton = (Button) findViewById(R.id.add_medicine_button);
 		addMedicineButton.setOnClickListener(new OnClickListener()
@@ -95,6 +87,36 @@ public class ViewMedicationPlanActivity extends Activity implements
 		});
 	}
 
+	private void initHealthZone()
+	{
+		if (getIntent().getExtras().containsKey("healthZone"))
+			try
+			{
+				healthZone = (HealthZone) getIntent().getExtras().getSerializable(
+						"healthZone");
+			} catch (Exception e)
+			{
+				healthZone = HealthZone.GREEN_ZONE;
+			}
+		else
+		{
+			//TODO: Should throw some kind of exception.
+			healthZone = HealthZone.GREEN_ZONE;
+		}
+	}
+	
+	private void initializeHeader(int healthZone)
+	{
+		PlanViewHolder holder = new PlanViewHolder(healthZone);
+		medicinePlanImageView = (ImageView) findViewById(R.id.medicine_plan_smiley);
+		medicinePlanImageView.setImageBitmap(holder.getImage());
+		
+		medicineNameTextView = (TextView) findViewById(R.id.medicine_plan_name);
+		medicineNameTextView.setText(holder.getPlanName());
+		Log.d(TAG, "name is " + holder.getPlanName());
+		
+	}
+	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data)
 	{
@@ -139,15 +161,11 @@ public class ViewMedicationPlanActivity extends Activity implements
 				timeMap.put(m.getTime(), m.getMedicineName());
 			}
 		}
-		
 	}
 	
 	public void onItemClick(AdapterView<?> adapter, View arg1, int position, long arg3)
 	{
-		if (position == 0) 
-		{
-			return;
-		}
+	
 		
 		pressedMedicine = position;
 		
@@ -161,7 +179,6 @@ public class ViewMedicationPlanActivity extends Activity implements
 		       .setPositiveButton("Angre", new DialogInterface.OnClickListener() {
 
 		    	   public void onClick(DialogInterface dialog, int which) {
-					// TODO Auto-generated method stub
 					
 				}
 			})
@@ -177,6 +194,7 @@ public class ViewMedicationPlanActivity extends Activity implements
 					AvailableMedicines am = new AvailableMedicines();
 					int medicine_id = am.getMedicineByName(medicineName);
 					DeleteMedicineModel model = new DeleteMedicineModel(childIdService.getChildId(), medicine_id, time, HealthState.getIdByHealthZone(healthZone));
+					
 					Log.d("Deleting medicine", model.toString());
 					
 					DeleteMedicineFromPlanPoster poster = new DeleteMedicineFromPlanPoster(model.toString());
@@ -198,17 +216,14 @@ public class ViewMedicationPlanActivity extends Activity implements
 	@Override
 	protected void onResume()
 	{
-		
 		super.onResume();
-		redrawList();
-		
+		redrawList();	
 	}
 	private void redrawList()
 	{
 		listView = (ListView) findViewById(R.id.medicine_listview);
 		intializeList();
-		//TODO: Why subtract 1 here?
-		listView.setAdapter(new PlanMedicineListAdapter(timeMap, (HealthState.getIdByHealthZone(healthZone)-1)));
+		listView.setAdapter(new PlanMedicineListAdapter(timeMap));
 	}
 	private String getMedicineName(String combined)
 	{
@@ -226,14 +241,9 @@ public class ViewMedicationPlanActivity extends Activity implements
 		private String[] times;
 		private String[] medicineNames;
 		
-		private PlanViewHolder planViewHolder;
-		
-		
-		public PlanMedicineListAdapter(HashMap<String, String> medicines, int healthStateId)
+		public PlanMedicineListAdapter(HashMap<String, String> medicines)
 		{
 			this.medicines = medicines;
-			this.planViewHolder = new PlanViewHolder(healthStateId);
-			
 			initArrays();
 		}
 
@@ -248,18 +258,17 @@ public class ViewMedicationPlanActivity extends Activity implements
 				medicineNames[i] = medicines.get(key);
 				i++;
 			}
-
 		}
 		
 		public int getCount()
 		{
-			return medicines.size()+1;
+			return medicines.size();
 		}
 
 		public String getItem(int position)
 		{
 			
-			return times[position-1] + "!" + medicineNames[position-1];
+			return times[position] + "!" + medicineNames[position];
 		}
 		public long getItemId(int position)
 		{
@@ -268,62 +277,48 @@ public class ViewMedicationPlanActivity extends Activity implements
 		}
 		public View getView(int position, View convertView, ViewGroup parent)
 		{
-			View v = convertView;
-			if (v == null)
+			View view = convertView;
+			if (view == null)
 			{
 				LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-				if (position == 0)
-				{
-					/**
-					 * Top item. Displays
-					 */
-					v = inflater.inflate(R.layout.medicine_list_for_plan_menu, null);
-					ImageView imageView = (ImageView) v.findViewById(R.id.medicine_plan_alarm_list_icon);
-					imageView.setImageBitmap(planViewHolder.getImage());
-					TextView planName = (TextView) v.findViewById(R.id.medicine_plan_alarm_list_textView);
-					planName.setText(planViewHolder.getPlanName());
-					planName.setPadding(20, 20, 20, 20);
-					planName.setGravity(Gravity.CENTER_VERTICAL);
-					planName.setTextColor(Color.BLACK);
-				} else
-				{
-					v = inflater.inflate(R.layout.plan_medicine_list_item, null);
-					TextView nameTextView = (TextView) v
-							.findViewById(R.id.medicine_name_textview);
-					TextView timeTextView = (TextView) v
-							.findViewById(R.id.time_to_take_textview);
-					nameTextView.setText(medicineNames[position-1]);
-					timeTextView.setText(times[position-1]);
-				}
+				view = inflater.inflate(R.layout.plan_medicine_list_item, null);
+				TextView nameTextView = (TextView) view
+						.findViewById(R.id.medicine_name_textview);
+				TextView timeTextView = (TextView) view
+						.findViewById(R.id.time_to_take_textview);
+				nameTextView.setText(medicineNames[position]);
+				timeTextView.setText(times[position]);
+
 
 			} else
 			{
-				v = convertView;
+				view = convertView;
 			}
 
-			return v;
+			return view;
 		}
 		/**
 		 * A list-item for medicationsplans holds an icon and a name (Syk, Litt syk, Frisk). This is a helper for the adapter. 
 		 */
-		private class PlanViewHolder
+	}
+	private class PlanViewHolder
+	{
+		private Bitmap image;
+		private String planName;
+		public PlanViewHolder(int healthState)
 		{
-			private Bitmap image;
-			private String planName;
-			public PlanViewHolder(int healthState)
-			{
-				switch (healthState) {
-				case 0:
+			switch (healthState) {
+				case 1:
 					this.image = BitmapFactory.decodeResource(getResources(),
 							R.drawable.smiley);
 					this.planName = "Frisk";
 					break;
-				case 1:
+				case 2:
 					this.image = BitmapFactory.decodeResource(getResources(),
 							R.drawable.mellowie);
 					this.planName = "Litt syk";
 					break;
-				case 2:
+				case 3:
 					this.image = BitmapFactory.decodeResource(getResources(),
 							R.drawable.sadie);
 					this.planName = "Syk";
@@ -332,15 +327,18 @@ public class ViewMedicationPlanActivity extends Activity implements
 					this.image = BitmapFactory.decodeResource(getResources(),
 							R.drawable.sadie);
 					this.planName = "Frisk";
+					Log.e(TAG,"Default health state was chosen. Healthstate = " + healthState);
+					
 					break;	
-				}
-
 			}
-			public Bitmap getImage()
-			{
-				return this.image;
-			}
-			public String getPlanName(){return this.planName;}	
+			
+		}
+		public Bitmap getImage()
+		{
+			return this.image;
+		}
+		public String getPlanName(){
+			return this.planName;
 		}	
-	}
+	}	
 }
