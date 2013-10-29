@@ -9,10 +9,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -167,11 +165,7 @@ public class ViewMedicationPlanActivity extends Activity implements
 	
 	public void onItemClick(AdapterView<?> adapter, View arg1, int position, long arg3)
 	{
-		//TODO: I think this is for the old ListView, with header included...
-//		if (position == 0) 
-//		{
-//			return;
-//		}
+	
 		
 		pressedMedicine = position;
 		
@@ -200,6 +194,7 @@ public class ViewMedicationPlanActivity extends Activity implements
 					AvailableMedicines am = new AvailableMedicines();
 					int medicine_id = am.getMedicineByName(medicineName);
 					DeleteMedicineModel model = new DeleteMedicineModel(childIdService.getChildId(), medicine_id, time, HealthState.getIdByHealthZone(healthZone));
+					
 					Log.d("Deleting medicine", model.toString());
 					
 					DeleteMedicineFromPlanPoster poster = new DeleteMedicineFromPlanPoster(model.toString());
@@ -245,8 +240,6 @@ public class ViewMedicationPlanActivity extends Activity implements
 		private HashMap<String, String> medicines;
 		private String[] times;
 		private String[] medicineNames;
-		
-		
 		
 		public PlanMedicineListAdapter(HashMap<String, String> medicines)
 		{
