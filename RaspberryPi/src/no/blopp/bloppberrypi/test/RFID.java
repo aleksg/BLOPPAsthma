@@ -10,7 +10,7 @@ class RFID
     // - Get an instance of Serial for COM interaction
     private final Serial serial = SerialFactory.createInstance();
 
-    public RFIDReaderBasic()
+    public RFID()
     {
         // - Change this to the COM port of your RFID reader
         String comPort = "/dev/ttyUSB0";
@@ -72,6 +72,6 @@ class RFID
 
     public static void main( String[] args )
     {
-        new RFIDReaderBasic();
+        new RFID();
     }
 }
