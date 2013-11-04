@@ -6,27 +6,28 @@
     <ListView
         android:id="@+id/kidsrewardlist"
         android:layout_width="match_parent"
-        android:layout_height="402dp"
+        android:layout_height="382dp"
         android:layout_alignParentBottom="true"
         android:layout_below="@+id/stars_image" >
-
     </ListView>
 
     <ImageView
         android:id="@+id/stars_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="10dp"
         android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
         android:src="@drawable/star" />
 
     <TextView
         android:id="@+id/num_stars_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:layout_alignBottom="@+id/stars_image"
-        android:layout_toRightOf="@+id/stars_image"
-        android:text="Large Text"
+        android:layout_centerHorizontal="true"
+        android:text="N"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </RelativeLayout>
