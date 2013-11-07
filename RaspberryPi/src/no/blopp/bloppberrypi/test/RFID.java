@@ -4,6 +4,7 @@ import com.pi4j.io.serial.Serial;
 import com.pi4j.io.serial.SerialDataEvent;
 import com.pi4j.io.serial.SerialDataListener;
 import com.pi4j.io.serial.SerialFactory;
+import com.pi4j.io.serial.SerialPortException;
 
 class RFID
 {
@@ -37,18 +38,18 @@ class RFID
 
 
         // - Attempt to open the COM port
-        int result = serial.open( comPort, 2400 );
+        try{
+        	serial.open( comPort, 2400 );
+        	System.out.println("COM port opened!");
+        }catch(SerialPortException e)
+        {
+        	System.out.println("Could not establish connection");
+        }
 
-        // - Check if it worked!
-        if ( result == -1 )
-        {
-            System.out.println("Failed to open COM port!");
-            return;
-        }
-        else
-        {
-            System.out.println("COM port opened!");
-        }
+        
+        
+         
+        
 
         // - When you are done, ensure you close the port
         // To demonstrate, I am waiting 20 seconds and then closing the port.
