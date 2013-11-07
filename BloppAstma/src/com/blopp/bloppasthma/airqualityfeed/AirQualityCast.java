@@ -39,7 +39,7 @@ public class AirQualityCast extends GenericAirQualityJSONParser
 			int size = json_array.length();
 			if(size >= 1)
 			{
-				JSONObject place = (JSONObject) json_array.get(0);
+				JSONObject place = (JSONObject) json_array.get(1);
 				JSONObject highestAqiIndex = (JSONObject)place.get("HighestAqiIndex");
 				JSONObject station = (JSONObject)place.get("Station");
 				AirQualityState quality = new AirQualityState()
