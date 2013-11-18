@@ -22,4 +22,4 @@ local.properties
 #OSX something
 .DS_Store
 
-.jar
+*.jar
