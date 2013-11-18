@@ -26,7 +26,7 @@ public class GPIO {
             // Open file handles to GPIO port unexport and export controls
             FileWriter unexportFile = new FileWriter("/sys/class/gpio/unexport");
             FileWriter exportFile = new FileWriter("/sys/class/gpio/export");
-
+            
             // Reset the port
             File exportFileCheck = new File("/sys/class/gpio/gpio"+gpioChannel);
             if (exportFileCheck.exists()) {

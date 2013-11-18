@@ -6,7 +6,7 @@ import com.pi4j.io.serial.SerialDataListener;
 import com.pi4j.io.serial.SerialFactory;
 import com.pi4j.io.serial.SerialPortException;
 
-class RFID
+public class RFID
 {
     // - Get an instance of Serial for COM interaction
     private final Serial serial = SerialFactory.createInstance();
@@ -45,11 +45,6 @@ class RFID
         {
         	System.out.println("Could not establish connection");
         }
-
-        
-        
-         
-        
 
         // - When you are done, ensure you close the port
         // To demonstrate, I am waiting 20 seconds and then closing the port.
