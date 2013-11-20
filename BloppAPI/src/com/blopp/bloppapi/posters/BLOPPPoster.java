@@ -7,9 +7,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import org.apache.http.client.methods.HttpPost;
-
-public abstract class BLOPPPoster implements PostAndParseData {
+public abstract class BLOPPPoster<T> implements PostAndParseData<T> {
 	
 	private String urlBody = "http://folk.ntnu.no/esbena/blopp/";
 	private String params;

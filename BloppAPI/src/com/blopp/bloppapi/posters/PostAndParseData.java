@@ -3,9 +3,9 @@ package com.blopp.bloppapi.posters;
 import java.io.IOException;
 import java.net.MalformedURLException;
 
-public interface PostAndParseData {
+public interface PostAndParseData<T> {
 	
 	void postData() throws MalformedURLException, IOException;
-	abstract void parseData();
+	abstract <T> T parseData();
 
 }
