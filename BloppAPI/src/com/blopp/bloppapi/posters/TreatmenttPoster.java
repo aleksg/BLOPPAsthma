@@ -2,11 +2,12 @@ package com.blopp.bloppapi.posters;
 
 import com.blopp.bloppapi.gsondeserializers.ChildCreditsDeserializer;
 import com.blopp.bloppapi.models.Child;
+import com.blopp.bloppapi.models.ChildCredits;
 import com.blopp.bloppapi.models.Treatment;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-public class TreatmenttPoster extends BLOPPPoster<Child>
+public class TreatmenttPoster extends BLOPPPoster<ChildCredits>
 {
 	
 	private static final String phpPage = "register_medicine_taken?";
@@ -16,20 +17,17 @@ public class TreatmenttPoster extends BLOPPPoster<Child>
 	}
 
 	@Override
-	public Child parseData() 
+	public ChildCredits parseData() 
 	{
 		System.out.println(getReply());
 		
 		GsonBuilder builder = new GsonBuilder();
 		builder.registerTypeAdapter(Child.class, new ChildCreditsDeserializer());
 		Gson gson = builder.create();
-		Child child = gson.fromJson(getReply(), Child.class);
-		System.out.println("Child id = " + child.getUid());
-		System.out.println("MedicineID = " + child.getCredits());
-		System.out.println("Healthstate = " + child.getHealthState());
-		System.out.println("MedicalPlanDoseID = " + child.getMedicalPlanId());
-				
-		return child;
+		ChildCredits childcredits = gson.fromJson(getReply(), ChildCredits.class);
+		System.out.println("MedicineID = " + childcredits.getCredits());
+
+		return childcredits;
 	}
 	
 }

@@ -57,7 +57,14 @@ public class Treatment {
 		{
 			//String _name = URLEncoder.encode(getName(), ENCODING_TYPE);
 			String _healthState = URLEncoder.encode(Integer.toString(getHealthState()), ENCODING_TYPE);
-			return String.format("states[]=%s", _healthState);
+			String _childid = URLEncoder.encode(Integer.toString(getUid()), ENCODING_TYPE);
+			String _medicineID = URLEncoder.encode(Integer.toString(getMedicineID()), ENCODING_TYPE);
+			
+			String _time = URLEncoder.encode(getTime(), ENCODING_TYPE);
+			String _dayDate = URLEncoder.encode(getDayDate(), ENCODING_TYPE);
+//			String _medicalPlanDoseID = URLEncoder.encode(Integer.toString(getMedicalPlanDoseID()), ENCODING_TYPE);
+//			return String.format("health_state_id=%s&child_id=%s&medicine_id=%s&time=%s&day_date=%s&medical_plan_dose_id=%s", _healthState, _childid, _medicineID, _time, _dayDate, _medicalPlanDoseID);
+			return String.format("health_state_id=%s&child_id=%s&medicine_id=%s&time=%s&day_date=%s", _healthState, _childid, _medicineID, _time, _dayDate);
 		} catch (UnsupportedEncodingException e)
 		{
 			e.printStackTrace();
