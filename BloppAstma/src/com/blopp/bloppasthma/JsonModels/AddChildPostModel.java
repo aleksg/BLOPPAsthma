@@ -43,7 +43,7 @@ public class AddChildPostModel
 			_states = URLEncoder.encode(Integer.toString(getHealthState()), ENCODING_TYPE);
 			_name = URLEncoder.encode(getName(), ENCODING_TYPE);
 			_ssn = URLEncoder.encode(getSSN(), ENCODING_TYPE);
-			return String.format("name=%s&persnum=%s&states[]=%s", _name, _ssn, _states);
+			return String.format("name=%s&states[]=%s", _name, _states);
 		}catch(UnsupportedEncodingException e)
 		{
 			e.printStackTrace();
