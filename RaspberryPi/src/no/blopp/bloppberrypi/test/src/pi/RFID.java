@@ -1,4 +1,4 @@
-package no.blopp.bloppberrypi.test;
+package pi;
 
 import com.pi4j.io.serial.Serial;
 import com.pi4j.io.serial.SerialDataEvent;
