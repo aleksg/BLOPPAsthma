@@ -16,15 +16,11 @@ public class AddChildPoster extends BLOPPPoster<Child>
 	@Override
 	public Child parseData()
 	{
-		System.out.println(getReply());
-		
+//		System.out.println(getReply());
 		GsonBuilder builder = new GsonBuilder();
 		builder.registerTypeAdapter(Child.class, new ChildDeserializer());
 		Gson gson = builder.create();
-		
 		Child child = gson.fromJson(getReply(), Child.class);
-		System.out.println("Child id = " + child.getUid());
-		System.out.println("Medical plan id = " + child.getMedicalPlanId());
 		
 		return child;
 	}
