@@ -1,4 +1,4 @@
-package no.blopp.bloppberrypi.test;
+package pi;
 
 import java.io.FileWriter;
 import java.io.File;
@@ -14,6 +14,10 @@ public class GPIO {
     static final String GPIO_OFF = "0";
     static final String GPIO_CH00="0";
 
+    //IMPORTANT!!
+    //Change gpiochannel to a suitable channel, or else, armageddon is loose
+    static final int gpioChannel = 1;
+    
     /**
      * @param args the command line arguments
      */
