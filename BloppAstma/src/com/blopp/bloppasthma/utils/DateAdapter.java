@@ -1,5 +1,7 @@
 package com.blopp.bloppasthma.utils;
 
+import org.joda.time.DateTime;
+
 
 /**
  * 
@@ -10,6 +12,7 @@ package com.blopp.bloppasthma.utils;
 public class DateAdapter
 {
 	private int day, month, year;
+	public static final String[] MONTHS = {"Januar", "Februar", "Mars", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Desember"};
 	public DateAdapter()
 	{	
 	}
@@ -27,4 +30,11 @@ public class DateAdapter
 	{
 		return "" + this.year + "-" + (this.month <= 9 ? "0"+this.month : this.month) + "-" + (this.day<=9 ? "0"+this.day : this.day);   
 	}
+	
+	public static String getMonth(DateTime dateTime)
+	{
+		int prettyMonth = dateTime.getMonthOfYear();
+		return MONTHS[prettyMonth-1];
+	}
+	
 }

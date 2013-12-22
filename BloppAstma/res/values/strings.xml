@@ -64,6 +64,7 @@
 	<string name="get_photo">Ta bilde med kamera</string>
 	<string name="save_photo">Lagre bilde og returner</string>
 	<string name="order_rewards">Kjøp</string>
+	<string name="is_bought">Kjøpt</string>
 	<string name="order">Bestilt</string>
 	<string name="buy_dialog">Vil du kjøpe %s</string>
 	<string name="not_ordered">Ikke bestilt</string>
@@ -73,6 +74,7 @@
 	<string name="airquality_topbar">Luftkvalitet</string>
 	<string name="pollen_topbar">Pollen</string>
 	<string name="choose_reward_image">Velg bilde</string>
+	<string name="treatment_choose_medicine">Velg medisin</string>
 	<string name="alarm_drag_message">Dra medisinen til masken for å starte</string>
 	<string name="alarm_time_to_take">Det er på tide å ta medisin</string>
 </resources>

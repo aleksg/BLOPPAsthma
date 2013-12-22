@@ -8,15 +8,13 @@
         android:id="@+id/medicine_name_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:text="b" />
+        android:text="medicine name"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
         android:id="@+id/time_to_take_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:text="a" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="time" />
 </LinearLayout>

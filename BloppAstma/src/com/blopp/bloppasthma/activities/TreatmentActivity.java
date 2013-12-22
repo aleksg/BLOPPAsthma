@@ -1,15 +1,23 @@
 package com.blopp.bloppasthma.activities;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+import java.util.TimeZone;
 import java.util.concurrent.ExecutionException;
 
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
+import org.joda.time.JodaTimePermission;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -23,6 +31,7 @@ import com.blopp.bloppasthma.jsonparsers.HealthStateParser;
 import com.blopp.bloppasthma.jsonposters.PostRegisterTreatment;
 import com.blopp.bloppasthma.mockups.ChildIdService;
 import com.blopp.bloppasthma.utils.AvailableMedicines;
+import com.blopp.bloppasthma.utils.DateAdapter;
 
 public class TreatmentActivity extends Activity
 {
@@ -35,6 +44,7 @@ public class TreatmentActivity extends Activity
 	private String dateNow;
 	private ListView medicineListView; //Listview containing a checkbox, the medicinename and the icon of the medicine. 
 	private TextView dateTextField, chooseMedicineTextField;
+	private DatePicker datePicker;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState)
@@ -45,7 +55,9 @@ public class TreatmentActivity extends Activity
 		childIdService = new ChildIdService(getApplicationContext());
 		
 		submitButton = (Button) findViewById(R.id.register_treatment_button);
-		dateEditText = (EditText) findViewById(R.id.treatment_date_editText);
+//		dateEditText = (EditText) findViewById(R.id.treatment_date_editText);
+		datePicker = (DatePicker)findViewById(R.id.datePicker);
+		
 		availableMedicines = new AvailableMedicines();
 		medicineListView = (ListView) findViewById(R.id.treatment_medication_listView);
 		medicineListView.setDivider(null);
@@ -53,11 +65,10 @@ public class TreatmentActivity extends Activity
 		medicineListView.setAdapter(new MedicineRadioAdapter(
 				getApplicationContext()));
 		dateTextField = (TextView)findViewById(R.id.treatment_date_textView);
-		dateTextField.setPadding(10, 0, 0, 0);
-		chooseMedicineTextField = (TextView) findViewById(R.id.treatment_choose_medicine);
-		chooseMedicineTextField.setPadding(10, 0, 0, 0);
 
-		initDateEditText();
+		chooseMedicineTextField = (TextView) findViewById(R.id.treatment_choose_medicine);
+		
+
 		submitButton.setOnClickListener(new OnClickListener()
 		{
 			
@@ -69,18 +80,6 @@ public class TreatmentActivity extends Activity
 		});
 	}
 	
-	/**
-	 * Initializes the field dateEditText with the current date. 
-	 */
-	private void initDateEditText()
-	{
-		DateTime dateTime = new DateTime();
-		int day = dateTime.getDayOfMonth();
-		int month = dateTime.getMonthOfYear();
-		int year = dateTime.getYear();
-		dateNow = day + "-" + month + "-" + year + "";
-		dateEditText.setText(dateNow);
-	}
 
 	/**
 	 * When user presses "Register", validate the form and submit it. 
@@ -88,7 +87,7 @@ public class TreatmentActivity extends Activity
 	private void submitForm()
 	{
  
-		String date = formatDate(dateEditText.getText().toString());
+		
 		MedicineRadioAdapter adapter = (MedicineRadioAdapter)medicineListView.getAdapter();
 		MedicineListModel medicineChosen = adapter.getCheckedItem();
 		if(medicineChosen==null)
@@ -99,12 +98,13 @@ public class TreatmentActivity extends Activity
 		int medicineId = availableMedicines
 				.getMedicineByName(medicineChosen.getName());
 		
-		if (!validateDate(date))
+		if (!inputDateIsLegal())
 		{
 			Toast.makeText(this, R.string.date_error,
 					Toast.LENGTH_SHORT).show();
 			return; //Return if date is invalid
 		}
+		
 		//Should not occur unless there is some sort of injection in the view. 
 		if (medicineId == -1)
 		{
@@ -112,25 +112,53 @@ public class TreatmentActivity extends Activity
 					"Vennligst velg en medisin", Toast.LENGTH_SHORT).show();
 			return; //Return if medicineId is -1. This happens when the medicine with given name is not in stored in the database. 
 		}
-		
-		post(repairDateFormat(date), medicineId);
+		post(formatDate(), medicineId);
 	}
+	
 	/**
-	 * Posts to the database, the date and medicineid. The table used for this is
-	 * day_medicine_doses.
-	 * @param date
-	 * @param medicineId
+	 * 
+	 * @return false if the medicine is taken later than today 
 	 */
+	private boolean inputDateIsLegal()
+	{
+		Calendar current = Calendar.getInstance();
+		
+		Calendar picked = Calendar.getInstance();
+		picked.set(Calendar.DAY_OF_MONTH, datePicker.getDayOfMonth());
+		picked.set(Calendar.MONTH, datePicker.getMonth());
+		picked.set(Calendar.YEAR, datePicker.getYear());
+		
+		if(current.compareTo(picked) == -1)
+		{
+			return false;
+		}else{
+			return true;
+		}		
+	}
+	
 	private void post(String date, int medicineId)
 	{
-		// TODO: Replace with actual childId
 		int healthStateId = getCurrentHealthState();
-		if(healthStateId==-1)
+		if(healthStateId == -1)
 		{
 			return; //Return if we could not retrieve healthstate 
 		}
 		RegisterMedicinePostModel model = new RegisterMedicinePostModel(date,
 				medicineId, childIdService.getChildId(), healthStateId);
+		int reward = executeRegisterPost(model);
+		if(reward == -1){
+			showPostError();
+			return;
+		}
+		Toast t2 = Toast.makeText(this, "Barnet ditt fikk " + reward
+				+ " stjerner", Toast.LENGTH_LONG); //Notify the parent that the child got some stars
+		t2.show();
+		returnToMainMenu(); //Return when the post is completed
+	}
+
+
+	private int executeRegisterPost(RegisterMedicinePostModel model)
+	{
 		PostRegisterTreatment poster = new PostRegisterTreatment(
 				model.toString());
 		//Execute the post
@@ -140,105 +168,32 @@ public class TreatmentActivity extends Activity
 			poster.get();
 		} catch (InterruptedException e)
 		{
-			showPostError();
 			e.printStackTrace();
-			return; //Return if the post was unsuccessful
+			return -1;
 		} catch (ExecutionException e)
 		{
-			showPostError();
 			e.printStackTrace();
-			return; //Return if the post was unsuccessful
+			return -1;
 		}
 		int reward = poster.getTreatmentResult().getReward();
-		Toast t2 = Toast.makeText(this, "Barnet ditt fikk " + reward
-				+ " stjerner", Toast.LENGTH_LONG); //Notify the parent that the child got some stars
-		t2.show();
-		returnToMainMenu(); //Return when the post is completed
+		return reward;
 	}
-	/**
-	 * Replaces . and / with -, to cope with mysql-standards. 
-	 * Also adds a year to the returned string if this is not manually written in. 
-	 * @param date
-	 * @return
-	 */
-	private String formatDate(String date)
+	
+	private String formatDate()
 	{
-		String tmp;
-		tmp = date.replace(".", "-");
-		tmp = tmp.replace("/", "-");
-		if (tmp.split("-").length == 2)
-		{
-			DateTime dt = new DateTime();
-
-			tmp = tmp + "-" + dt.getYear();
-		}
-		return tmp;
-	}
-	/**
-	 * Contains one bug. That is, if the user inputs day = 31 for a month containing 30 or less days. Needs a fix
-	 * @param date, the input from the user
-	 * @return returns true if 1<=day<=31,1<=month<=12, year>=2011. 
-	 */
-	private boolean validateDate(String date)
-	{
-		int dateLength = date.split("-").length;
-		String[] dateElements = new String[dateLength];
-		int[] dates = new int[3];
-
-		for (int i = 0; i < dateLength; i++)
-		{
-				dateElements[i] = date.split("-")[i];
-				dates[i] = Integer.parseInt(dateElements[i]);
-		}
-		dates[2] = expandYear(dates[2]);
-		boolean a = (dates[0] <= 31 && dates[0] >= 1);
-		boolean b = (dates[1] >= 1 && dates[1] <= 12);
-		boolean c = (dates[2] >= 2011);
-		return a && b && c;
-	}
-
-	/**
-	 * Split input on "-".
-	 * 
-	 * @param inputDate
-	 * @return
-	 */
-	private String repairDateFormat(String inputDate)
-	{
+		int day = datePicker.getDayOfMonth();
+		int month = datePicker.getMonth()+1;
+		int year = datePicker.getYear();
+		String date = String.format("%d-%d-%d", day, month, year); 
 		
-		String[] splittedInput = inputDate.split("-");
-		String[] tmp = new String[3];
-		//If input only contains day and month, add 2012
-		if (splittedInput.length == 2)
-		{
-			tmp[0] = splittedInput[0];
-			tmp[1] = splittedInput[1];
-			tmp[2] = "2012";
-			splittedInput = tmp;
-		}
-		String newDateElement = splittedInput[2] + "-" + splittedInput[1] + "-"
-				+ splittedInput[0];
-		return newDateElement;
+		return new DateAdapter(day, month, year).getSqlFormattedDate();
 	}
 
-	/**
-	 * If the user has only put in two digits, expand it with 2000. Assumes we
-	 * never go out of this thousandyear
-	 * 
-	 * @param year
-	 * @return
-	 */
-	private int expandYear(int year)
-	{
-		return (year <= 99 && year >= 1) ? (year + 2000) : year;
-	}
 	/**
 	 * Called after the user has successfully submitted the form.
 	 */
 	private void returnToMainMenu()
 	{
-//		Intent intent = new Intent(TreatmentActivity.this, ParentsMainMenu.class);
-//		startActivity(intent);
 		finish();
 	}
 	private void showPostError()
