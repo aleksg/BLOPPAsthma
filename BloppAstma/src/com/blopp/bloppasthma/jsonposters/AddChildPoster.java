@@ -3,7 +3,7 @@ package com.blopp.bloppasthma.jsonposters;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.blopp.bloppasthma.JsonModels.AddChildPostModel;
+import com.blopp.bloppasthma.jsonmodels.AddChildPostModel;
 
 public class AddChildPoster extends DatabasePoster
 {

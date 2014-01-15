@@ -5,7 +5,7 @@ import org.json.JSONObject;
 
 import android.util.Log;
 
-import com.blopp.bloppasthma.JsonModels.ChildResultModel;
+import com.blopp.bloppasthma.jsonmodels.ChildResultModel;
 import com.blopp.bloppasthma.jsonparsers.IInitializeFromJSON.BLOPParser;
 
 public class ChildModelParser extends GenericJSONParser implements BLOPParser

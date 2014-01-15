@@ -2,7 +2,7 @@ package com.blopp.bloppasthma.tests;
 
 import org.junit.Assert;
 
-import com.blopp.bloppasthma.JsonModels.AddChildPostModel;
+import com.blopp.bloppasthma.jsonmodels.AddChildPostModel;
 import com.blopp.bloppasthma.jsonposters.AddChildPoster;
 
 import android.test.AndroidTestCase;

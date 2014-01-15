@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/pinInfoTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/insertPinTextView"
+        android:layout_marginLeft="21dp"
+        android:text="@string/create_new_pin"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/insertPinTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/pinInfoTextView"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="33dp"
+        android:layout_marginRight="21dp"
+        android:text="PIN"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/pinEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/pinInfoTextView"
+        android:layout_below="@+id/pinInfoTextView"
+        android:ems="7"
+        android:inputType="numberPassword" />
+
+    <Button
+        android:id="@+id/pinSubmitButton"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignBottom="@+id/pinEditText"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/pinInfoTextView"
+        android:layout_toRightOf="@+id/pinEditText"
+        android:text="OK" />
+
+</RelativeLayout>

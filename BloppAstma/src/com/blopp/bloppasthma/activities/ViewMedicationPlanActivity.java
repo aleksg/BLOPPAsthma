@@ -27,8 +27,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blopp.bloppasthma.R;
-import com.blopp.bloppasthma.JsonModels.DeleteMedicineModel;
-import com.blopp.bloppasthma.JsonModels.MedicationPlanResult;
+import com.blopp.bloppasthma.jsonmodels.DeleteMedicineModel;
+import com.blopp.bloppasthma.jsonmodels.MedicationPlanResult;
 import com.blopp.bloppasthma.jsonparsers.MedicationPlanParser;
 import com.blopp.bloppasthma.jsonposters.DeleteMedicineFromPlanPoster;
 import com.blopp.bloppasthma.mockups.ChildIdService;

@@ -23,12 +23,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blopp.bloppasthma.R;
-import com.blopp.bloppasthma.JsonModels.RegisterMedicinePostModel;
 import com.blopp.bloppasthma.adapters.MedicineListAdapter;
 import com.blopp.bloppasthma.adapters.StarsAdapter;
 import com.blopp.bloppasthma.div.Actions;
 import com.blopp.bloppasthma.div.ColorMeds;
 import com.blopp.bloppasthma.div.SoundStreamer;
+import com.blopp.bloppasthma.jsonmodels.RegisterMedicinePostModel;
 import com.blopp.bloppasthma.jsonparsers.MedicineListParser;
 import com.blopp.bloppasthma.jsonposters.PostRegisterTreatment;
 import com.blopp.bloppasthma.mockups.ChildIdService;

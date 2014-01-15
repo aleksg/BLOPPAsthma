@@ -33,11 +33,6 @@
         <activity
             android:name="com.blopp.bloppasthma.activities.SelectUserActivity"
             android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
                 <activity
             android:name="com.blopp.bloppasthma.activities.HealthStatusActivity"
@@ -133,6 +128,14 @@
         <activity android:name="com.blopp.bloppasthma.activities.AddRewardActivity"></activity>
         <activity android:name=".activities.SelectDefaultRewardImageActivity"></activity>
         <activity android:name=".activities.ChildrenAlarmReceiverActivity"></activity>
+        <activity android:name="com.blopp.bloppasthma.activities.PINActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            
+        </activity>
     </application>
 
 </manifest>

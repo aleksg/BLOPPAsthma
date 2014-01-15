@@ -73,4 +73,9 @@
 	<string name="airquality_topbar">Luftkvalitet</string>
 	<string name="pollen_topbar">Pollen</string>
 	<string name="choose_reward_image">Velg bilde</string>
+	<string name="create_new_pin">For å anonymisere barnet ditt sine data, må du taste inn en valgfri PIN kode. Vennligst ikke bruk samme PIN kode som du bruker for å låse opp telefonen. </string>
+	<string name="answer_pin_challenge">Tast inn din PIN-kode for å starte BloppAsthma. </string>
+	<string name="pin_error_message">PIN-kodene du tastet inn var ulike. Prøv på nytt</string>
+	<string name="pin_repeat_message">Gjenta PIN kode. </string>
+	<string name="pin_challenge_failed">PIN-koden du trykket inn er feil. Prøv på nytt. </string>
 </resources>
