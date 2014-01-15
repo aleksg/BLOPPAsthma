@@ -1,10 +1,6 @@
 package com.blopp.bloppasthma.activities;
 
-import com.blopp.bloppasthma.R;
-import com.blopp.bloppasthma.mockups.PINStorage;
-
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -14,6 +10,9 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.blopp.bloppasthma.R;
+import com.blopp.bloppasthma.mockups.PINStorage;
 /*TODO: 
  * Aktiviteten starter opp igjen ved bruk av back-knappen. Kan dette disables?
  */
@@ -81,14 +80,12 @@ public class PINActivity extends Activity
 				//Store firstAttempt and clear field
 			}
 		}
-		
 	}
 	//Step 1 of creating new PIN
 	private void storeTemproraryPin(int firstAttempt)
 	{
 		newPinTable[0] = firstAttempt;
 		Log.d(TAG, "First attempt is: " + firstAttempt);
-		
 	}
 	//Step 2 of creating PIN
 	private void checkIfPinsAreCorrect(int secondAttempt)
