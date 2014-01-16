@@ -38,14 +38,10 @@ import com.blopp.bloppasthma.models.MedicinePlanModel;
 public class DistractionActivity extends Activity {
 	private MedicinePlanModel medicinePlanModel;
 	private Medicine medicine;
-	
 	private int healthStateId;
 	private int reward;
-	
 	private ChildIdService childIdService;
-	
 	private static final String TAG = DistractionActivity.class.getSimpleName();
-	
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
