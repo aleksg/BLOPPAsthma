@@ -117,21 +117,18 @@ public class MedicineRadioAdapter extends BaseAdapter implements OnClickListener
 		return medicineListView;
 	}
 	
-	/**
-	 * 
+	/** 
 	 * @return full list of medicines
 	 */
 	public MedicineListModel[] getMedicineListModel()
 	{
 		return medicines;
 	}
-
 	/**
 	 * Set all other buttons to false, and set medicineChecked to the new checked item
 	 */
 	public void onClick(View v)
-	{
-		
+	{	
 		for(CheckBox c : checkList.keySet())
 		{
 			if(c.equals(v))
@@ -149,7 +146,6 @@ public class MedicineRadioAdapter extends BaseAdapter implements OnClickListener
 	 */
 	public MedicineListModel getCheckedItem()
 	{
-		
 		return medicineChecked;
 	}
 	

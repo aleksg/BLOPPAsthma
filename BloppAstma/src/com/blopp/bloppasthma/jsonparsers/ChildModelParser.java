@@ -12,11 +12,10 @@ public class ChildModelParser extends GenericJSONParser implements BLOPParser
 {
 	public static final String PHPPAGE = MyURL + "get_child.php";
 	private ChildResultModel child;
-
+	private static final String TAG = ChildModelParser.class.getSimpleName();
 	public ChildModelParser(int childId)
 	{
 		super(PHPPAGE + "?child_id=" + childId);
-		TAG = this.getClass().getSimpleName();
 	}
 
 	public void initializeDataFromJSON(String result)
@@ -29,10 +28,9 @@ public class ChildModelParser extends GenericJSONParser implements BLOPParser
 			this.child = new ChildResultModel()
 					.setId(information.getInt("id"))
 					.setName(information.getString("name"))
-					.setPersNum(information.getInt("pers_num"))
 					.setCredits(information.getInt("credits"))
 					.setMedicalPlanId(information.getInt("medical_plan_id"));
-			System.out.println("Child is null" + (child==null));
+			Log.d(TAG, "Child is null" + (child==null));
 		} catch (JSONException e)
 		{
 			Log.e(TAG, e.getMessage());
