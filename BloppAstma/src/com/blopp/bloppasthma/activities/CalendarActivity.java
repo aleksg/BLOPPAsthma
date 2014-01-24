@@ -8,6 +8,7 @@ import org.joda.time.DateTime;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -22,7 +23,6 @@ import com.blopp.bloppasthma.adapters.TakenMedicinesAdapter;
 import com.blopp.bloppasthma.mockups.ChildIdService;
 import com.blopp.bloppasthma.airqualityfeed.AirQualityCast;
 import com.blopp.bloppasthma.models.AirQualityState;
-
 import com.blopp.bloppasthma.models.LogModel;
 import com.blopp.bloppasthma.models.PollenState;
 import com.blopp.bloppasthma.utils.DateAdapter;
@@ -35,7 +35,6 @@ import com.blopp.bloppasthma.xmlfeed.PollenCast;
 public class CalendarActivity extends Activity implements
 		OnCellTouchListener
 {
-//	private static final int CHILD_ID = 6;
 	private static final String TAG = CalendarActivity.class.getSimpleName();
 	CalendarView calendarView;
 	TextView monthTextView;
@@ -68,7 +67,6 @@ public class CalendarActivity extends Activity implements
 		
 		calendarView = (CalendarView) findViewById(R.id.calendarview);
 		calendarView.setOnCellTouchListener(this);
-		
 		
 		initializeDaysShownInMedicineList();
 		
@@ -112,7 +110,6 @@ public class CalendarActivity extends Activity implements
 	
 	private void initializeDaysShownInMedicineList()
 	{
-		
 		day = dateTime.getDayOfMonth();
 		month = dateTime.getMonthOfYear();
 		year = dateTime.getYear();
@@ -122,9 +119,10 @@ public class CalendarActivity extends Activity implements
 	
 	private void updateMonthTextField()
 	{
-		DateTime.Property month = dateTime.monthOfYear();
+		
+		String month = DateAdapter.getMonth(dateTime);
 		DateTime.Property year = dateTime.year();
-		monthTextView.setText(month.getAsText() + "-" + year.getAsText());
+		monthTextView.setText(month + "-" + year.getAsText());
 	}
 	
 	/**
@@ -165,12 +163,10 @@ public class CalendarActivity extends Activity implements
 		} catch (InterruptedException e)
 		{
 			makeToast(R.string.download_error, Toast.LENGTH_SHORT);
-			//Error handling
 			e.printStackTrace();
 		} catch (ExecutionException e)
 		{
 			makeToast(R.string.download_error, Toast.LENGTH_SHORT);
-			//Error handling
 			e.printStackTrace();
 		}
 		return pollenCast.getPollenStateAtDayModel().getPollenStatesAtDay();

@@ -1,7 +1,5 @@
 package com.blopp.bloppasthma.activities;
 
-import java.util.List;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -17,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -158,7 +155,7 @@ public class ShopActivity extends Activity implements OnItemClickListener
 						.findViewById(R.id.checkBoxIsTaken);
 				isTakenCheckbox.setChecked(rewardItem.isOrdered());
 				isTakenCheckbox.setEnabled(false);
-				isTakenCheckbox.setText(rewardItem.isOrdered() ? R.string.order_rewards : R.string.not_bought);
+				isTakenCheckbox.setText(rewardItem.isOrdered() ? R.string.is_bought : R.string.not_bought);
 				isTakenCheckbox.setTextColor(Color.BLACK);
 			} else
 			{
