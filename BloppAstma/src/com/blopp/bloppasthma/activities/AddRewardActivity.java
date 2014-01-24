@@ -97,7 +97,7 @@ public class AddRewardActivity extends Activity
 			Log.d(TAG, "Selected image is null");
 
 			selectedImage = BitmapFactory.decodeResource(getResources(),
-					R.drawable.book_small);
+					R.drawable.medal);
 			r.setBitmap(selectedImage);
 		} else
 		{

@@ -1,6 +1,7 @@
 package com.blopp.bloppasthma.activities;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
@@ -10,6 +11,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -51,15 +53,21 @@ public class AddMedicineToPlanActivity extends Activity
 
 		initializeSpinner();
 		initializeHealthState();
-	
+		
 		btnAddMedicine = (Button)findViewById(R.id.add_medicine_button);
 		btnAddMedicine.setOnClickListener(new AddMedicineClickListener());
 		
 		mLayout = (LinearLayout) findViewById(R.id.add_medicine_linearlayout);
 		timepickerMedicine = (TimePicker) findViewById(R.id.timePicker_medicine);
-		timepickerMedicine.setIs24HourView(true);
-		
+		initTimepicker();
 		childIdService = new ChildIdService(getApplicationContext());
+	}
+	
+	private void initTimepicker()
+	{
+		Calendar calendar = Calendar.getInstance();
+		timepickerMedicine.setIs24HourView(DateFormat.is24HourFormat(getApplicationContext()));
+		timepickerMedicine.setCurrentHour(calendar.get(Calendar.HOUR_OF_DAY));
 	}
 	/**
 	 * Initialize the medicine spinner to the medicines existing in the database. 
