@@ -1,5 +1,7 @@
 package com.blopp.bloppasthma.activities;
 
+import java.util.List;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -44,8 +46,8 @@ public class ParentsMainMenu extends Activity implements OnItemClickListener
 			int position, long id)
 	{
 		MainMenuAdapter adapter = (MainMenuAdapter) listView.getAdapter();
-		MainMenuItem[] items = adapter.getMainMenuItems();
-		MainMenuItem itemClicked = items[position];
+		List<MainMenuItem> items = adapter.getMainMenuItems();
+		MainMenuItem itemClicked = items.get(position);
 		reactToInput(itemClicked.getShortDesc());
 	}
 
@@ -55,10 +57,7 @@ public class ParentsMainMenu extends Activity implements OnItemClickListener
 	public void reactToInput(MenuOptions option)
 	{
 
-		if (option.equals(MenuOptions.INSTRUCTIONS))
-		{
-			activityStarter(MedicationInformationActivity.class);
-		} else if (option.equals(MenuOptions.TREATMENT))
+		if (option.equals(MenuOptions.TREATMENT))
 		{
 			startTreatment();
 		} else if (option.equals(MenuOptions.LOG))

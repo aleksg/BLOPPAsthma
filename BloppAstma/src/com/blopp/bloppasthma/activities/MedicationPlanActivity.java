@@ -46,7 +46,7 @@ import com.blopp.bloppasthma.utils.DateAdapter;
 public class MedicationPlanActivity extends Activity implements
 		OnItemClickListener
 {
-	private static final String TAG = MedicationInformationActivity.class
+	private static final String TAG = MedicationPlanActivity.class
 			.getSimpleName();
 	
 	private ArrayList<HealthZone> healthZones;
