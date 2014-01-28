@@ -3,6 +3,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import com.blopp.bloppasthma.R;
+
 /**
  * This is a helper class to get the available medicines in the database.
  * Thus, medcinesMap must always reflect the exact fields in the database. If not,
@@ -15,9 +17,10 @@ public class AvailableMedicines
 	public AvailableMedicines()
 	{
 		medicinesMap = new HashMap<String, Integer>();
-		medicinesMap.put("Flutide", 1);
-		medicinesMap.put("Ventoline", 2);
-		medicinesMap.put("Seretide", 3);
+		medicinesMap.put("Oransje", 1); //Flutide
+		medicinesMap.put("Lilla", 2); //Ventoline
+		medicinesMap.put("Blue", 3); //Seretide
+		
 	}
 	public List<String> getAllMedicineNames(){
 		List<String> medicines = new ArrayList<String>();

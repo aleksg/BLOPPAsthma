@@ -6,7 +6,7 @@ package com.blopp.bloppasthma.jsonposters;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.blopp.bloppasthma.JsonModels.RegisterTreatmentResult;
+import com.blopp.bloppasthma.jsonmodels.RegisterTreatmentResult;
 
 
 public class PostRegisterTreatment extends DatabasePoster

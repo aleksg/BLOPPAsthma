@@ -3,7 +3,7 @@ package com.blopp.bloppasthma.jsonparsers;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.blopp.bloppasthma.JsonModels.InstructionsResult;
+import com.blopp.bloppasthma.jsonmodels.InstructionsResult;
 import com.blopp.bloppasthma.jsonparsers.IInitializeFromJSON.BLOPParser;
 
 import android.util.Log;

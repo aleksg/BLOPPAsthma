@@ -26,8 +26,8 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.blopp.bloppasthma.R;
-import com.blopp.bloppasthma.JsonModels.AddMedicineToPlanModel;
 import com.blopp.bloppasthma.adapters.GenericListAdapter;
+import com.blopp.bloppasthma.jsonmodels.AddMedicineToPlanModel;
 import com.blopp.bloppasthma.jsonposters.AddMedicineToPlanPoster;
 import com.blopp.bloppasthma.mockups.ChildIdService;
 import com.blopp.bloppasthma.utils.AvailableMedicines;

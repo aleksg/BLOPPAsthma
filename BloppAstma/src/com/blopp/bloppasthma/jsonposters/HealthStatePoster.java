@@ -4,7 +4,7 @@ package com.blopp.bloppasthma.jsonposters;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.blopp.bloppasthma.JsonModels.HealthStatePostResult;
+import com.blopp.bloppasthma.jsonmodels.HealthStatePostResult;
 
 import android.util.Log;
 

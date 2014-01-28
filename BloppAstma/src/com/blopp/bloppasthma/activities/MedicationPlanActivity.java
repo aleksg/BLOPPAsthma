@@ -29,7 +29,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blopp.bloppasthma.R;
-import com.blopp.bloppasthma.JsonModels.HealthStatePostModel;
+import com.blopp.bloppasthma.jsonmodels.HealthStatePostModel;
 import com.blopp.bloppasthma.jsonposters.HealthStatePoster;
 import com.blopp.bloppasthma.mockups.ChildIdService;
 import com.blopp.bloppasthma.models.HealthState;

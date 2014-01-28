@@ -24,9 +24,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blopp.bloppasthma.R;
-import com.blopp.bloppasthma.JsonModels.RegisterMedicinePostModel;
 import com.blopp.bloppasthma.adapters.MedicineListModel;
 import com.blopp.bloppasthma.adapters.MedicineRadioAdapter;
+import com.blopp.bloppasthma.jsonmodels.RegisterMedicinePostModel;
 import com.blopp.bloppasthma.jsonparsers.HealthStateParser;
 import com.blopp.bloppasthma.jsonposters.PostRegisterTreatment;
 import com.blopp.bloppasthma.mockups.ChildIdService;

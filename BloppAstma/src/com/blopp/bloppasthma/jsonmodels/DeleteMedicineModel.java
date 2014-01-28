@@ -1,4 +1,4 @@
-package com.blopp.bloppasthma.JsonModels;
+package com.blopp.bloppasthma.jsonmodels;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;

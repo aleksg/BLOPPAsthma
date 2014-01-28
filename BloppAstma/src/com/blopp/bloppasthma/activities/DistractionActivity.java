@@ -23,12 +23,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blopp.bloppasthma.R;
-import com.blopp.bloppasthma.JsonModels.RegisterMedicinePostModel;
 import com.blopp.bloppasthma.adapters.MedicineListAdapter;
 import com.blopp.bloppasthma.adapters.StarsAdapter;
 import com.blopp.bloppasthma.div.Actions;
 import com.blopp.bloppasthma.div.ColorMeds;
 import com.blopp.bloppasthma.div.SoundStreamer;
+import com.blopp.bloppasthma.jsonmodels.RegisterMedicinePostModel;
 import com.blopp.bloppasthma.jsonparsers.MedicineListParser;
 import com.blopp.bloppasthma.jsonposters.PostRegisterTreatment;
 import com.blopp.bloppasthma.mockups.ChildIdService;
@@ -38,14 +38,10 @@ import com.blopp.bloppasthma.models.MedicinePlanModel;
 public class DistractionActivity extends Activity {
 	private MedicinePlanModel medicinePlanModel;
 	private Medicine medicine;
-	
 	private int healthStateId;
 	private int reward;
-	
 	private ChildIdService childIdService;
-	
 	private static final String TAG = DistractionActivity.class.getSimpleName();
-	
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -59,6 +55,7 @@ public class DistractionActivity extends Activity {
         	if(getIntent().getExtras().containsKey("medicinePlanModel")) {
         		medicinePlanModel = (MedicinePlanModel) getIntent().getExtras().getSerializable("medicinePlanModel");
         		healthStateId = medicinePlanModel.getHealthStateId();
+        		Log.d(TAG, "Health state is " + healthStateId);
         		action1s();
         	}
         }
@@ -81,13 +78,13 @@ public class DistractionActivity extends Activity {
 	
 	public void action1s()
 	{
-		Log.d("1s", "started action");
+		Log.d(TAG, "started action 1s");
 		TextView textView = (TextView) findViewById(R.id.distraction_text);
 		textView.setText(getString(R.string.medicationGreeting));
 		final ImageView imageView = (ImageView) findViewById(R.id.distraction_image_view);
 		imageView.setImageResource(R.drawable.karotz_normal);
 		imageView.setOnClickListener(null);
-		new SoundStreamer(Actions.action1s.getSoundFileUrl(), new OnCompletionListener()
+		SoundStreamer.getInstance(Actions.action1s.getSoundFileUrl(), new OnCompletionListener()
 		{
 			public void onCompletion(MediaPlayer mp)
 			{
@@ -119,7 +116,7 @@ public class DistractionActivity extends Activity {
 		final ImageView imageView = (ImageView) findViewById(R.id.distraction_image_view);
 		imageView.setImageResource(ColorMeds.getNotificationImage(getMedicineColor()));
 		imageView.setOnClickListener(null);
-		new SoundStreamer(action.getSoundFileUrl(), new OnCompletionListener()
+		SoundStreamer.getInstance(action.getSoundFileUrl(), new OnCompletionListener()
 		{
 			public void onCompletion(MediaPlayer mp)
 			{
@@ -152,7 +149,7 @@ public class DistractionActivity extends Activity {
 		imageView.setImageResource(ColorMeds.shakeAnimation(color));
 		((AnimationDrawable) imageView.getDrawable()).start();
 		imageView.setOnClickListener(null);
-		new SoundStreamer(action.getSoundFileUrl(), new OnCompletionListener()
+		SoundStreamer.getInstance(action.getSoundFileUrl(), new OnCompletionListener()
 		{
 			public void onCompletion(MediaPlayer mp)
 			{
@@ -175,7 +172,7 @@ public class DistractionActivity extends Activity {
 		ImageView imageView = (ImageView) findViewById(R.id.distraction_image_view);
 		imageView.setImageResource(ColorMeds.maskInstructionImage(color));
 		imageView.setOnClickListener(null);
-		new SoundStreamer(Actions.action35s.getSoundFileUrl(), new OnCompletionListener()
+		SoundStreamer.getInstance(Actions.action35s.getSoundFileUrl(), new OnCompletionListener()
 		{
 			public void onCompletion(MediaPlayer mp)
 			{
@@ -201,7 +198,7 @@ public class DistractionActivity extends Activity {
 		final ImageView imageView = (ImageView) findViewById(R.id.distraction_image_view);
 		imageView.setImageResource(ColorMeds.maskInstructionImage(color));
 		imageView.setOnClickListener(null);
-		new SoundStreamer(action.getSoundFileUrl(), new OnCompletionListener()
+		SoundStreamer.getInstance(action.getSoundFileUrl(), new OnCompletionListener()
 		{
 			public void onCompletion(MediaPlayer mp)
 			{
@@ -226,11 +223,11 @@ public class DistractionActivity extends Activity {
 		imageView.setImageResource(ColorMeds.breatheAnimation(getMedicineColor()));
 		((AnimationDrawable) imageView.getDrawable()).start();
 		imageView.setOnClickListener(null);
-		new SoundStreamer(Actions.action41s.getSoundFileUrl(), new OnCompletionListener()
+		SoundStreamer.getInstance(Actions.action41s.getSoundFileUrl(), new OnCompletionListener()
 		{
 			public void onCompletion(MediaPlayer mp)
 			{
-				new SoundStreamer(Actions.action6s.getSoundFileUrl(), new OnCompletionListener()
+				SoundStreamer.getInstance(Actions.action6s.getSoundFileUrl(), new OnCompletionListener()
 				{
 					public void onCompletion(MediaPlayer mp)
 					{
@@ -347,7 +344,7 @@ public class DistractionActivity extends Activity {
 			default: file = Actions.action7s1;
 		}
 		chestView.setOnClickListener(null);
-		new SoundStreamer(file.getSoundFileUrl(), new OnCompletionListener()
+		SoundStreamer.getInstance(file.getSoundFileUrl(), new OnCompletionListener()
 		{
 			public void onCompletion(MediaPlayer mp)
 			{

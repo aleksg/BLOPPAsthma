@@ -38,17 +38,17 @@ public class MedicineRadioAdapter extends BaseAdapter implements OnClickListener
 		Bitmap b1 = BitmapFactory.decodeResource(context.getResources(),
 				R.drawable.flutide_small);
 		
-		MedicineListModel item1 = new MedicineListModel(b1, "Flutide",
+		MedicineListModel item1 = new MedicineListModel(b1, "Orange",
 				"Inhalasjonsaerosol");
 		
 		Bitmap b2 = BitmapFactory.decodeResource(context.getResources(),
 				R.drawable.ventolide_small);
-		MedicineListModel item2 = new MedicineListModel(b2, "Ventoline",
+		MedicineListModel item2 = new MedicineListModel(b2, "Blue",
 				"Inhalasjonsaerosol");
 		
 		Bitmap b3 = BitmapFactory.decodeResource(context.getResources(),
 				R.drawable.seretide_small);
-		MedicineListModel item3 = new MedicineListModel(b3, "Seretide",
+		MedicineListModel item3 = new MedicineListModel(b3, "Purple",
 				"Inhalasjonsaerosol");
 		
 		medicines[0] = item1;
@@ -117,21 +117,18 @@ public class MedicineRadioAdapter extends BaseAdapter implements OnClickListener
 		return medicineListView;
 	}
 	
-	/**
-	 * 
+	/** 
 	 * @return full list of medicines
 	 */
 	public MedicineListModel[] getMedicineListModel()
 	{
 		return medicines;
 	}
-
 	/**
 	 * Set all other buttons to false, and set medicineChecked to the new checked item
 	 */
 	public void onClick(View v)
-	{
-		
+	{	
 		for(CheckBox c : checkList.keySet())
 		{
 			if(c.equals(v))
@@ -149,7 +146,6 @@ public class MedicineRadioAdapter extends BaseAdapter implements OnClickListener
 	 */
 	public MedicineListModel getCheckedItem()
 	{
-		
 		return medicineChecked;
 	}
 	

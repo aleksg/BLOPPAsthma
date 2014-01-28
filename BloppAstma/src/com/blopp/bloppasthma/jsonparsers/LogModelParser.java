@@ -4,14 +4,16 @@ import java.util.ArrayList;
 
 
 
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.blopp.bloppasthma.JsonModels.LogDayResult;
-import com.blopp.bloppasthma.JsonModels.LogDosesModel;
-import com.blopp.bloppasthma.JsonModels.LogResult;
+import com.blopp.bloppasthma.jsonmodels.LogDayResult;
+import com.blopp.bloppasthma.jsonmodels.LogDosesModel;
+import com.blopp.bloppasthma.jsonmodels.LogResult;
 import com.blopp.bloppasthma.jsonparsers.IInitializeFromJSON.BLOPParser;
+
 import android.util.Log;
 
 public class LogModelParser extends GenericJSONParser implements BLOPParser

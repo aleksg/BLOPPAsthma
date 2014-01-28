@@ -4,9 +4,10 @@ import java.util.Calendar;
 import java.util.concurrent.ExecutionException;
 
 import com.blopp.bloppasthma.R;
-import com.blopp.bloppasthma.JsonModels.AddChildPostModel;
+import com.blopp.bloppasthma.jsonmodels.AddChildPostModel;
 import com.blopp.bloppasthma.jsonposters.AddChildPoster;
 import com.blopp.bloppasthma.mockups.ChildIdService;
+import com.blopp.bloppasthma.mockups.PINStorage;
 import com.blopp.bloppasthma.services.AlarmUpdateReceiver;
 
 import android.os.Bundle;
@@ -57,6 +58,8 @@ public class SelectUserActivity extends Activity
 		alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), updateTime, pendingIntent);
 	 
 	}
+	
+	
 	private void checkChildId()
 	{
 		
@@ -93,23 +96,28 @@ public class SelectUserActivity extends Activity
 	
 	private class ParentSelectedListener implements OnClickListener
 	{
-
 		@Override
 		public void onClick(View v)
 		{
-			Intent intent = new Intent(SelectUserActivity.this, ParentsMainMenu.class);
+			Intent intent = new Intent(SelectUserActivity.this, PINActivity.class);
 			startActivity(intent);
-		}
-		
+		}	
 	}
 	private class KidSelectedListener implements OnClickListener
 	{
-
 		@Override
 		public void onClick(View v)
 		{
 			Intent intent = new Intent(SelectUserActivity.this, KidsMainMenu.class);
 			startActivity(intent);
 		}
+	}
+	@Override
+	public void onBackPressed()
+	{
+		/*
+		 * Effectively disables the Back button. We do not want to go back to the PIN-page 
+		 */
+		
 	}
 }

@@ -18,8 +18,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.blopp.bloppasthma.JsonModels.MedicationPlanResult;
 import com.blopp.bloppasthma.activities.ChildrenAlarmReceiverActivity;
+import com.blopp.bloppasthma.jsonmodels.MedicationPlanResult;
 import com.blopp.bloppasthma.jsonparsers.MedicationPlanParser;
 import com.blopp.bloppasthma.mockups.ChildIdService;
 import com.blopp.bloppasthma.models.MedicinePlanModel;

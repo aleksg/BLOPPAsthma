@@ -8,7 +8,7 @@ import org.json.JSONObject;
 
 import android.util.Log;
 
-import com.blopp.bloppasthma.JsonModels.MedicationPlanResult;
+import com.blopp.bloppasthma.jsonmodels.MedicationPlanResult;
 import com.blopp.bloppasthma.jsonparsers.IInitializeFromJSON.BLOPParser;
 import com.blopp.bloppasthma.models.MedicinePlanModel;
 

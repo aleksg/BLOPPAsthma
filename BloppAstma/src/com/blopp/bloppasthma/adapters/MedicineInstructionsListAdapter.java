@@ -30,16 +30,16 @@ public class MedicineInstructionsListAdapter extends BaseAdapter
 		Bitmap b1 = BitmapFactory.decodeResource(context.getResources(),
 				R.drawable.medicine_flutide_125microg);
 		
-		MedicineListModel item1 = new MedicineListModel(b1, "Flutide",
+		MedicineListModel item1 = new MedicineListModel(b1, "Orange",
 				"Inhalasjonsaerosol");
 		Bitmap b2 = BitmapFactory.decodeResource(context.getResources(),
 				R.drawable.medicine_ventoline_100microg);
-		MedicineListModel item2 = new MedicineListModel(b2, "Ventoline",
+		MedicineListModel item2 = new MedicineListModel(b2, "Blue",
 				"Inhalasjonsaerosol");
 		
 		Bitmap b3 = BitmapFactory.decodeResource(context.getResources(),
 				R.drawable.medicine_seretide_250microg);
-		MedicineListModel item3 = new MedicineListModel(b3, "Seretide",
+		MedicineListModel item3 = new MedicineListModel(b3, "Purple",
 				"Inhalasjonsaerosol");
 		
 		medicines[0] = item1;

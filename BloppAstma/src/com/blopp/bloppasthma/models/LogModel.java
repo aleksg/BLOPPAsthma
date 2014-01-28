@@ -3,9 +3,10 @@ package com.blopp.bloppasthma.models;
 import java.util.HashMap;
 import java.util.concurrent.ExecutionException;
 
-import com.blopp.bloppasthma.JsonModels.LogDayResult;
-import com.blopp.bloppasthma.JsonModels.LogDosesModel;
+import com.blopp.bloppasthma.jsonmodels.LogDayResult;
+import com.blopp.bloppasthma.jsonmodels.LogDosesModel;
 import com.blopp.bloppasthma.jsonparsers.LogModelParser;
+
 
 
 
