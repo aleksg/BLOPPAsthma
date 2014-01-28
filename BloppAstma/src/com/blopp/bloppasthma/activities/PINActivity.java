@@ -70,21 +70,47 @@ public class PINActivity extends Activity
 		}
 		private void firstTimeUsage()
 		{
+			
+			if(pinField.getText().toString() == null)
+			{
+				//Should not work, restart process and try again
+				clearTable();
+				showLengthErrorMessage();
+				pinField.setText("");
+				return;
+			}
+			int pinCode = Integer.parseInt(pinField.getText().toString());
+			if(!isValidLength(pinCode))
+			{
+				//Should give error message
+				clearTable();
+				showLengthErrorMessage();
+				pinField.setText("");
+				return;
+			}
+			
 			//Clear field and repeat. Store the value afterwards
 			if(hasMadeFirstAttempt())
 			{
-				checkIfPinsAreCorrect(Integer.parseInt(pinField.getText().toString()));
+				checkIfPinsAreCorrect(pinCode);
 			}else{
-				storeTemproraryPin(Integer.parseInt(pinField.getText().toString()));
+				
+				storeTemproraryPin(pinCode);
 				pinField.setText("");
 				//Store firstAttempt and clear field
 			}
 		}
 	}
+	
+	private boolean isValidLength(int pin){
+		return (pin >= 1000 && pin <= 99999999);
+	}
+	
 	//Step 1 of creating new PIN
 	private void storeTemproraryPin(int firstAttempt)
 	{
 		newPinTable[0] = firstAttempt;
+		infoTextView.setText(R.string.pin_repeat_message);
 		Log.d(TAG, "First attempt is: " + firstAttempt);
 	}
 	//Step 2 of creating PIN
@@ -98,19 +124,25 @@ public class PINActivity extends Activity
 		}else{
 			Log.d(TAG, "first attempt was: " + newPinTable[0] + ". Second attempt was: " + newPinTable[1]);
 			clearTable();
-			showErrorMessage();
+			showPINsNotEqualErrorMessage();
 			pinField.setText("");
 			//Delete both values, clear fields and start over.
 		}
 	}
 	private void startSelectUserActivity(){
-		Intent intent = new Intent(PINActivity.this, SelectUserActivity.class);
+		
+		Intent intent = new Intent(PINActivity.this, ParentsMainMenu.class);
 		startActivity(intent);
 	}
-	private void showErrorMessage(){
+	private void showPINsNotEqualErrorMessage(){
 		infoTextView.setText(R.string.pin_error_message);
 		infoTextView.setTextColor(Color.RED);
 	}
+	private void showLengthErrorMessage(){
+		infoTextView.setText(R.string.pin_length_error_message);
+		infoTextView.setTextColor(Color.RED);
+	}
+	
 	private void clearTable(){
 		newPinTable[0] = 0;
 		newPinTable[1] = 0;
@@ -124,4 +156,5 @@ public class PINActivity extends Activity
 	private boolean hasStoredPin(){
 		return storage.hasSavedPin();
 	}
+	
 }

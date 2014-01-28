@@ -7,35 +7,54 @@
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="14" />
-    <permission android:name="In"></permission>
-	<uses-permission android:name="android.permission.INTERNET" />
+
+    <permission android:name="In" >
+    </permission>
+
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.VIBRATE"/>
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
+
     <uses-feature android:name="android.hardware.camera" />
-    <instrumentation android:label="My tests" android:targetPackage="com.blopp.bloppasthma" android:name="android.test.InstrumentationTestRunner"></instrumentation>
+
+    <instrumentation
+        android:name="android.test.InstrumentationTestRunner"
+        android:label="My tests"
+        android:targetPackage="com.blopp.bloppasthma" >
+    </instrumentation>
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-    	<uses-library android:name="android.test.runner"></uses-library>
-    	<receiver android:name="com.blopp.bloppasthma.services.OnBootReciever" android:label="OnBootReciever" >
-    		<intent-filter>  
-        		<action android:name="android.intent.action.BOOT_COMPLETED">  
-        		    </action>
-    		</intent-filter>  
-		</receiver>
-		<receiver
-    		android:name="com.blopp.bloppasthma.services.AlarmUpdateReceiver" />
+        <uses-library android:name="android.test.runner" >
+        </uses-library>
+
+        <receiver
+            android:name="com.blopp.bloppasthma.services.OnBootReciever"
+            android:label="OnBootReciever" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" >
+                </action>
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.blopp.bloppasthma.services.AlarmUpdateReceiver" />
+
         <activity
             android:name="com.blopp.bloppasthma.activities.SelectUserActivity"
-            android:label="@string/app_name" 
-            android:screenOrientation="portrait">
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-                <activity
+        <activity
             android:name="com.blopp.bloppasthma.activities.HealthStatusActivity"
             android:icon="@drawable/medicineplan_inverted"
             android:label="Status"
@@ -111,39 +130,52 @@
             android:label="Legemiddelinformasjon"
             android:screenOrientation="portrait" >
         </activity>
-        <activity 
+        <activity
             android:name="com.blopp.bloppasthma.activities.DetailedInstructionsActivity"
             android:icon="@drawable/instructions_inverted"
             android:label="Legemiddelinformasjon"
             android:screenOrientation="portrait" >
         </activity>
-        <activity android:name="com.blopp.bloppasthma.activities.ParentsMainMenu"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name="com.blopp.bloppasthma.activities.KidsMainMenu"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".activities.DisplayRewardsActivity" android:screenOrientation="portrait"></activity>
-        <activity android:name=".activities.InstructionsActivity" android:screenOrientation="portrait"></activity>
-        <activity android:name=".activities.ShopActivity"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name="com.blopp.bloppasthma.activities.ParentShowRewardsActivity"
-            	  android:label="Brukeren har oppnådd følgende antall stjerner:"
-            	  android:screenOrientation="portrait">
-            	
+        <activity
+            android:name="com.blopp.bloppasthma.activities.ParentsMainMenu"
+            android:screenOrientation="portrait" >
         </activity>
-        <activity android:name="com.blopp.bloppasthma.activities.AddRewardActivity"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".activities.SelectDefaultRewardImageActivity"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".activities.ChildrenAlarmReceiverActivity"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name="com.blopp.bloppasthma.activities.PINActivity"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            
+        <activity
+            android:name="com.blopp.bloppasthma.activities.KidsMainMenu"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".activities.DisplayRewardsActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".activities.InstructionsActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".activities.ShopActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.blopp.bloppasthma.activities.ParentShowRewardsActivity"
+            android:label="Brukeren har oppnådd følgende antall stjerner:"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.blopp.bloppasthma.activities.AddRewardActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".activities.SelectDefaultRewardImageActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".activities.ChildrenAlarmReceiverActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.blopp.bloppasthma.activities.PINActivity"
+            android:screenOrientation="portrait" >
         </activity>
     </application>
 

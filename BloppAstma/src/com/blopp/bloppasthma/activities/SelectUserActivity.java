@@ -99,7 +99,7 @@ public class SelectUserActivity extends Activity
 		@Override
 		public void onClick(View v)
 		{
-			Intent intent = new Intent(SelectUserActivity.this, ParentsMainMenu.class);
+			Intent intent = new Intent(SelectUserActivity.this, PINActivity.class);
 			startActivity(intent);
 		}	
 	}
@@ -118,5 +118,6 @@ public class SelectUserActivity extends Activity
 		/*
 		 * Effectively disables the Back button. We do not want to go back to the PIN-page 
 		 */
+		
 	}
 }

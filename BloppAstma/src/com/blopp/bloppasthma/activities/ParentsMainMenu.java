@@ -33,7 +33,13 @@ public class ParentsMainMenu extends Activity implements OnItemClickListener
 		listView.setOnItemClickListener(this);
 
 	}
-
+	@Override
+	public void onBackPressed()
+	{
+		//TODO: Hoppe over steget som tar en til pin koden. How.
+		Intent intent = new Intent(ParentsMainMenu.this, SelectUserActivity.class);
+		startActivity(intent);
+	}
 	private void activityStarter(Class<?> c)
 	{
 		Intent intent = new Intent(ParentsMainMenu.this, c);
