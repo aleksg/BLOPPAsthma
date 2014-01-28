@@ -1,4 +1,4 @@
-package no.blopp.bloppberrypi.test;
+package pi;
 
 import java.io.FileWriter;
 import java.io.File;
@@ -14,6 +14,10 @@ public class GPIO {
     static final String GPIO_OFF = "0";
     static final String GPIO_CH00="0";
 
+    //IMPORTANT!!
+    //Change gpiochannel to a suitable channel, or else, armageddon is loose
+    static final int gpioChannel = 1;
+    
     /**
      * @param args the command line arguments
      */
@@ -26,7 +30,7 @@ public class GPIO {
             // Open file handles to GPIO port unexport and export controls
             FileWriter unexportFile = new FileWriter("/sys/class/gpio/unexport");
             FileWriter exportFile = new FileWriter("/sys/class/gpio/export");
-
+            
             // Reset the port
             File exportFileCheck = new File("/sys/class/gpio/gpio"+gpioChannel);
             if (exportFileCheck.exists()) {

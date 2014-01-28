@@ -29,7 +29,6 @@ public class ChildModelParser extends GenericJSONParser implements BLOPParser
 			this.child = new ChildResultModel()
 					.setId(information.getInt("id"))
 					.setName(information.getString("name"))
-					.setPersNum(information.getInt("pers_num"))
 					.setCredits(information.getInt("credits"))
 					.setMedicalPlanId(information.getInt("medical_plan_id"));
 			System.out.println("Child is null" + (child==null));

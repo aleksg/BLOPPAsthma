@@ -1,4 +1,4 @@
-package no.blopp.bloppberrypi.test;
+package pi;
 
 import com.pi4j.io.serial.Serial;
 import com.pi4j.io.serial.SerialDataEvent;
@@ -6,7 +6,7 @@ import com.pi4j.io.serial.SerialDataListener;
 import com.pi4j.io.serial.SerialFactory;
 import com.pi4j.io.serial.SerialPortException;
 
-class RFID
+public class RFID
 {
     // - Get an instance of Serial for COM interaction
     private final Serial serial = SerialFactory.createInstance();
@@ -41,6 +41,8 @@ class RFID
         try{
         	
         	serial.open( comPort, 2400 );
+        	System.out.println("COM port opened!");
+
         }catch(SerialPortException e)
         {
         	System.out.println("Could not establish connection");

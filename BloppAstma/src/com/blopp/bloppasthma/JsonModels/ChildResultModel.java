@@ -4,7 +4,7 @@ public class ChildResultModel
 {
 	private int id;
 	private String name;
-	private int persNum;
+	
 	private int medicalPlanId;
 	private int avatarId;
 	private int credits;
@@ -28,15 +28,6 @@ public class ChildResultModel
 
 	public ChildResultModel setName(String name) {
 		this.name = name;
-		return this;
-	}
-
-	public int getPersNum() {
-		return persNum;
-	}
-
-	public ChildResultModel setPersNum(int persNum) {
-		this.persNum = persNum;
 		return this;
 	}
 

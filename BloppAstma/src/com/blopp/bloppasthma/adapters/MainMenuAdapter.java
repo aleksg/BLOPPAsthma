@@ -1,5 +1,8 @@
 package com.blopp.bloppasthma.adapters;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -17,7 +20,7 @@ import com.blopp.bloppasthma.utils.MainMenuItem.MenuOptions;
 
 public class MainMenuAdapter extends BaseAdapter
 {
-	private MainMenuItem[] items;
+	private List<MainMenuItem> items;
 	private Context context;
 	public Bitmap medicinePlan, instructions, medicineLog, registerTreatment, information, reward;
 	
@@ -32,13 +35,12 @@ public class MainMenuAdapter extends BaseAdapter
 	public void initialize()
 	{
 		initBitmaps();
-		this.items = new MainMenuItem[6];
-		items[0] = new MainMenuItem("Medisinplan", medicinePlan, MenuOptions.PLAN);
-		items[1] = new MainMenuItem("Etterregistrer medisin", registerTreatment, MenuOptions.TREATMENT);
-		items[2] = new MainMenuItem("Medisinlogg", medicineLog, MenuOptions.LOG);
-		items[3] = new MainMenuItem("Legemiddelinformasjon", instructions, MenuOptions.INSTRUCTIONS);		
-		items[4] = new MainMenuItem("Manual", information, MenuOptions.MANUAL);
-		items[5] = new MainMenuItem("Premier", reward, MenuOptions.REWARD);
+		this.items = new ArrayList<MainMenuItem>();
+		items.add(new MainMenuItem("Medisinplan", medicinePlan, MenuOptions.PLAN));
+		items.add(new MainMenuItem("Etterregistrer medisin", registerTreatment, MenuOptions.TREATMENT));
+		items.add(new MainMenuItem("Medisinlogg", medicineLog, MenuOptions.LOG));
+		items.add(new MainMenuItem("Manual", information, MenuOptions.MANUAL));
+		items.add(new MainMenuItem("Premier", reward, MenuOptions.REWARD));
 		
 	}
 	/**
@@ -55,12 +57,12 @@ public class MainMenuAdapter extends BaseAdapter
 	}
 	public int getCount()
 	{
-		return items.length;
+		return items.size();
 	}
 
-	public Object getItem(int position)
+	public MainMenuItem getItem(int position)
 	{
-		return items[position];
+		return items.get(position);
 	}
 
 	public long getItemId(int position)
@@ -85,11 +87,11 @@ public class MainMenuAdapter extends BaseAdapter
 
 			ImageView imageView = (ImageView) mainMenuListView
 					.findViewById(R.id.main_menu_icon);
-			imageView.setImageBitmap(items[position].getIcon());
+			imageView.setImageBitmap(getItem(position).getIcon());
 			
 			TextView nameView = (TextView) mainMenuListView
 					.findViewById(R.id.main_menu_list_textView);
-			nameView.setText(items[position].getOptions());
+			nameView.setText(getItem(position).getOptions());
 			nameView.setTextColor(Color.BLACK);
 			nameView.setTextSize(20);
 			nameView.setPadding(15, 0, 0, 0);
@@ -106,7 +108,7 @@ public class MainMenuAdapter extends BaseAdapter
 	 * 
 	 * @return the complete list of main menu items.
 	 */
-	public MainMenuItem[] getMainMenuItems()
+	public List<MainMenuItem> getMainMenuItems()
 	{
 		return this.items;
 	}
