@@ -11,7 +11,7 @@ public enum ColorMeds
 		R.drawable.shake_medication_animation_blue, 
 		R.drawable.karotz_blue_breath1, 
 		R.drawable.karotz_breathing_animation_blue,
-		R.drawable.medicine_ventoline_100microg
+		R.drawable.orange_medicine
 	),
 	orange(
 		"ORANGE", 
@@ -20,7 +20,7 @@ public enum ColorMeds
 		R.drawable.shake_medication_animation_orange, 
 		R.drawable.karotz_orange_breath1, 
 		R.drawable.karotz_breathing_animation_orange,
-		R.drawable.medicine_flutide_125microg
+		R.drawable.blue_medicine
 	),
 	purple(
 		"PURPLE", 
@@ -29,7 +29,7 @@ public enum ColorMeds
 		R.drawable.shake_medication_animation_purple, 
 		R.drawable.karotz_purple_breath1, 
 		R.drawable.karotz_breathing_animation_purple,
-		R.drawable.medicine_seretide_250microg
+		R.drawable.purple_medicine
 	);
 	
 	public final String db;
