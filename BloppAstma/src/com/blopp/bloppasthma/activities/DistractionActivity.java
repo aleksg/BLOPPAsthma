@@ -359,4 +359,9 @@ public class DistractionActivity extends Activity {
 			}
 		}).play();
 	}
+	@Override
+	public void onBackPressed()
+	{
+		super.onBackPressed();
+	}
 }
