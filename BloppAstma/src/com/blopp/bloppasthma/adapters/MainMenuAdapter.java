@@ -53,7 +53,7 @@ public class MainMenuAdapter extends BaseAdapter
 		information = BitmapFactory.decodeResource(context.getResources(), R.drawable.info);
 		instructions = BitmapFactory.decodeResource(context.getResources(), R.drawable.instructions);
 		registerTreatment = BitmapFactory.decodeResource(context.getResources(), R.drawable.etterregistrer);
-		reward = BitmapFactory.decodeResource(context.getResources(), R.drawable.mainmenutrophy);
+		reward = BitmapFactory.decodeResource(context.getResources(), R.drawable.mainmenureward);
 	}
 	public int getCount()
 	{
@@ -93,7 +93,7 @@ public class MainMenuAdapter extends BaseAdapter
 					.findViewById(R.id.main_menu_list_textView);
 			nameView.setText(getItem(position).getOptions());
 			nameView.setTextColor(Color.BLACK);
-			nameView.setTextSize(20);
+			nameView.setTextSize(25);
 			nameView.setPadding(15, 0, 0, 0);
 			mainMenuListView.setPadding(5, 25, 0, 25);
 			
