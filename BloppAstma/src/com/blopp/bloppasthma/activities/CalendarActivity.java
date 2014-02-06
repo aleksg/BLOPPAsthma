@@ -51,7 +51,7 @@ public class CalendarActivity extends Activity implements
 	
 	private AirQualityCast airQualityCast;
 	
-	private DateTime dateTime = new DateTime();
+	private DateTime dateTime;
 	private TakenMedicinesAdapter medicineGridAdapter;
 	private ChildIdService childIdService;
 	/** Called when the activity is first created. */
@@ -62,7 +62,7 @@ public class CalendarActivity extends Activity implements
 		setContentView(R.layout.calendar);
 		
 		childIdService = new ChildIdService(getApplicationContext());
-		
+		dateTime = new DateTime();
 		logModel = new LogModel(childIdService.getChildId(), dateTime.getMonthOfYear(), dateTime.getYear());
 		
 		calendarView = (CalendarView) findViewById(R.id.calendarview);
