@@ -37,16 +37,16 @@ public class InstructionOptionsAdapter extends BaseAdapter
 	{
 		if(medicineName.equals("Flutide"))
 		{
-			return R.drawable.medicine_flutide_125microg;
+			return R.drawable.orange_medicine;
 		}else if(medicineName.equals("Seretide"))
 		{
-			return R.drawable.medicine_seretide_250microg;
+			return R.drawable.blue_medicine;
 		}
 		else if(medicineName.equals("Ventoline"))
 		{
-			return R.drawable.medicine_ventoline_100microg;
+			return R.drawable.purple_medicine;
 		}
-		return R.drawable.medicine_flutide_125microg;
+		return R.drawable.orange_medicine;
 		
 	}
 	

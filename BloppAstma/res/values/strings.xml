@@ -71,7 +71,7 @@
 	<string name="not_bought">Ikke kjøpt</string>
 	<string name="reward_menu_item">Belønning</string>
 	<string name="medicine_topbar">Medisinforbruk</string>
-	<string name="airquality_topbar">Luftkvalitet</string>
+	<string name="airquality_topbar">Luftkvalitet i Trondheim</string>
 	<string name="pollen_topbar">Pollen</string>
 	<string name="choose_reward_image">Velg bilde</string>
 	<string name="treatment_choose_medicine">Velg medisin</string>
