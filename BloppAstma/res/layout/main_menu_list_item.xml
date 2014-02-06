@@ -6,7 +6,7 @@
     <ImageView
         android:id="@+id/main_menu_icon"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="62dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:src="@drawable/notification"
@@ -16,6 +16,7 @@
         android:id="@+id/main_menu_list_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/main_menu_icon"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/main_menu_icon"
         android:textAppearance="?android:attr/textAppearanceLarge" />
