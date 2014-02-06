@@ -1,4 +1,4 @@
-package pi;
+package no.blopp.bloppberrypi.test.src.pi;
 
 import com.pi4j.io.serial.Serial;
 import com.pi4j.io.serial.SerialDataEvent;
@@ -24,7 +24,7 @@ public class RFID
             {
                 // - Get byte array from SerialDataEvent
                 byte[] data = event.getData().getBytes();
-                
+                 
                 // - Iterate byte array print a readable representation of each byte
                 for ( int i=0; i < data.length; i++ )
                 {
