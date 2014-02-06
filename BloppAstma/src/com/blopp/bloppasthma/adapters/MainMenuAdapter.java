@@ -39,8 +39,8 @@ public class MainMenuAdapter extends BaseAdapter
 		items.add(new MainMenuItem("Medisinplan", medicinePlan, MenuOptions.PLAN));
 		items.add(new MainMenuItem("Etterregistrer medisin", registerTreatment, MenuOptions.TREATMENT));
 		items.add(new MainMenuItem("Medisinlogg", medicineLog, MenuOptions.LOG));
-		items.add(new MainMenuItem("Manual", information, MenuOptions.MANUAL));
 		items.add(new MainMenuItem("Premier", reward, MenuOptions.REWARD));
+		items.add(new MainMenuItem("Manual", information, MenuOptions.MANUAL));
 		
 	}
 	/**
