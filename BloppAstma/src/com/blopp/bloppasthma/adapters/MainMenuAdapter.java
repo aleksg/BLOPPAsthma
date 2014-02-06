@@ -94,7 +94,7 @@ public class MainMenuAdapter extends BaseAdapter
 			nameView.setText(getItem(position).getOptions());
 			nameView.setTextColor(Color.BLACK);
 			nameView.setTextSize(25);
-			nameView.setPadding(15, 0, 0, 0);
+			nameView.setPadding(15, 20, 0, 0);
 			mainMenuListView.setPadding(5, 25, 0, 25);
 			
 		} else

@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AnalogClock;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -47,12 +50,13 @@ public class MedicineListAdapter extends GenericListAdapter<Medicine>
 			ImageView medicineIconView = (ImageView) medicineListView
 					.findViewById(R.id.medicine_imageView);
 			Medicine medicine = (Medicine)getItem(position);
-			medicineIconView.setImageBitmap(medicine.getBitmap());
+			medicineIconView.setImageBitmap(getLargeMedicineImage(medicine.getId()));
 			
 			medicineIconView.setPadding(10, 5, 0, 0);
 			TextView medicineNameView = (TextView) medicineListView
 					.findViewById(R.id.medicine_name_textView);
 			medicineNameView.setText(medicine.getName());
+			medicineNameView.setTextSize(36f);
 			medicineNameView.setTextColor(Color.BLACK);
 			medicineNameView.setPadding(10,15,0,0);
 			
@@ -67,5 +71,21 @@ public class MedicineListAdapter extends GenericListAdapter<Medicine>
 			medicineListView = convertView;
 		}
 		return medicineListView;
+	}
+	
+	private Bitmap getLargeMedicineImage(int id) {
+		
+		switch (id) {
+		case 1:
+			return BitmapFactory.decodeResource(context.getResources(), R.drawable.orange_medicine_big);
+		case 2:
+			return BitmapFactory.decodeResource(context.getResources(), R.drawable.blue_medicine_big);
+		case 3:
+			return BitmapFactory.decodeResource(context.getResources(), R.drawable.purple_medicine_big);
+		default:
+			break;
+		}
+		
+		return null;
 	}
 }

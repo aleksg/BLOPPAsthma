@@ -13,7 +13,7 @@
 	<TextView
         android:id="@+id/distraction_medicine_text"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:text="@null" />
     <ImageButton
         android:id="@+id/distraction_start_image_button"
