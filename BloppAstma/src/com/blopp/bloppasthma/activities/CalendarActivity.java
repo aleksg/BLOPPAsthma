@@ -45,7 +45,7 @@ public class CalendarActivity extends Activity implements
 	private ListView pollenListView;
 	private ListView airQualityView;
 	private LogModel logModel;
-	
+	private TextView medicineUsageTopBar;
 	private PollenCast pollenCast;
 	private DateAdapter dateAdapter;
 	private int day, month, year;
@@ -83,7 +83,8 @@ public class CalendarActivity extends Activity implements
 		medicineTakenListView = (ListView) findViewById(R.id.medicine_taken_listView);
 		medicineGridAdapter = new TakenMedicinesAdapter(getApplicationContext(), getAmountOfMedicinesTaken());
 		medicineTakenListView.setAdapter(medicineGridAdapter);
-		
+		medicineUsageTopBar = (TextView)findViewById(R.id.medicinetopbar);
+		initMedicineUsageTopBar();
 		pollenListView = (ListView)findViewById(R.id.pollen_listView);
 		pollenListView.setAdapter(new PollenDistributionAdapter(getApplicationContext(), getPollenStates()));
 		
@@ -91,6 +92,9 @@ public class CalendarActivity extends Activity implements
 		airQualityView.setAdapter(new AirQualityAdapter(getApplicationContext(), getAirQualityStates()));
 	}
 	
+	private void initMedicineUsageTopBar(){
+		medicineUsageTopBar.setText(String.format("%s: \n %d / %d - %d", "Medisinforbruk", dateTime.getDayOfMonth(), dateTime.getMonthOfYear(), dateTime.getYear()));
+	}
 
 	/**
 	 * Updates medicineTakenListView according to day selected.
@@ -101,10 +105,12 @@ public class CalendarActivity extends Activity implements
 		month = calendarView.getMonth()+1;
 		year = calendarView.getYear();
 		
+		
 		dateAdapter = new DateAdapter(day, month, year);
 		medicineTakenListView.setAdapter(new TakenMedicinesAdapter(getApplicationContext(), getAmountOfMedicinesTaken()));
 		
-		makeToast(day+"-"+month+"-"+year, Toast.LENGTH_SHORT);
+		medicineUsageTopBar.setText(String.format("%s: \n %d / %d - %d", "Medisinforbruk", day, month, year));
+//		makeToast(day+"-"+month+"-"+year, Toast.LENGTH_SHORT);
 	}
 	
 	
@@ -115,6 +121,7 @@ public class CalendarActivity extends Activity implements
 		month = dateTime.getMonthOfYear();
 		year = dateTime.getYear();
 		dateAdapter = new DateAdapter(day, month, year);
+		
 		makeToast(day + "-" + month + "-" + year, Toast.LENGTH_SHORT);
 	}
 	
