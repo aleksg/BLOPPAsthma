@@ -1,17 +1,10 @@
 package com.blopp.bloppasthma.activities;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Locale;
-import java.util.TimeZone;
+import java.util.Comparator;
 import java.util.concurrent.ExecutionException;
 
-import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
-import org.joda.time.JodaTimePermission;
-
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -37,7 +30,7 @@ public class TreatmentActivity extends Activity
 {
 	private static final String TAG = TreatmentActivity.class.getSimpleName();
 	private ChildIdService childIdService;
-	private EditText dateEditText;
+	
 	
 	private AvailableMedicines availableMedicines;
 	private Button submitButton;
@@ -45,7 +38,7 @@ public class TreatmentActivity extends Activity
 	private ListView medicineListView; //Listview containing a checkbox, the medicinename and the icon of the medicine. 
 	private TextView dateTextField, chooseMedicineTextField;
 	private DatePicker datePicker;
-	
+	private MyDate today, selected;
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -55,8 +48,8 @@ public class TreatmentActivity extends Activity
 		childIdService = new ChildIdService(getApplicationContext());
 		
 		submitButton = (Button) findViewById(R.id.register_treatment_button);
-//		dateEditText = (EditText) findViewById(R.id.treatment_date_editText);
 		datePicker = (DatePicker)findViewById(R.id.datePicker);
+		today = new MyDate(datePicker.getYear(), datePicker.getMonth() + 1, datePicker.getDayOfMonth());
 		
 		availableMedicines = new AvailableMedicines();
 		medicineListView = (ListView) findViewById(R.id.treatment_medication_listView);
@@ -68,7 +61,6 @@ public class TreatmentActivity extends Activity
 
 		chooseMedicineTextField = (TextView) findViewById(R.id.treatment_choose_medicine);
 		
-
 		submitButton.setOnClickListener(new OnClickListener()
 		{
 			
@@ -79,7 +71,7 @@ public class TreatmentActivity extends Activity
 			}
 		});
 	}
-	
+
 
 	/**
 	 * When user presses "Register", validate the form and submit it. 
@@ -95,6 +87,7 @@ public class TreatmentActivity extends Activity
 			Toast.makeText(getApplicationContext(), "Velg en medisin", Toast.LENGTH_SHORT).show();
 			return;
 		}
+		
 		int medicineId = availableMedicines
 				.getMedicineByName(medicineChosen.getName());
 		
@@ -105,13 +98,6 @@ public class TreatmentActivity extends Activity
 			return; //Return if date is invalid
 		}
 		
-		//Should not occur unless there is some sort of injection in the view. 
-		if (medicineId == -1)
-		{
-			Toast.makeText(getApplicationContext(),
-					"Vennligst velg en medisin", Toast.LENGTH_SHORT).show();
-			return; //Return if medicineId is -1. This happens when the medicine with given name is not in stored in the database. 
-		}
 		post(formatDate(), medicineId);
 	}
 	
@@ -121,22 +107,14 @@ public class TreatmentActivity extends Activity
 	 */
 	private boolean inputDateIsLegal()
 	{
-		Calendar current = Calendar.getInstance();
-		Calendar picked = Calendar.getInstance();
 		
-		
-		picked.set(Calendar.DAY_OF_MONTH, datePicker.getDayOfMonth());
-		picked.set(Calendar.MONTH, datePicker.getMonth() + 1);
-		picked.set(Calendar.YEAR, datePicker.getYear());
-		
-		
-		
-		if(current.compareTo(picked) == -1)
+		selected = new MyDate(datePicker.getYear(), datePicker.getMonth() + 1, datePicker.getDayOfMonth());
+		if(today.compareTo(selected) == -1)
 		{
 			return false;
 		}else{
 			return true;
-		}		
+		}
 	}
 	
 	private void post(String date, int medicineId)
@@ -226,5 +204,87 @@ public class TreatmentActivity extends Activity
 		return healthStateId;
 		
 	}
-
+	
+	public class MyDate implements Comparable<MyDate>{
+		private int year; 
+		private int month;
+		private int day_of_month;
+		
+		public MyDate(int year, int month, int day_of_month)
+		{
+			super();
+			this.year = year;
+			this.month = month;
+			this.day_of_month = day_of_month;
+		}
+		public int getYear()
+		{
+			return year;
+		}
+		public void setYear(int year)
+		{
+			this.year = year;
+		}
+		public int getMonth()
+		{
+			return month;
+		}
+		public void setMonth(int month)
+		{
+			this.month = month;
+		}
+		public int getDay_of_month()
+		{
+			return day_of_month;
+		}
+		public void setDay_of_month(int day_of_month)
+		{
+			this.day_of_month = day_of_month;
+		}
+		@Override
+		public int compareTo(MyDate another)
+		{
+			System.out.println("Comparing Mydates");
+			if(this.year > another.getYear())
+			{
+				return 1;
+			}else if(this.year == another.getYear()){
+				System.out.println("Same year");
+				if(this.month == another.getMonth()){
+					System.out.println("Same month");
+					if(this.day_of_month == another.getDay_of_month())
+					{
+						System.out.println("Same day");
+						return 0;
+					}else if(this.day_of_month > another.getDay_of_month())
+					{
+						System.out.println("Day is greater than picked date");
+						return 1;
+					}else if(this.day_of_month < another.getDay_of_month())
+					{
+						
+						System.out.println("Day is earlier than picked date");
+						return -1;
+					}
+					
+				}else if(this.month > another.getMonth())
+				{
+					System.out.println("Todays month is greater than another dates month");
+					return 1;
+				}else if(this.month < another.getMonth())
+				{
+					return -1;
+				}
+			}
+			else if(this.year < another.getYear())
+			{
+				return -1;
+			}
+			System.out.println("Returning 0 for some reason");
+			return 0;
+		}
+		
+		
+	}
+	
 }
