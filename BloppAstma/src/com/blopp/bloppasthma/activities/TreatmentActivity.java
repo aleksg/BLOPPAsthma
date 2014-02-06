@@ -1,19 +1,14 @@
 package com.blopp.bloppasthma.activities;
 
-import java.util.Calendar;
-import java.util.Comparator;
 import java.util.concurrent.ExecutionException;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blopp.bloppasthma.R;
@@ -34,10 +29,10 @@ public class TreatmentActivity extends Activity
 	
 	private AvailableMedicines availableMedicines;
 	private Button submitButton;
-	private String dateNow;
 	private ListView medicineListView; //Listview containing a checkbox, the medicinename and the icon of the medicine. 
-	private TextView dateTextField, chooseMedicineTextField;
+	
 	private DatePicker datePicker;
+	
 	private MyDate today, selected;
 	@Override
 	public void onCreate(Bundle savedInstanceState)
@@ -49,6 +44,7 @@ public class TreatmentActivity extends Activity
 		
 		submitButton = (Button) findViewById(R.id.register_treatment_button);
 		datePicker = (DatePicker)findViewById(R.id.datePicker);
+		
 		today = new MyDate(datePicker.getYear(), datePicker.getMonth() + 1, datePicker.getDayOfMonth());
 		
 		availableMedicines = new AvailableMedicines();
@@ -57,9 +53,7 @@ public class TreatmentActivity extends Activity
 		
 		medicineListView.setAdapter(new MedicineRadioAdapter(
 				getApplicationContext()));
-		dateTextField = (TextView)findViewById(R.id.treatment_date_textView);
-
-		chooseMedicineTextField = (TextView) findViewById(R.id.treatment_choose_medicine);
+	
 		
 		submitButton.setOnClickListener(new OnClickListener()
 		{
@@ -103,11 +97,10 @@ public class TreatmentActivity extends Activity
 	
 	/**
 	 * 
-	 * @return false if the medicine is taken later than today 
+	 * @return false if the medicine is taken on a date later than today 
 	 */
 	private boolean inputDateIsLegal()
-	{
-		
+	{	
 		selected = new MyDate(datePicker.getYear(), datePicker.getMonth() + 1, datePicker.getDayOfMonth());
 		if(today.compareTo(selected) == -1)
 		{
@@ -165,7 +158,6 @@ public class TreatmentActivity extends Activity
 		int day = datePicker.getDayOfMonth();
 		int month = datePicker.getMonth()+1;
 		int year = datePicker.getYear();
-		String date = String.format("%d-%d-%d", day, month, year); 
 		
 		return new DateAdapter(day, month, year).getSqlFormattedDate();
 	}
@@ -205,6 +197,11 @@ public class TreatmentActivity extends Activity
 		
 	}
 	
+	/**
+	 * 
+	 * @author aarseth_90
+	 * Helper class, used to keep track of today's date, and the date picked in the DatePicker. 
+	 */
 	public class MyDate implements Comparable<MyDate>{
 		private int year; 
 		private int month;

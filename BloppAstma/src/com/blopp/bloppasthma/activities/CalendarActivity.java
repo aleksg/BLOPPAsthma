@@ -35,6 +35,7 @@ import com.blopp.bloppasthma.xmlfeed.PollenCast;
 public class CalendarActivity extends Activity implements
 		OnCellTouchListener
 {
+
 	private static final String TAG = CalendarActivity.class.getSimpleName();
 	CalendarView calendarView;
 	TextView monthTextView;
