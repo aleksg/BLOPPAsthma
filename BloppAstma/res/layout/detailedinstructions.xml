@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:src="@drawable/seretide_small" />
+        android:src="@drawable/blue_medicine" />
 
     <TextView
         android:id="@+id/header_textview"

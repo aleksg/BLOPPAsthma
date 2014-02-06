@@ -36,18 +36,18 @@ public class MedicineRadioAdapter extends BaseAdapter implements OnClickListener
 	{
 		medicines = new MedicineListModel[3];
 		Bitmap b1 = BitmapFactory.decodeResource(context.getResources(),
-				R.drawable.flutide_small);
+				R.drawable.orange_medicine);
 		
 		MedicineListModel item1 = new MedicineListModel(b1, "Oransje",
 				"Inhalasjonsaerosol");
 		
 		Bitmap b2 = BitmapFactory.decodeResource(context.getResources(),
-				R.drawable.ventolide_small);
+				R.drawable.blue_medicine);
 		MedicineListModel item2 = new MedicineListModel(b2, "Blue",
 				"Inhalasjonsaerosol");
 		
 		Bitmap b3 = BitmapFactory.decodeResource(context.getResources(),
-				R.drawable.seretide_small);
+				R.drawable.purple_medicine);
 		MedicineListModel item3 = new MedicineListModel(b3, "Lilla",
 				"Inhalasjonsaerosol");
 		
