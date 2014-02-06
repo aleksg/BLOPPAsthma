@@ -20,7 +20,6 @@ public class AvailableMedicines
 		medicinesMap.put("Oransje", 1); //Flutide
 		medicinesMap.put("Lilla", 2); //Ventoline
 		medicinesMap.put("Blue", 3); //Seretide
-		
 	}
 	public List<String> getAllMedicineNames(){
 		List<String> medicines = new ArrayList<String>();

@@ -67,14 +67,16 @@ public class PollenDistributionAdapter extends GenericListAdapter<PollenState>
 						.findViewById(R.id.pollen_type_textView);
 				pollenTypeView.setText(state.getPollenName());
 				pollenTypeView.setTextColor(Color.BLACK);
-				pollenTypeView.setPadding(5, 0, 0, 0);
+				pollenTypeView.setPadding(5, -4, 0, 0);
 				// Uses an icon matching pollenvarslingen.no's traditional icons for
 				// pollen spread
 				ImageView pollenDistributionView = (ImageView) listItem
 						.findViewById(R.id.pollen_spread_imageView);
+				
 				pollenDistributionView
 						.setImageResource(getImageResourceIdForPollenState(state
 								.getDistribution()));
+				pollenDistributionView.setPadding(0, 5, 0, 0);
 	
 			} else
 			{

@@ -13,7 +13,7 @@ import android.util.Log;
 public abstract class XMLFeed extends AsyncTask<Void, Void, Void> implements IInitializeFromXML
 {
 	//TODO: Replace URL with URL given from pollenvarslingen.no
-	public String URL = "http://folk.ntnu.no/yngvesva/blopp/dummy/PollenForecast.xml";
+	public String URL = "http://folk.ntnu.no/esbena/blopp/dummy/PollenForecast.xml";
 	public String TAG;
 	private HttpGet httpGet;
 	private InputStream inputStream;
