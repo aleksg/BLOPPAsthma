@@ -122,11 +122,14 @@ public class TreatmentActivity extends Activity
 	private boolean inputDateIsLegal()
 	{
 		Calendar current = Calendar.getInstance();
-		
 		Calendar picked = Calendar.getInstance();
+		
+		
 		picked.set(Calendar.DAY_OF_MONTH, datePicker.getDayOfMonth());
-		picked.set(Calendar.MONTH, datePicker.getMonth());
+		picked.set(Calendar.MONTH, datePicker.getMonth() + 1);
 		picked.set(Calendar.YEAR, datePicker.getYear());
+		
+		
 		
 		if(current.compareTo(picked) == -1)
 		{
