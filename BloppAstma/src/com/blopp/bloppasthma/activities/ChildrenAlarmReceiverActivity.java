@@ -39,6 +39,7 @@ public class ChildrenAlarmReceiverActivity extends Activity{
     private Ringtone ringtone;
     private AudioManager audioManager;
     private int ringerMode;
+    
     @SuppressWarnings("static-access")
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -68,21 +69,24 @@ public class ChildrenAlarmReceiverActivity extends Activity{
         audioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
         
         
-        //Button for stopping the alarm
-        ImageView stopAlarm = (ImageView) findViewById(R.id.stop_alarm_imageview);
+        //Button for cancelling the alarm
+        ImageView cancelAlarmImage = (ImageView) findViewById(R.id.stop_alarm_imageview);
         
-        stopAlarm.setOnClickListener(new OnClickListener() {
-            public void onClick(View arg0) {
-            	stopAlarm();
-            }
-        });
+        cancelAlarmImage.setOnTouchListener(new OnTouchListener()
+		{
+			
+			@Override
+			public boolean onTouch(View v, MotionEvent event)
+			{
+				stopAlarm();
+				return false;
+			}
+		});
         
         //button for starting the distraction sequence.
-        ImageView startTreatment = (ImageView) findViewById(R.id.alarm_medicine_imageview);
-        startTreatment.setOnTouchListener(new MedicineTouchListener());
-        ImageView maskImage = (ImageView) findViewById(R.id.alarm_mask_imageview);
-        stopAlarm.setOnDragListener(new StopAlarmDragListener());
-        maskImage.setOnDragListener(new MaskDragListener());
+        ImageView medicineHolderImage = (ImageView) findViewById(R.id.alarm_medicine_imageview);
+        medicineHolderImage.setOnTouchListener(new MedicineTouchListener());
+        
     }
     private void stopAlarm()
     {
@@ -101,6 +105,14 @@ public class ChildrenAlarmReceiverActivity extends Activity{
     	audioManager.setRingerMode(ringerMode);
     	finish();
     }
+    /**
+     * Updates the view with the medicine that was found in the intents extras.
+     * this means updating the image and text according to medicinePlanModel.
+     */
+    private void updateViewWithMedicine() {
+    	ImageView imgv = (ImageView) findViewById(R.id.alarm_medicine_imageview);
+    }
+
     private ImageView getStopAlarmImageView(){
     	return (ImageView)findViewById(R.id.stop_alarm_imageview);
     }
@@ -108,42 +120,29 @@ public class ChildrenAlarmReceiverActivity extends Activity{
     private ImageView getMaskImageView(){
     	return (ImageView) findViewById(R.id.alarm_mask_imageview);
     }
-    /**
-     * Updates the view with the medicine that was found in the intents extras.
-     * this means updating the image and text according to medicinePlanModel.
-     */
-    private void updateViewWithMedicine() {
-    	ImageView imgv = (ImageView) findViewById(R.id.alarm_medicine_imageview);
-//    	TextView txtv = (TextView) findViewById(R.id.alarm_medicine_textview);
-//    	imgv.setImageResource(ColorMeds.medicineImage(medicinePlanModel.getMedicineColor()));
-//		txtv.setText(medicinePlanModel.getMedicineName());
-    }
+    
     private class MedicineTouchListener implements OnTouchListener
     {
-
 		@Override
 		public boolean onTouch(View medicineImageView, MotionEvent event)
 		{
-			if(event.getAction() == MotionEvent.ACTION_DOWN){
-				ClipData data = ClipData.newPlainText("", "");
-				DragShadowBuilder builder = new DragShadowBuilder(medicineImageView);
-				medicineImageView.startDrag(data, builder, medicineImageView, 0);
-				return true;
-				
-			}return false;
-		}
-    	
-    }
-    private class StopAlarmDragListener implements OnDragListener
-    {
-
-		@Override
-		public boolean onDrag(View v, DragEvent event)
-		{
+			Log.d(TAG, "Touch received");
+			float imageSizeX = medicineImageView.getWidth();
+			float imageSizeY = medicineImageView.getHeight();
 			switch (event.getAction())
 			{
-				case DragEvent.ACTION_DROP:
-					if(collidesWithStopAlarmButton(event)){
+				case MotionEvent.ACTION_DOWN:
+					
+					break;
+				case MotionEvent.ACTION_MOVE:
+					medicineImageView.setX(event.getRawX() - imageSizeX/2);
+					medicineImageView.setY(event.getRawY() - imageSizeY/2);
+					break;
+				case MotionEvent.ACTION_UP:
+					
+					if(collidesWithMask((ImageView)medicineImageView)){
+						startTreatmentActivity();
+					}else if(collidesWithStop((ImageView)medicineImageView)){
 						stopAlarm();
 					}
 					break;
@@ -152,47 +151,17 @@ public class ChildrenAlarmReceiverActivity extends Activity{
 			}
 			return true;
 		}
-
-		private boolean collidesWithStopAlarmButton(DragEvent event)
+		private Rect getImageViewRect(ImageView iv)
 		{
-			Rect stopRect = getStopAlarmImageView().getDrawable().getBounds();
-			int x = (int) Math.round(event.getX());
-			int y = (int) Math.round(event.getY());
-			if(stopRect.contains(x, y))
-			{
-				Log.d(TAG, "Collided with stop alarm");
-				return true;
-			}
-			return false;
+			return iv.getDrawable().getBounds();
 		}
-    	
-    }
-    private class MaskDragListener implements OnDragListener
-    {
-    	
-		@Override
-		public boolean onDrag(View v, DragEvent event)
+		private boolean collidesWithMask(ImageView imageView)
 		{
-			switch (event.getAction())
-			{
-				case DragEvent.ACTION_DROP:
-					if(collidesWithMask(event)){
-						startTreatmentActivity();
-					}
-				default:
-					break;
-			}			
-			return true;
+			return Rect.intersects(getImageViewRect(getMaskImageView()), getImageViewRect(imageView));
 		}
-		
-		private boolean collidesWithMask(DragEvent event)
+		private boolean collidesWithStop(ImageView imageView)
 		{
-			Drawable maskDrawable = getMaskImageView().getDrawable();
-			Rect medRect = maskDrawable.getBounds();
-			int x = (int)Math.round(event.getX());
-			int y = (int)Math.round(event.getY());
-			
-			return medRect.contains(x,y);
-		}	
+			return Rect.intersects(getImageViewRect(getStopAlarmImageView()), getImageViewRect(imageView));
+		}
     }
 }

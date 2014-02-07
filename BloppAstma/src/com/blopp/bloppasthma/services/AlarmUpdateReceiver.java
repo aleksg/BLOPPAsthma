@@ -53,9 +53,7 @@ public class AlarmUpdateReceiver extends BroadcastReceiver {
     	Calendar calendar = Calendar.getInstance();
     	ArrayList<String> alarmIdList = new ArrayList<String>(); 
     	MedicationPlanResult result = getMedicationPlanResult();
-		Log.d(TAG, "Looking through results");
 		try{
-			Log.d(TAG, "Found: " + result.getPlans().size() + " results in the set");
 			for (MedicinePlanModel m : result.getPlans())
 			{
 				String time = m.getTime();
@@ -71,7 +69,6 @@ public class AlarmUpdateReceiver extends BroadcastReceiver {
 					
 					calendar.setTimeInMillis(calendar.getTimeInMillis()+ 24*60*60*1000);// Okay, then tomorrow ...
 				}
-				Log.d(TAG, "Alarm set at: " + calendar.toString());
 				alarmIdList.add(Integer.toString((calendar.get(Calendar.MONTH)*1000000 + calendar.get(Calendar.DAY_OF_MONTH)*10000+ 
 		        		calendar.get(Calendar.HOUR_OF_DAY)*100+calendar.get(Calendar.MINUTE))));
 				
@@ -173,7 +170,6 @@ public class AlarmUpdateReceiver extends BroadcastReceiver {
     	
     	String FILENAME = "alarms.txt";
     	String alarms = "";
-    	Log.d(TAG, "Size of alarm list in generate alarm file" + list.size());
     	for(int i = 0; i<list.size();i++){
     		if (i ==0)
     			alarms += list.get(i);
