@@ -1,7 +1,16 @@
-	package com.blopp.bloppasthma.activities;
+package com.blopp.bloppasthma.activities;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
+
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+import org.joda.time.format.DateTimeFormatterBuilder;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -49,29 +58,28 @@ public class ViewMedicationPlanActivity extends Activity implements
 	private ListView listView;
 	private MedicationPlanParser parser;
 	private Button addMedicineButton;
-	private HashMap<String, String> timeMap;
+//	private HashMap<String, String> timeMap;
+	private List<PlanListItem> timeMap;
 	private int pressedMedicine;
 	private ImageView medicinePlanImageView;
 	private TextView medicineNameTextView;
-	
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.medication_plan_view);
-		
+
 		childIdService = new ChildIdService(getApplicationContext());
-		
-		
+
 		initHealthZone();
 		listView = (ListView) findViewById(R.id.medicine_listview);
-		
+
 		intializeList();
 		initializeHeader(HealthState.getIdByHealthZone(healthZone));
-		
+
 		listView.setAdapter(new PlanMedicineListAdapter(timeMap));
-		listView.setOnItemClickListener(this);		
+		listView.setOnItemClickListener(this);
 		addMedicineButton = (Button) findViewById(R.id.add_medicine_button);
 		addMedicineButton.setOnClickListener(new OnClickListener()
 		{
@@ -80,7 +88,8 @@ public class ViewMedicationPlanActivity extends Activity implements
 				Intent intent = new Intent(ViewMedicationPlanActivity.this,
 						AddMedicineToPlanActivity.class);
 				Bundle bundle = new Bundle();
-				bundle.putInt("healthState", HealthState.getIdByHealthZone(healthZone));
+				bundle.putInt("healthState",
+						HealthState.getIdByHealthZone(healthZone));
 				intent.putExtras(bundle);
 				startActivity(intent);
 			}
@@ -92,31 +101,31 @@ public class ViewMedicationPlanActivity extends Activity implements
 		if (getIntent().getExtras().containsKey("healthZone"))
 			try
 			{
-				healthZone = (HealthZone) getIntent().getExtras().getSerializable(
-						"healthZone");
+				healthZone = (HealthZone) getIntent().getExtras()
+						.getSerializable("healthZone");
 			} catch (Exception e)
 			{
 				healthZone = HealthZone.GREEN_ZONE;
 			}
 		else
 		{
-			//TODO: Should throw some kind of exception.
+			// TODO: Should throw some kind of exception.
 			healthZone = HealthZone.GREEN_ZONE;
 		}
 	}
-	
+
 	private void initializeHeader(int healthZone)
 	{
 		PlanViewHolder holder = new PlanViewHolder(healthZone);
 		medicinePlanImageView = (ImageView) findViewById(R.id.medicine_plan_smiley);
 		medicinePlanImageView.setImageBitmap(holder.getImage());
-		
+
 		medicineNameTextView = (TextView) findViewById(R.id.medicine_plan_name);
 		medicineNameTextView.setText(holder.getPlanName());
 		Log.d(TAG, "name is " + holder.getPlanName());
-		
+
 	}
-	
+
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data)
 	{
@@ -134,7 +143,7 @@ public class ViewMedicationPlanActivity extends Activity implements
 	public void intializeList()
 	{
 
-		timeMap = new HashMap<String, String>();
+		timeMap = new ArrayList<PlanListItem>();
 		parser = new MedicationPlanParser(childIdService.getChildId());
 		parser.execute();
 		try
@@ -142,139 +151,148 @@ public class ViewMedicationPlanActivity extends Activity implements
 			parser.get();
 		} catch (InterruptedException e)
 		{
-			Toast.makeText(getApplicationContext(), R.string.download_error, Toast.LENGTH_SHORT).show();
+			Toast.makeText(getApplicationContext(), R.string.download_error,
+					Toast.LENGTH_SHORT).show();
 			e.printStackTrace();
 			return;
 		} catch (ExecutionException e)
 		{
-			Toast.makeText(getApplicationContext(), R.string.download_error, Toast.LENGTH_SHORT).show();
+			Toast.makeText(getApplicationContext(), R.string.download_error,
+					Toast.LENGTH_SHORT).show();
 			e.printStackTrace();
 			return;
 		}
 
 		MedicationPlanResult result = parser.medicationPlanResult();
-		
+
 		for (MedicinePlanModel m : result.getPlans())
 		{
-			if(m.getHealthStateId()==HealthState.getIdByHealthZone(healthZone))
+			if (m.getHealthStateId() == HealthState
+					.getIdByHealthZone(healthZone))
 			{
-				timeMap.put(m.getTime(), m.getMedicineName());
+				timeMap.add(new PlanListItem(m.getTime(), m.getMedicineName()));
 			}
 		}
 	}
-	
-	public void onItemClick(AdapterView<?> adapter, View arg1, int position, long arg3)
+
+	public void onItemClick(AdapterView<?> adapter, View arg1, int position,
+			long arg3)
 	{
-	
-		
 		pressedMedicine = position;
-		
+
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		
-		PlanMedicineListAdapter a = (PlanMedicineListAdapter)listView.getAdapter();
-		String displayedText = a.getItem(pressedMedicine).split("!")[0] + " " + a.getItem(pressedMedicine).split("!")[1];
-		
+
+		PlanMedicineListAdapter a = (PlanMedicineListAdapter) listView
+				.getAdapter();
+//		String displayedText = a.getItem(pressedMedicine).split("!")[0] + " "
+//				+ a.getItem(pressedMedicine).split("!")[1];
+		String displayedText = a.getItem(pressedMedicine).getName() + " " + a.getItem(pressedMedicine).getDate().toString();
 		builder.setMessage(displayedText)
-		       .setCancelable(false)
-		       .setPositiveButton("Angre", new DialogInterface.OnClickListener() {
+				.setCancelable(false)
+				.setPositiveButton("Angre",
+						new DialogInterface.OnClickListener()
+						{
 
-		    	   public void onClick(DialogInterface dialog, int which) {
-					
-				}
-			})
-		       .setNegativeButton("Slett", new DialogInterface.OnClickListener() {
-				
-				public void onClick(DialogInterface dialog, int which) {
-					
-					PlanMedicineListAdapter a = (PlanMedicineListAdapter)listView.getAdapter();
-					
-					String combinedString = a.getItem(pressedMedicine);
-					String time = getTime(combinedString);
-					String medicineName = getMedicineName(combinedString);
-					AvailableMedicines am = new AvailableMedicines();
-					int medicine_id = am.getMedicineByName(medicineName);
-					DeleteMedicineModel model = new DeleteMedicineModel(childIdService.getChildId(), medicine_id, time, HealthState.getIdByHealthZone(healthZone));
-					
-					Log.d("Deleting medicine", model.toString());
-					
-					DeleteMedicineFromPlanPoster poster = new DeleteMedicineFromPlanPoster(model.toString());
-					poster.execute();
-					try {
-						poster.get();
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					} catch (ExecutionException e) {
-						e.printStackTrace();
-					}
+							public void onClick(DialogInterface dialog,
+									int which)
+							{
+								//Return to medicine list
+							}
+						})
+				.setNegativeButton("Slett",
+						new DialogInterface.OnClickListener()
+						{
 
-					redrawList();
-				}
-			});
+							public void onClick(DialogInterface dialog,
+									int which)
+							{
+
+								PlanMedicineListAdapter a = (PlanMedicineListAdapter) listView
+										.getAdapter();
+
+								PlanListItem itemPressed = a
+										.getItem(pressedMedicine);
+								String time = itemPressed.getTimeAsString();
+								String medicineName = itemPressed.getName().toString();
+								AvailableMedicines am = new AvailableMedicines();
+								int medicine_id = am
+										.getMedicineByName(medicineName);
+								DeleteMedicineModel model = new DeleteMedicineModel(
+										childIdService.getChildId(),
+										medicine_id, time, HealthState
+												.getIdByHealthZone(healthZone));
+
+								Log.d("Deleting medicine", model.toString());
+
+								DeleteMedicineFromPlanPoster poster = new DeleteMedicineFromPlanPoster(
+										model.toString());
+								poster.execute();
+								try
+								{
+									poster.get();
+								} catch (InterruptedException e)
+								{
+									e.printStackTrace();
+								} catch (ExecutionException e)
+								{
+									e.printStackTrace();
+								}
+
+								redrawList();
+							}
+						});
 		AlertDialog alert = builder.create();
 		alert.show();
 	}
+
 	@Override
 	protected void onResume()
 	{
 		super.onResume();
-		redrawList();	
+		redrawList();
 	}
+
 	private void redrawList()
 	{
 		listView = (ListView) findViewById(R.id.medicine_listview);
 		intializeList();
 		listView.setAdapter(new PlanMedicineListAdapter(timeMap));
 	}
-	private String getMedicineName(String combined)
-	{
-		return combined.split("!")[1];
-	}
-	private String getTime(String combined)
-	{
-		return combined.split("!")[0];
-	}
-	
+
 	private class PlanMedicineListAdapter extends BaseAdapter
 	{
-		
-		private HashMap<String, String> medicines;
-		private String[] times;
-		private String[] medicineNames;
-		
-		public PlanMedicineListAdapter(HashMap<String, String> medicines)
+		private List<PlanListItem> items;
+		public PlanMedicineListAdapter(List<PlanListItem> items)
 		{
-			this.medicines = medicines;
-			initArrays();
-		}
-
-		private void initArrays()
-		{
-			times = new String[medicines.size()];
-			medicineNames = new String[medicines.size()];
-			int i = 0;
-			for (String key : medicines.keySet())
+			this.items = items;
+			Collections.sort(this.items, new Comparator<PlanListItem>()
 			{
-				times[i] = key;
-				medicineNames[i] = medicines.get(key);
-				i++;
-			}
+				@Override
+				public int compare(PlanListItem l1, PlanListItem l2)
+				{
+					return l1.getDate().compareTo(l2.getDate());
+				}
+			});
+			
 		}
-		
+			
 		public int getCount()
 		{
-			return medicines.size();
+			return items.size();
 		}
 
-		public String getItem(int position)
+		public PlanListItem getItem(int position)
 		{
-			
-			return times[position] + "!" + medicineNames[position];
+
+			return items.get(position);
 		}
+
 		public long getItemId(int position)
 		{
-			
+
 			return 0;
 		}
+
 		public View getView(int position, View convertView, ViewGroup parent)
 		{
 			View view = convertView;
@@ -286,9 +304,8 @@ public class ViewMedicationPlanActivity extends Activity implements
 						.findViewById(R.id.medicine_name_textview);
 				TextView timeTextView = (TextView) view
 						.findViewById(R.id.time_to_take_textview);
-				nameTextView.setText(medicineNames[position]);
-				timeTextView.setText(times[position]);
-
+				nameTextView.setText(getItem(position).getName());
+				timeTextView.setText(getItem(position).getTimeAsString());
 
 			} else
 			{
@@ -298,16 +315,74 @@ public class ViewMedicationPlanActivity extends Activity implements
 			return view;
 		}
 		/**
-		 * A list-item for medicationsplans holds an icon and a name (Syk, Litt syk, Frisk). This is a helper for the adapter. 
+		 * A list-item for medicationsplans holds an icon and a name (Syk, Litt
+		 * syk, Frisk). This is a helper for the adapter.
 		 */
+	}
+	private class PlanListItem
+	{
+		private DateTime date;
+		private String name;
+		public PlanListItem(DateTime date, String name){
+			this.date = date;
+			this.name = name;
+		}
+		public PlanListItem(String dateAsString, String name){
+			this.name = name;
+			DateTime todayDate = new DateTime();
+			this.date = new DateTime(todayDate.getYear(), todayDate.getMonthOfYear(), todayDate.getDayOfMonth(),
+					getHourFromString(dateAsString), getMinutesFromString(dateAsString), getSecondsFromString(dateAsString));
+			
+		}
+		private int getHourFromString(String formatted)
+		{
+			return Integer.parseInt(formatted.split(":")[0]);
+			
+		}
+		private int getMinutesFromString(String formatted)
+		{
+			return Integer.parseInt(formatted.split(":")[1]);
+		}
+		private int getSecondsFromString(String formatted)
+		{
+			return Integer.parseInt(formatted.split(":")[2]);
+		}
+		public DateTime getDate()
+		{
+			return date;
+		}
+		public void setDate(DateTime date)
+		{
+			this.date = date;
+		}
+		public String getName()
+		{
+			return name;
+		}
+		public void setName(String name)
+		{
+			this.name = name;
+		}
+		public String getTimeAsString(){
+			DateTimeFormatter ftm = DateTimeFormat.forPattern("HH:mm:ss");
+			return ftm.print(getDate());
+		}
+		@Override
+		public String toString()
+		{
+			DateTimeFormatter ftm = DateTimeFormat.forPattern("HH:mm:ss");
+			return getName() + " " + ftm.print(getDate());
+		}
 	}
 	private class PlanViewHolder
 	{
 		private Bitmap image;
 		private String planName;
+
 		public PlanViewHolder(int healthState)
 		{
-			switch (healthState) {
+			switch (healthState)
+			{
 				case 1:
 					this.image = BitmapFactory.decodeResource(getResources(),
 							R.drawable.smiley);
@@ -327,18 +402,24 @@ public class ViewMedicationPlanActivity extends Activity implements
 					this.image = BitmapFactory.decodeResource(getResources(),
 							R.drawable.sadie);
 					this.planName = "Frisk";
-					Log.e(TAG,"Default health state was chosen. Healthstate = " + healthState);
-					
-					break;	
+					Log.e(TAG,
+							"Default health state was chosen. Healthstate = "
+									+ healthState);
+
+					break;
 			}
-			
+
 		}
+
 		public Bitmap getImage()
 		{
 			return this.image;
 		}
-		public String getPlanName(){
+
+		public String getPlanName()
+		{
 			return this.planName;
-		}	
-	}	
+		}
+	}
+	
 }
