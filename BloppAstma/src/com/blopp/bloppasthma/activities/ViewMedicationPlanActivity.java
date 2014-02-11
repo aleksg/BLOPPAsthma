@@ -186,7 +186,7 @@ public class ViewMedicationPlanActivity extends Activity implements
 				.getAdapter();
 //		String displayedText = a.getItem(pressedMedicine).split("!")[0] + " "
 //				+ a.getItem(pressedMedicine).split("!")[1];
-		String displayedText = a.getItem(pressedMedicine).getName() + " " + a.getItem(pressedMedicine).getDate().toString();
+		String displayedText = a.getItem(pressedMedicine).getName() + " " + a.getItem(pressedMedicine).getTimeAsString();
 		builder.setMessage(displayedText)
 				.setCancelable(false)
 				.setPositiveButton("Angre",
