@@ -18,9 +18,10 @@ public class AvailableMedicines
 	{
 		medicinesMap = new HashMap<String, Integer>();
 		medicinesMap.put("Oransje", 1); //Flutide
-		medicinesMap.put("Lilla", 2); //Ventoline
-		medicinesMap.put("Blue", 3); //Seretide
+		medicinesMap.put("Blue", 2); //Ventoline
+		medicinesMap.put("Lilla", 3); //Seretide
 	}
+	
 	public List<String> getAllMedicineNames(){
 		List<String> medicines = new ArrayList<String>();
 		for (String string : medicinesMap.keySet())
