@@ -7,11 +7,6 @@ import com.blopp.bloppasthma.jsonmodels.LogDayResult;
 import com.blopp.bloppasthma.jsonmodels.LogDosesModel;
 import com.blopp.bloppasthma.jsonparsers.LogModelParser;
 
-
-
-
-
-
 import android.util.Log;
 
 public class LogModel

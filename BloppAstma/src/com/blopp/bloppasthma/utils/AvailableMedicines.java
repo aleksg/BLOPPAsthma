@@ -3,8 +3,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import com.blopp.bloppasthma.R;
-
 /**
  * This is a helper class to get the available medicines in the database.
  * Thus, medcinesMap must always reflect the exact fields in the database. If not,
