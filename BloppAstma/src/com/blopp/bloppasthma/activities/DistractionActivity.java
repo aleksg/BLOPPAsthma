@@ -227,13 +227,7 @@ public class DistractionActivity extends Activity {
 		{
 			public void onCompletion(MediaPlayer mp)
 			{
-				SoundStreamer.getInstance(Actions.action6s.getSoundFileUrl(), new OnCompletionListener()
-				{
-					public void onCompletion(MediaPlayer mp)
-					{
-						action7s();
-					}
-				}).play();
+				action7s();
 			}
 		}).play();
 	}
@@ -335,13 +329,11 @@ public class DistractionActivity extends Activity {
 		switch (reward)
 		{
 			case 1: file = Actions.action7s1; break;
-			case 2: file = Actions.action7s2; break;
 			case 3: file = Actions.action7s3; break;
-			case 4: file = Actions.action7s4; break;
 			case 5: file = Actions.action7s5; break;
-			case 7: file = Actions.action7s7; break;
-			case 10: file = Actions.action7s10; break;
 			default: file = Actions.action7s1;
+					Log.d(TAG, "Received " + reward + " stars, but somehow ended up in default");
+					break;
 		}
 		chestView.setOnClickListener(null);
 		SoundStreamer.getInstance(file.getSoundFileUrl(), new OnCompletionListener()
