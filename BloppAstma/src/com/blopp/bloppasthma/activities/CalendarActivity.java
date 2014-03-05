@@ -9,6 +9,8 @@ import org.joda.time.DateTime;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -90,6 +92,16 @@ public class CalendarActivity extends SyncActivity implements
 		
 		airQualityView = (ListView)findViewById(R.id.airquality_listview);
 		airQualityView.setAdapter(new AirQualityAdapter(getApplicationContext(), getAirQualityStates()));
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		return super.onCreateOptionsMenu(menu);
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		return super.onOptionsItemSelected(item);
 	}
 	
 	private void initMedicineUsageTopBar(){

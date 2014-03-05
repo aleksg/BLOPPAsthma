@@ -13,6 +13,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -61,6 +63,16 @@ public class AddMedicineToPlanActivity extends SyncActivity
 		timepickerMedicine = (TimePicker) findViewById(R.id.timePicker_medicine);
 		initTimepicker();
 		childIdService = new ChildIdService(getApplicationContext());
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		return super.onCreateOptionsMenu(menu);
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		return super.onOptionsItemSelected(item);
 	}
 	
 	private void initTimepicker()
