@@ -34,10 +34,10 @@ public class SyncActivity extends Activity
 				String response = newPoster.get();
 				Log.d("SyncActivity", response);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			} catch (ExecutionException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
 	            return true;
