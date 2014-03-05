@@ -19,7 +19,7 @@ public class SyncActivity extends Activity
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.select_user, menu);
+		getMenuInflater().inflate(R.menu.app_menu, menu);
 		return true;
 	}
 
