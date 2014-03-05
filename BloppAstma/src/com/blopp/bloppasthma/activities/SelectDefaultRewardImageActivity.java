@@ -11,6 +11,8 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -60,7 +62,17 @@ public class SelectDefaultRewardImageActivity extends SyncActivity
 		selectImageButton.setOnClickListener(new SelectedImageClickListener());
 
 	}
-
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		return super.onCreateOptionsMenu(menu);
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		return super.onOptionsItemSelected(item);
+	}
+	
 	private class ImageClickedListener implements OnItemClickListener
 	{
 

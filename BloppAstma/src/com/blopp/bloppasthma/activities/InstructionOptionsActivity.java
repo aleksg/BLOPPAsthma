@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -36,6 +38,17 @@ public class InstructionOptionsActivity extends SyncActivity implements OnItemCl
 		listView.setAdapter(new InstructionOptionsAdapter(medicineName, desc, getApplicationContext()));
 		listView.setOnItemClickListener(this);
 	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		return super.onCreateOptionsMenu(menu);
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		return super.onOptionsItemSelected(item);
+	}
+	
 	/**
 	 * Redirects to next activity
 	 */

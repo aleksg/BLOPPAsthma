@@ -2,6 +2,8 @@ package com.blopp.bloppasthma.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -29,6 +31,16 @@ public class DetailedInstructionsActivity extends SyncActivity
 		initializeTextViews(bundle);
 		header.setTextSize(22);
 		details.setTextSize(17);
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		return super.onCreateOptionsMenu(menu);
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		return super.onOptionsItemSelected(item);
 	}
 
 	public void initializeTextViews(Bundle bundle)
