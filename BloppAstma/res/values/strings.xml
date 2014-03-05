@@ -83,4 +83,5 @@
 	<string name="pin_length_error_message">PIN-kode må være mellom 4 og 8 siffer</string>
 	<string name="pin_repeat_message">Gjenta PIN-kode. </string>
 	<string name="pin_challenge_failed">PIN-koden du trykket inn er feil. Prøv på nytt. </string>
+	<string name="sync">Synkroniser</string>
 </resources>

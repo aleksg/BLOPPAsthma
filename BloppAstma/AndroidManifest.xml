@@ -74,7 +74,7 @@
             android:label="Manual"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.blopp.bloppasthma.activities.SettingsActivity"
+            android:name="com.blopp.bloppasthma.activities.SyncActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity

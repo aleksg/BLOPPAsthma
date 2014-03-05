@@ -17,7 +17,7 @@ public enum Actions
 	action3o1("http://folk.ntnu.no/esbena/blopp/new_sounds/app_instructions_orange.mp3"),
 	action1p("http://folk.ntnu.no/esbena/blopp/new_sounds/app_fetch_medicine_purple.mp3"),
 	action2p("http://folk.ntnu.no/esbena/blopp/new_sounds/app_shake_purple.mp3"),
-	action3p1("http://folk.ntnu.no/esbena/blopp/new_sounds/app_instruction_purple.mp3");
+	action3p1("http://folk.ntnu.no/esbena/blopp/new_sounds/app_instructions_purple.mp3");
 	
 	private final String url;
 	
