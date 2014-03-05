@@ -18,10 +18,9 @@ public class NewUserPoster extends AsyncTask<Void, Void, String>
 	private static final String TAG = NewUserPoster.class.getSimpleName();
 	private HttpGet httpGet;
 	private String urlBody = "http://129.241.103.246:1337/newChild?childId=";
-	private String childId;
 	
 	public NewUserPoster(String childId){
-		this.childId = childId;
+		urlBody += childId;
 	}
 
 	@Override
