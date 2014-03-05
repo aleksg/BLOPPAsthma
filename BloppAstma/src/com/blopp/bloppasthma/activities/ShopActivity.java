@@ -28,7 +28,7 @@ import com.blopp.bloppasthma.mockups.Reward;
 import com.blopp.bloppasthma.mockups.SavedRewards;
 import com.blopp.bloppasthma.models.ChildRewards;
 
-public class ShopActivity extends Activity implements OnItemClickListener
+public class ShopActivity extends SyncActivity implements OnItemClickListener
 {
 	private static final String TAG = ShopActivity.class.getSimpleName();
 	private ListView activities;

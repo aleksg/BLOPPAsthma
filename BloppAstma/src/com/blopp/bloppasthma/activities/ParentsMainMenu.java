@@ -19,7 +19,7 @@ import com.blopp.bloppasthma.adapters.MainMenuAdapter;
 import com.blopp.bloppasthma.utils.MainMenuItem;
 import com.blopp.bloppasthma.utils.MainMenuItem.MenuOptions;
 
-public class ParentsMainMenu extends Activity implements OnItemClickListener
+public class ParentsMainMenu extends SyncActivity implements OnItemClickListener
 {
 
 	private static final String TAG = ParentsMainMenu.class.getSimpleName();

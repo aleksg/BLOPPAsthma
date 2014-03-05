@@ -23,7 +23,7 @@ import android.widget.ImageView;
 
 import com.blopp.bloppasthma.R;
 
-public class SelectDefaultRewardImageActivity extends Activity
+public class SelectDefaultRewardImageActivity extends SyncActivity
 {
 
 	private static final String TAG = SelectDefaultRewardImageActivity.class

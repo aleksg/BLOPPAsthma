@@ -27,7 +27,7 @@ import com.blopp.bloppasthma.mockups.Reward;
 import com.blopp.bloppasthma.mockups.SavedRewards;
 import com.blopp.bloppasthma.utils.TemporarilyImageStore;
 
-public class AddRewardActivity extends Activity
+public class AddRewardActivity extends SyncActivity
 {
 	private static String sharedPreferenceName = "RewardList";
 	private static final int CAMERA_REQUEST = 1888;

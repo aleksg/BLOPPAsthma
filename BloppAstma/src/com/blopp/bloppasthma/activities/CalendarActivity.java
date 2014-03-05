@@ -32,7 +32,7 @@ import com.blopp.bloppasthma.views.Cell;
 import com.blopp.bloppasthma.xmlfeed.PollenCast;
 
 
-public class CalendarActivity extends Activity implements
+public class CalendarActivity extends SyncActivity implements
 		OnCellTouchListener
 {
 

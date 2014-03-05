@@ -17,12 +17,11 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 
-public class SelectUserActivity extends Activity
+public class SelectUserActivity extends SyncActivity
 {
 
 	private static final String TAG = SelectUserActivity.class.getSimpleName();
@@ -43,6 +42,9 @@ public class SelectUserActivity extends Activity
 		checkChildId();
 		startAlarmUpdater();
 	}
+	
+	
+	
 	private void startAlarmUpdater()
 	{
 		Log.d(TAG, "Starting to update alarms");
@@ -84,15 +86,6 @@ public class SelectUserActivity extends Activity
 		}
 	}
 	
-	
-	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu)
-	{
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.select_user, menu);
-		return true;
-	}
 	
 	private class ParentSelectedListener implements OnClickListener
 	{

@@ -43,7 +43,7 @@ import com.blopp.bloppasthma.utils.DateAdapter;
  */
 
 //TODO: How on earth is this class 300 lines? Break it down!
-public class MedicationPlanActivity extends Activity implements
+public class MedicationPlanActivity extends SyncActivity implements
 		OnItemClickListener
 {
 	private static final String TAG = MedicationPlanActivity.class

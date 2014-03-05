@@ -33,7 +33,7 @@ import com.blopp.bloppasthma.mockups.Reward;
 import com.blopp.bloppasthma.mockups.SavedRewards;
 import com.blopp.bloppasthma.models.ChildRewards;
 
-public class ParentShowRewardsActivity extends Activity
+public class ParentShowRewardsActivity extends SyncActivity
 {
 	private static final String TAG = ParentShowRewardsActivity.class
 			.getSimpleName();

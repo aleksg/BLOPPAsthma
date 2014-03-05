@@ -33,7 +33,7 @@ import com.blopp.bloppasthma.mockups.ChildIdService;
 import com.blopp.bloppasthma.utils.AvailableMedicines;
 
 
-public class AddMedicineToPlanActivity extends Activity
+public class AddMedicineToPlanActivity extends SyncActivity
 {
 	private static final String TAG = AddMedicineToPlanActivity.class
 			.getSimpleName();

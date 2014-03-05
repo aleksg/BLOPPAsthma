@@ -48,7 +48,7 @@ import com.blopp.bloppasthma.utils.AvailableMedicines;
  * An activity class that contains a listview over the different medicines in a
  * specific medicationplan.
  */
-public class ViewMedicationPlanActivity extends Activity implements
+public class ViewMedicationPlanActivity extends SyncActivity implements
 		OnItemClickListener
 {
 	private ChildIdService childIdService;

@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.blopp.bloppasthma.R;
 
-public class DetailedInstructionsActivity extends Activity
+public class DetailedInstructionsActivity extends SyncActivity
 {
 
 	private static final String TAG = MedicationInformationActivity.class

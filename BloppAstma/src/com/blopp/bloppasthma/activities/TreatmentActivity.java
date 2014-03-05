@@ -21,7 +21,7 @@ import com.blopp.bloppasthma.mockups.ChildIdService;
 import com.blopp.bloppasthma.utils.AvailableMedicines;
 import com.blopp.bloppasthma.utils.DateAdapter;
 
-public class TreatmentActivity extends Activity
+public class TreatmentActivity extends SyncActivity
 {
 	private static final String TAG = TreatmentActivity.class.getSimpleName();
 	private ChildIdService childIdService;

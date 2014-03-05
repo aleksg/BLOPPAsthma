@@ -14,7 +14,7 @@ import com.blopp.bloppasthma.adapters.InstructionOptionsAdapter;
 import com.blopp.bloppasthma.adapters.InstructionOptionsAdapter.InstructionsOptionsModel;
 import com.blopp.bloppasthma.adapters.MedicineListModel;
 
-public class InstructionOptionsActivity extends Activity implements OnItemClickListener
+public class InstructionOptionsActivity extends SyncActivity implements OnItemClickListener
 {
 
 	private static final String TAG = InstructionOptionsActivity.class.getSimpleName();

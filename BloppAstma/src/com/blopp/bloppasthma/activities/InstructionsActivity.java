@@ -7,7 +7,7 @@ import android.support.v4.view.ViewPager;
 import com.blopp.bloppasthma.R;
 import com.blopp.bloppasthma.adapters.TabsAdapter;
 //TODO: Duplicate evil twin
-public class InstructionsActivity extends Activity{
+public class InstructionsActivity extends SyncActivity{
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

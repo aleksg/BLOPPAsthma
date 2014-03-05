@@ -18,7 +18,7 @@ import com.blopp.bloppasthma.mockups.PINStorage;
 /*TODO: 
  * Aktiviteten starter opp igjen ved bruk av back-knappen. Kan dette disables?
  */
-public class PINActivity extends Activity
+public class PINActivity extends SyncActivity
 {
 	private static final String TAG = PINActivity.class.getSimpleName();
 	private PINStorage storage;
