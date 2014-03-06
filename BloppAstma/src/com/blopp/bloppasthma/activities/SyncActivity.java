@@ -4,10 +4,6 @@ package com.blopp.bloppasthma.activities;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
-import com.blopp.bloppasthma.R;
-import com.blopp.bloppasthma.jsonposters.NewUserPoster;
-import com.blopp.bloppasthma.mockups.ChildIdService;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -19,7 +15,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.blopp.bloppasthma.R;
+import com.blopp.bloppasthma.jsonposters.NewUserPoster;
+import com.blopp.bloppasthma.mockups.ChildIdService;
 
 public class SyncActivity extends Activity
 {
@@ -45,50 +45,74 @@ public class SyncActivity extends Activity
 	            return true;
 	        default:
 	            return super.onOptionsItemSelected(item);
+	    	}
 	    }
+
+	private void synchronizeWithAsthmaBuddy(String ip)
+	{
+		NewUserPoster newPoster = new NewUserPoster(ip, new ChildIdService(
+				getApplicationContext()).getChildId() + "");
+		newPoster.execute();
+		try
+		{
+			Boolean success = newPoster.get();
+			if(!success){	
+				handleServerError("IOException"); 
+			}else{
+				handleSyncComplete();
+			}
+			
+		} catch (InterruptedException e)
+		{
+			e.printStackTrace();
+			handleServerError("InterruptedException");
+			
+		} catch (ExecutionException e)
+		{
+			e.printStackTrace();
+			handleServerError("ExecutionException");
+		}
+	}
+	private void handleSyncComplete()
+	{
+		Toast.makeText(getApplicationContext(), "Successfully synced with server", Toast.LENGTH_LONG).show();
 	}
 
-	private void syncronizeData() {
-		NewUserPoster newPoster = new NewUserPoster(new ChildIdService(getApplicationContext()).getChildId() + "");
-		newPoster.execute();
-		try {
-				String response = newPoster.get();
-				Log.d("SyncActivity", response);
-		} catch (InterruptedException e) {
-				e.printStackTrace();
-		} catch (ExecutionException e) {
-				e.printStackTrace();
-		}
+	private void handleServerError(String exception){
+		Toast.makeText(getApplicationContext(), "Could not reach server.\n. Is the node up and running?. \n Exception thrown: " + exception, Toast.LENGTH_LONG).show();
+
 	}
 	
 	@SuppressLint("ValidFragment")
 	protected class SyncDialog extends DialogFragment
 	{
-		
+		private int _selected;
 		public SyncDialog()
 		{
 			
 		}
-
+		public void setSelected(int which){
+			this._selected = which;
+		}
 		@Override
 		public Dialog onCreateDialog(Bundle savedInstanceState) {
 		    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+		    
 		    builder.setTitle(R.string.sync_menu_title).setSingleChoiceItems(R.array.sync_options, 0, 
 		                      new DialogInterface.OnClickListener() {
 
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
-						if (which == 0)
-						{
-							//Use this IP
-						} 
+						setSelected(which);
 					}
 		           })
 		    // Set the action buttons
 		           .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
 		               @Override
 		               public void onClick(DialogInterface dialog, int id) {
-		            	   syncronizeData(); //TODO: 
+		            	   String selectedIp = getResources().getStringArray(R.array.sync_options)[_selected];
+		            	   Toast.makeText(getApplicationContext(), "Selected String \n" + selectedIp, Toast.LENGTH_LONG).show();
+		            	   synchronizeWithAsthmaBuddy(selectedIp); //TODO: This will go to "Glos Pi", not caring for what is selected
 		                   Log.d(TAG, "User clicked save");
 		               }
 		           })
