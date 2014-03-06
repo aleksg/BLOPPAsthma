@@ -13,7 +13,7 @@ import org.apache.http.client.methods.HttpPost;
 import android.os.AsyncTask;
 import android.util.Log;
 
-public class NewUserPoster extends AsyncTask<Void, Void, String>
+public class NewUserPoster extends AsyncTask<Void, Void, Boolean>
 {
 	private static final String TAG = NewUserPoster.class.getSimpleName();
 	private HttpGet httpGet;
@@ -24,7 +24,7 @@ public class NewUserPoster extends AsyncTask<Void, Void, String>
 	}
 
 	@Override
-	protected String doInBackground(Void... params)
+	protected Boolean doInBackground(Void... params) 
 	{
 		URL url;
 		String reply;
@@ -41,14 +41,13 @@ public class NewUserPoster extends AsyncTask<Void, Void, String>
 			}
 			br.close();
 		}catch(MalformedURLException e){
-			e.printStackTrace();
+			return false;
 		}catch(IOException e)
 		{
-			e.printStackTrace();
+			return false;
 		}
 		Log.d(TAG, result);
-		return result;
+		return true;
 	}
-
 	
 }
