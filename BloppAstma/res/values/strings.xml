@@ -84,4 +84,8 @@
 	<string name="pin_repeat_message">Gjenta PIN-kode. </string>
 	<string name="pin_challenge_failed">PIN-koden du trykket inn er feil. Prøv på nytt. </string>
 	<string name="sync">Synkroniser</string>
+	<string name="cancel">Avbryt</string>
+	<string name="sync_menu_title">Synkroniser med</string>
+	<string name="ok">OK</string>
+	<string name="add_ip">Legg til IP</string>
 </resources>

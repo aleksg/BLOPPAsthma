@@ -160,7 +160,7 @@ public class AddRewardActivity extends SyncActivity
 		public Dialog onCreateDialog(Bundle savedInstanceState)
 		{
 			AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-			builder.setTitle("Velg methode").setItems(
+			builder.setTitle("Velg metode").setItems(
 					R.array.reward_image_options,
 					new DialogInterface.OnClickListener()
 					{
