@@ -88,4 +88,6 @@
 	<string name="sync_menu_title">Synkroniser med</string>
 	<string name="ok">OK</string>
 	<string name="add_ip">Legg til IP</string>
+	<string name="kidlabeltext">Barn</string>
+	<string name="parentlabeltext">Voksne</string>
 </resources>
