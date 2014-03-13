@@ -12,35 +12,19 @@
         android:id="@+id/parentImageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/kidImageButton"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="56dp"
         android:src="@drawable/parent" />
 
     <ImageButton
         android:id="@+id/kidImageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/parentImageButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="40dp"
+        android:layout_alignLeft="@+id/parentImageButton"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/parentImageButton"
+        android:layout_marginTop="50dp"
         android:src="@drawable/kid" />
-
-    <TextView
-        android:id="@+id/kidlabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/kidImageButton"
-        android:layout_centerHorizontal="true"
-        android:text="@string/kidlabeltext" />
-
-    <TextView
-        android:id="@+id/parentlabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="19dp"
-        android:text="@string/parentlabeltext" />
 
 </RelativeLayout>
