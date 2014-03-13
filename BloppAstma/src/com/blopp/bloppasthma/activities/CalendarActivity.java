@@ -105,7 +105,7 @@ public class CalendarActivity extends SyncActivity implements
 	}
 	
 	private void initMedicineUsageTopBar(){
-		medicineUsageTopBar.setText(String.format("%s: \n %d / %d - %d", "Medisinforbruk", dateTime.getDayOfMonth(), dateTime.getMonthOfYear(), dateTime.getYear()));
+		medicineUsageTopBar.setText(String.format("%s: \n %d / %d - %d", "Forbruk", dateTime.getDayOfMonth(), dateTime.getMonthOfYear(), dateTime.getYear()));
 	}
 
 	/**

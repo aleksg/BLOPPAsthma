@@ -41,75 +41,81 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignTop="@+id/month_of_year_textview" />
+
+
+
+		    <ListView
+		        android:id="@+id/medicine_taken_listView"
+		        android:layout_width="match_parent"
+		        android:layout_height="150dp"
+		        android:layout_alignParentBottom="true"
+		        android:layout_alignParentLeft="true"
+		        android:dividerHeight="0dp"
+		        android:divider="@null"
+		        android:layout_alignRight="@+id/medicinetopbar"
+		        android:layout_marginLeft="5dp"
+		        android:layout_alignTop="@+id/airquality_listview" >
 		
-    <ListView
-        android:id="@+id/medicine_taken_listView"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignTop="@+id/airquality_listview"
-        android:layout_toLeftOf="@+id/month_of_year_textview" >
-
-    </ListView>
-    
-    <ListView
-        android:id="@+id/airquality_listview"
-        android:layout_width="50dp"
-        android:layout_height="150dp"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/pollen_listView"
-        android:layout_toRightOf="@+id/medicine_taken_listView" >
-
-    </ListView>
-
-    <ListView
-        android:id="@+id/pollen_listView"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_toRightOf="@+id/month_of_year_textview" >
-
-    </ListView>
-
-    <TextView
-        android:id="@+id/medicinetopbar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/medicine_taken_listView"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/calendarview"
-        android:layout_toLeftOf="@+id/airquality_listview"
-        android:text="@string/medicine_topbar"
-        android:gravity="center"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="12sp" />
-
-    <TextView
-        android:id="@+id/pollentopbar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/medicinetopbar"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/medicinetopbar"
-        android:layout_toRightOf="@+id/airquality_listview"
-        android:text="@string/pollen_topbar"
-        android:gravity="center"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="12sp" />
-
-    <TextView
-        android:id="@+id/airqualitytopbar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/medicinetopbar"
-        android:layout_alignRight="@+id/airquality_listview"
-        android:layout_alignTop="@+id/medicinetopbar"
-        android:layout_toRightOf="@+id/medicine_taken_listView"
-        android:text="@string/airquality_topbar"
-        android:gravity="center"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="12sp" />
+		    </ListView>
+		    
+		    <ListView
+		        android:id="@+id/airquality_listview"
+		        android:layout_width="match_parent"
+		        android:layout_height="150dp"
+		        android:layout_alignParentBottom="true"
+		        android:layout_toLeftOf="@+id/pollen_listView"
+		        android:layout_toRightOf="@+id/medicine_taken_listView" >
+		
+		    </ListView>
+		
+		    <ListView
+		        android:id="@+id/pollen_listView"
+		        android:layout_width="match_parent"
+		        android:layout_height="150dp"
+		        android:layout_marginRight="5dp"
+		        android:dividerHeight="0dp"
+		        android:divider="@null"
+		        android:layout_alignLeft="@+id/pollentopbar"
+		        android:layout_alignParentBottom="true"
+		        android:layout_alignParentRight="true" >
+		    </ListView>
+		
+		    <TextView
+		        android:id="@+id/medicinetopbar"
+		        android:layout_width="70dp"
+		        android:layout_height="wrap_content"
+		        android:layout_above="@+id/medicine_taken_listView"
+		        android:layout_alignParentLeft="true"
+		        android:layout_marginLeft="5dp"
+		        android:gravity="center"
+		        android:text="@string/medicine_topbar"
+		        android:textAppearance="?android:attr/textAppearanceLarge"
+		        android:textSize="12sp" />
+		
+		    <TextView
+		        android:id="@+id/pollentopbar"
+		        android:layout_width="70dp"
+		        android:layout_height="wrap_content"
+		        android:layout_alignBottom="@+id/medicinetopbar"
+		        android:layout_alignParentRight="true"
+		        android:layout_alignTop="@+id/medicinetopbar"
+		        android:layout_marginRight="5dp"
+		        android:gravity="center"
+		        android:text="@string/pollen_topbar"
+		        android:textAppearance="?android:attr/textAppearanceLarge"
+		        android:textSize="12sp" />
+		
+		    <TextView
+		        android:id="@+id/airqualitytopbar"
+		        android:layout_width="70dp"
+		        android:layout_height="wrap_content"
+		        android:layout_alignBottom="@+id/medicinetopbar"
+		        android:layout_alignTop="@+id/medicinetopbar"
+		        android:layout_toLeftOf="@+id/pollentopbar"
+		        android:layout_toRightOf="@+id/medicinetopbar"
+		        android:gravity="center"
+		        android:text="@string/airquality_topbar"
+		        android:textAppearance="?android:attr/textAppearanceLarge"
+		        android:textSize="12sp" />
 
 </RelativeLayout>

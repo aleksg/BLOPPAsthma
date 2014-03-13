@@ -167,7 +167,8 @@ public class CalendarView extends ImageView
 		int worstSpread = getWorstPollenFeed();
 		
 		//Initialize the logmodel with children id and date.
-		logModel = new LogModel(childIdService.getChildId(), monthDisplayHelper.getMonth()+1, monthDisplayHelper.getYear());
+		//childIdService.getChildId
+		logModel = new LogModel(6, monthDisplayHelper.getMonth()+1, monthDisplayHelper.getYear());
 
 		for (int week = 0; week < mCells.length; week++)
 		{
