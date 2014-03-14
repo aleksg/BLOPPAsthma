@@ -29,7 +29,6 @@ public class SyncActivity extends Activity
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.app_menu, menu);
 		return true;
 	}
@@ -111,8 +110,9 @@ public class SyncActivity extends Activity
 		               @Override
 		               public void onClick(DialogInterface dialog, int id) {
 		            	   String selectedIp = getResources().getStringArray(R.array.sync_options)[_selected];
-		            	   Toast.makeText(getApplicationContext(), "Selected String \n" + selectedIp, Toast.LENGTH_LONG).show();
-		            	   synchronizeWithAsthmaBuddy(selectedIp); //TODO: This will go to "Glos Pi", not caring for what is selected
+		            	
+		            	 
+		            	   synchronizeWithAsthmaBuddy(selectedIp); 
 		                   Log.d(TAG, "User clicked save");
 		               }
 		           })
