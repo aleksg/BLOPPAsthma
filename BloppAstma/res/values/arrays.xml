@@ -19,6 +19,7 @@
         <item>Standard bilder</item>
     </string-array>
     <string-array name="sync_options">
-        <item >129.241.103.246:1337</item>
+        <!--<item >129.241.103.246:1337</item>-->
+        <item> esbenpi.entrydns.org:1337</item>
     </string-array>
 </resources>
