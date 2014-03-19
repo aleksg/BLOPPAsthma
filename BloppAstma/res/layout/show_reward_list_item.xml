@@ -50,6 +50,7 @@
         android:layout_alignTop="@+id/imageView1"
         android:layout_toRightOf="@+id/imageView1"
         android:focusable="false"
-        android:text="Stjerner: " />
+        android:text="Stjerner: "
+        android:textSize="24dp" />
 
 </RelativeLayout>
