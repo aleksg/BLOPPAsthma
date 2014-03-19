@@ -295,7 +295,7 @@ public class MedicationPlanActivity extends SyncActivity implements
 		boolean b = executePoster(poster);
 		if (b)
 		{
-			Toast.makeText(getApplicationContext(), "Du har skiftet medisinplan ",
+			Toast.makeText(getApplicationContext(), "Ditt barn følger nå medisinplan " + getHealthStateString(model.getHealthStateId()),
 					Toast.LENGTH_SHORT).show();
 		} else
 		{
@@ -303,6 +303,18 @@ public class MedicationPlanActivity extends SyncActivity implements
 					R.string.post_error,
 					Toast.LENGTH_SHORT).show();
 		}
+	}
+
+	private String getHealthStateString(int healthStateId) {
+		switch(healthStateId){
+			case 1: 
+				return "FRISK";
+			case 2:
+				return "LITT SYK";
+			case 3:
+				return "SYK";
+		}
+		return "FRISK";
 	}
 
 	private boolean executePoster(HealthStatePoster poster)
