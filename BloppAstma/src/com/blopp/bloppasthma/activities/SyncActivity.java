@@ -1,7 +1,6 @@
 package com.blopp.bloppasthma.activities;
 
 
-import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 import android.annotation.SuppressLint;
@@ -9,7 +8,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.app.FragmentManager;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
