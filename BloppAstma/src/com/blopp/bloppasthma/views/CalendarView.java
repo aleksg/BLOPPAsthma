@@ -398,7 +398,7 @@ public class CalendarView extends ImageView
 	 */
 	private int getWorstPollenFeed()
 	{
-
+		
 		pollenFeed = new PollenCast();
 		pollenFeed.execute();
 		try

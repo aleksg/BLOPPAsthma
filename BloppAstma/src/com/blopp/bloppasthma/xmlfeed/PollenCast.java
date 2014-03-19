@@ -77,7 +77,6 @@ public class PollenCast extends XMLFeed
 		{
 			e.printStackTrace();
 		}
-
 	}
 
 	private static String getTagValue(String sTag, Element eElement)

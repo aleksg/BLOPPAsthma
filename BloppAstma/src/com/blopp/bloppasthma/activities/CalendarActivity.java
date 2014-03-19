@@ -86,7 +86,7 @@ public class CalendarActivity extends SyncActivity implements
 		medicineGridAdapter = new TakenMedicinesAdapter(getApplicationContext(), getAmountOfMedicinesTaken());
 		medicineTakenListView.setAdapter(medicineGridAdapter);
 		medicineUsageTopBar = (TextView)findViewById(R.id.medicinetopbar);
-		initMedicineUsageTopBar();
+		setStringOnMedicineUsageTopBar();
 		pollenListView = (ListView)findViewById(R.id.pollen_listView);
 		pollenListView.setAdapter(new PollenDistributionAdapter(getApplicationContext(), getPollenStates()));
 		
@@ -104,10 +104,21 @@ public class CalendarActivity extends SyncActivity implements
 		return super.onOptionsItemSelected(item);
 	}
 	
-	private void initMedicineUsageTopBar(){
+	/**
+	 * Uses todays date to set the text on medicineUsageTopBar
+	 */
+	private void setStringOnMedicineUsageTopBar(){
 		medicineUsageTopBar.setText(String.format("%s: \n %d / %d - %d", "Forbruk", dateTime.getDayOfMonth(), dateTime.getMonthOfYear(), dateTime.getYear()));
 	}
-
+	/**
+	 * Uses a specified date to set the text on medicineUsageTopBar
+	 * @param day
+	 * @param month
+	 * @param year
+	 */
+	private void setStringOnMedicineUsageTopBar(int day, int month, int year){
+		medicineUsageTopBar.setText(String.format("%s: \n %d / %d - %d", "Forbruk", day, month, year));
+	}
 	/**
 	 * Updates medicineTakenListView according to day selected.
 	 */
@@ -116,24 +127,17 @@ public class CalendarActivity extends SyncActivity implements
 		day = cell.getDayOfMonth();
 		month = calendarView.getMonth()+1;
 		year = calendarView.getYear();
-		
-		
 		dateAdapter = new DateAdapter(day, month, year);
 		medicineTakenListView.setAdapter(new TakenMedicinesAdapter(getApplicationContext(), getAmountOfMedicinesTaken()));
-		
-		medicineUsageTopBar.setText(String.format("%s: \n %d / %d - %d", "Medisinforbruk", day, month, year));
-//		makeToast(day+"-"+month+"-"+year, Toast.LENGTH_SHORT);
+		setStringOnMedicineUsageTopBar(day, month, year);
 	}
-	
-	
 	
 	private void initializeDaysShownInMedicineList()
 	{
 		day = dateTime.getDayOfMonth();
 		month = dateTime.getMonthOfYear();
 		year = dateTime.getYear();
-		dateAdapter = new DateAdapter(day, month, year);
-		
+		dateAdapter = new DateAdapter(day, month, year);	
 		makeToast(day + "-" + month + "-" + year, Toast.LENGTH_SHORT);
 	}
 	
@@ -148,7 +152,6 @@ public class CalendarActivity extends SyncActivity implements
 	/**
 	 * When a user clicks "Next" or "Previous", update the days such that the JSON-call becomes correct.
 	 */
-	
 	private void updateDates()
 	{
 		day = dateTime.getDayOfMonth();
