@@ -140,10 +140,12 @@ public class CalendarView extends ImageView
 			int n[] = monthDisplayHelper.getDigitsForRow(i);
 			for (int d = 0; d < n.length; d++)
 			{
-				if (monthDisplayHelper.isWithinCurrentMonth(i, d))
-					calendarArray[i][d] = new _calendar(n[d], true);
-				else
-					calendarArray[i][d] = new _calendar(n[d]);
+				if (monthDisplayHelper.isWithinCurrentMonth(i, d)){
+					calendarArray[i][d] = new _calendar(n[d], true);					
+				}
+				else{
+					calendarArray[i][d] = new _calendar(n[d]);					
+				}
 
 			}
 		}
@@ -167,8 +169,8 @@ public class CalendarView extends ImageView
 		int worstSpread = getWorstPollenFeed();
 		
 		//Initialize the logmodel with children id and date.
-		//childIdService.getChildId
-		logModel = new LogModel(6, monthDisplayHelper.getMonth()+1, monthDisplayHelper.getYear());
+		
+		logModel = new LogModel(childIdService.getChildId(), monthDisplayHelper.getMonth()+1, monthDisplayHelper.getYear());
 
 		for (int week = 0; week < mCells.length; week++)
 		{
@@ -206,7 +208,7 @@ public class CalendarView extends ImageView
 				{
 					mCells[week][day] = new BlackCell(
 							calendarArray[week][day].day, new Rect(Bound),
-							CELL_TEXT_SIZE, 1);
+							CELL_TEXT_SIZE, 0);
 
 				}
 				Bound.offset(CELL_WIDTH, 0); // move to next column

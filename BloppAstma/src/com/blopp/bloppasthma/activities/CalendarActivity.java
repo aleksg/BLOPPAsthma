@@ -257,6 +257,7 @@ public class CalendarActivity extends SyncActivity implements
 	{
 		updateMonthTextField();	
 		updateDates();
+		setStringOnMedicineUsageTopBar();
 		refreshMedicinesTaken(day, month, year);
 	}
 }

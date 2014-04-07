@@ -4,7 +4,6 @@ import java.sql.Date;
 import java.util.concurrent.ExecutionException;
 
 import android.app.Activity;
-import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
@@ -12,10 +11,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -239,6 +236,7 @@ public class DistractionActivity extends Activity {
 		TextView rewardsTextView = (TextView) findViewById(R.id.distraction_finished_reward_text);
 		rewardsTextView.setText("");
 		ImageView chestView = (ImageView) findViewById(R.id.distraction_finished_chest);
+		
 		chestView.setOnClickListener(new OnClickListener()
 		{
 			public void onClick(View v)
@@ -253,11 +251,11 @@ public class DistractionActivity extends Activity {
 	public void initPickMedicine()
 	{	
 		setContentView(R.layout.medication_pick_medicine);
-		Log.d(TAG, "set content view");
+		
 		final ListView listView = (ListView) findViewById(R.id.medicines_listView);
-		Log.d(TAG, "found list view");
+		
 		MedicineListParser mlp = new MedicineListParser(getApplicationContext());
-		Log.d(TAG, "inited med list parser");
+	
 		
 		mlp.execute();
 		try {
@@ -268,9 +266,9 @@ public class DistractionActivity extends Activity {
 			e.printStackTrace();
 		}
 		Medicine[] medicines = mlp.getMedicines().toArray(new Medicine[mlp.getMedicines().size()]);
-		Log.d(TAG, "found meds");
+	
 		listView.setAdapter(new MedicineListAdapter(getApplicationContext(), medicines));
-		Log.d(TAG, "set list adapter");
+	
 		listView.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				medicine = (Medicine)listView.getItemAtPosition(position);

@@ -23,13 +23,13 @@ import android.graphics.Rect;
 
 public class Cell {
 	private static final String TAG = "Cell";
+	private static final int COLOR_GRAY = Color.rgb(224, 224, 224);
 	protected Rect bound = null;
 	protected int dayOfMonth = 1;	// from 1 to 31
 	protected Paint painter = new Paint(Paint.SUBPIXEL_TEXT_FLAG
             |Paint.ANTI_ALIAS_FLAG);
 	int dx, dy;
 	
-	private int worstSpread;
 	private int healthState;
 	
 	public Cell(int dayOfMon, Rect rect, float textSize, boolean bold) {
@@ -46,13 +46,17 @@ public class Cell {
 	//Removed int worstSpread
 	public Cell(int dayOfMon, Rect rect, float textSize, int healthState) {
 		this(dayOfMon, rect, textSize, false);
-		//this.worstSpread = worstSpread;
+		
 		this.healthState = healthState;
 	}
 	
 	public void draw(Canvas canvas) {
 		//Draw date
-		painter.setColor(Color.BLACK);
+		if(getHealthStateColor() == COLOR_GRAY){
+			painter.setColor(COLOR_GRAY); //Gray
+		}else{
+			painter.setColor(Color.BLACK);
+		}
 		canvas.drawText(String.valueOf(dayOfMonth), bound.centerX() - dx, bound.centerY() + dy, painter);
 		
 		//Draw healthstate at that date
@@ -65,10 +69,11 @@ public class Cell {
 	public int getHealthStateColor()
 	{
 		switch(healthState){
-		case 1: return Color.GREEN;
-		case 2: return Color.YELLOW;
-		case 3: return Color.RED;
-		default: return Color.GREEN;
+			case 0: return COLOR_GRAY;
+			case 1: return Color.GREEN;
+			case 2: return Color.YELLOW;
+			case 3: return Color.RED;
+			default: return Color.GREEN;
 		}
 		
 	}
@@ -89,32 +94,32 @@ public class Cell {
 	public String toString() {
 		return String.valueOf(dayOfMonth)+"("+bound.toString()+")";
 	}
-	
-	public int getPollenColor(int spread)
-	{
-		int c = -1;
-		switch (spread) {
-		case 0:
-			c = Color.parseColor("#FFFFFF"); //Ingen
-			break;
-		case 1:
-			c = Color.parseColor("#EBF187"); //Beskjeden
-			break;
-		case 2:
-			c = Color.parseColor("#F8A722"); //Moderat
-			break;
-		case 3:
-			c = Color.parseColor("#E9473C"); //Kraftig
-			break;
-		case 4:
-			c = Color.parseColor("#7C2B0A"); //Ekstrem
-			break;
-		default:
-			c = Color.parseColor("#000000"); //Default
-			break;
-		}
-		return c;
-	}
+//	
+//	public int getPollenColor(int spread)
+//	{
+//		int c = -1;
+//		switch (spread) {
+//		case 0:
+//			c = Color.parseColor("#FFFFFF"); //Ingen
+//			break;
+//		case 1:
+//			c = Color.parseColor("#EBF187"); //Beskjeden
+//			break;
+//		case 2:
+//			c = Color.parseColor("#F8A722"); //Moderat
+//			break;
+//		case 3:
+//			c = Color.parseColor("#E9473C"); //Kraftig
+//			break;
+//		case 4:
+//			c = Color.parseColor("#7C2B0A"); //Ekstrem
+//			break;
+//		default:
+//			c = Color.parseColor("#000000"); //Default
+//			break;
+//		}
+//		return c;
+//	}
 	
 }
 
